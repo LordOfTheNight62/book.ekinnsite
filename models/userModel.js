@@ -66,7 +66,16 @@ class User {
     }
   }
 
-  static async getTotalUser() {
+  static async getAllUser() {
+    try {
+      const [rows] = await db.execute('SELECT * FROM users ORDER BY joined_at DESC');
+      return rows;
+    } catch (err) {
+      console.error('Tüm kullanıcılar alınırken hata oluştu, ', err.message);
+    }
+  }
+
+  static async getTotalUserCount() {
     try {
       const [result] = await db.execute('SELECT COUNT(*) AS total_users FROM users');
       return result[0].total_users;

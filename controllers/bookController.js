@@ -46,8 +46,10 @@ exports.getAddNewBookPage = (req, res) => {
 };
 
 exports.getEditBookPage = async (req, res) => {
-  const book = await exports.getBookByID(req, res);
-  res.render('edit-book', { title: `${book.name} Kitabını Düzenle`, book, query: req.query || {} });
+  try {
+    const book = await exports.getBookByID(req, res);
+    res.render('edit-book', { title: `${book.name} Kitabını Düzenle`, book, query: req.query || {} });
+  } catch (err) {}
 };
 
 exports.getAllBooksPage = async (req, res) => {
