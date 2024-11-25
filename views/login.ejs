@@ -1,0 +1,64 @@
+<body class="d-flex justify-content-center align-items-center">
+    <main class="container-md">
+        <% if(query.message === "success-newuser") { %>
+            <div class="container-fluid">
+                <div class="alert alert-success" role="alert">
+                    Tebrikler üyeliğiniz başarıyla gerçekleşti, şimdi lütfen giriş yapın
+                </div>
+            </div>
+        <% } else if(query.message === "invalid") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Yanlış eposta veya şifre!
+                </div>
+            </div>
+        <% } else if(query.message === "success-delete") { %>
+            <div class="container-fluid">
+                <div class="alert alert-success" role="alert">
+                    Hesabınız silindi, aramızdan ayrıldığına üzüldüm :(
+                </div>
+            </div>
+        <% } else if(query.message === "error-delete") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Hesap silinirken bir hata oluştu, lütfen birazdan tekrar deneyin
+                </div>
+            </div>
+        <% } else if(query.message === "user-notfound") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Böyle bir kullanıcı bulunamadı!
+                </div>
+            </div>
+        <% } else if(query.message === "error") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Bir hata oluştu, giriş yapılamadı
+                </div>
+            </div>
+        <% } %>
+        <div class="container-fluid my-1">
+            <form action="/login" method="POST" class="form-floating my-3">
+                <h2 class="display-2 mb-3 text-center">Giriş Yap</h2>
+                <div class="form-floating mb-3">
+                    <input type="email" name="userEmail" class="form-control" id="userEmailInput" placeholder="Enter Your Email" required>
+                    <label for="userEmailInput">E-postanız <span class="text-danger">*</span></label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" name="userPassword" class="form-control" id="userPasswordInput" placeholder="Enter Your Password" required>
+                    <label for="userPasswordInput">Şifreniz <span class="text-danger">*</span></label>
+                </div>
+                <div class="row mb-2">
+                    <div class="col text-danger">(*) zorunlu</div>
+                </div>
+                <button class="btn bg-primary text-light w-100" type="submit">Giriş Yap</button>
+            </form>
+            <div class="row">
+                <div class="col">Üye değil misin? <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/register">Hemen üye ol</a></div>
+            </div>
+        </div>
+    </main>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/error.js"></script>
+</body>

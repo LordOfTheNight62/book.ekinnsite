@@ -1,0 +1,81 @@
+<body>
+    <main class="container-md py-4">
+
+        <div class="container-fluid my-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/admin-panel/books">Kitaplar</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Kitap Ara</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container-fluid">
+            <h1>Kitap Ara</h1>
+
+            <form action="/admin-panel/books/search" method="POST" class="form-floating my-2">
+                <div class="form-floating mb-2">
+                    <input type="search" name="searchTerm" class="form-control" id="searchBookInput" placeholder="Search" required>
+                    <label for="searchBookInput">Kitap Adı veya Yazar Adı</label>
+                </div>
+
+            <button class="btn btn-outline-primary w-100 my-2" type="submit"><i class="bi bi-search"></i> Kitap Ara</button>
+            </form>
+            <a href="/admin-panel/books" class="btn bg-primary text-light mb-5 w-100" role="button">Geri Dön</a>
+            <h3><b>
+                <%if(typeof results !== "undefined") {%>
+                <%= "Sonuçlar (" + (results.length > 0 ? results.length + ' adet)' : 'Sonuç Yok)') %>
+                <% } else { %>
+                Sonuçlar (Sonuç Yok)
+                <% } %>
+            </b></h3>
+
+            <div class="container-fluid">
+                <% if(typeof results !== "undefined" && results.length > 0) { %>
+                    <p class="border border-dark-subtle rounded-3 p-3 mt-1 mb-3"><%= '"' + searchTerm + '"' + ' aramanız için sonuçlar listelendi' %></p>
+                    <ul class="list-group rounded-3">
+                    <% results.forEach((book) => { %>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-8 col-sm-7 col-md-6 text-start">
+                                    <div class="row">
+                                        <div class="col-12"><strong>Kitap Adı: </strong><%= book.name %></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12"><strong>Yazar: </strong><%= book.author %></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12"><strong>Fiyat: </strong><%= book.price + " TL" %></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12"><strong>Eklenme Tarihi: </strong><%= new Date(book.added_at).toLocaleString().replace(/GMT[^\s]*/, '').trim() %></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
+                                    <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
+                                        <div class="col">
+                                            <a href="/admin-panel/books/<%= book.id %>" class="btn bg-success"><i class="bi bi-box-arrow-right text-light"></i></a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="/admin-panel/books/edit-book/<%= book.id %>" class="btn bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="/admin-panel/books/delete-book/<%= book.id %>" class="btn bg-danger text-light"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                    </ul>
+                    <% } else { %>
+                        <% if(typeof searchTerm !== "undefined") { %>
+                            <p class="border border-dark-subtle rounded-3 p-3"><%= '"' + searchTerm + '"' + ' aramanız için sonuç bulunamadı, lütfen farklı bir arama ile tekrar deneyin' %></p>
+                        <% } else { %>
+                            <p class="border border-dark-subtle rounded-3 p-3"><%= 'Şu an gösterilecek bir sonuç yok, lütfen arama yapın' %></p>
+                        <% } %>
+                    <% } %>
+            </div>
+        </div>
+    </main>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+</body>

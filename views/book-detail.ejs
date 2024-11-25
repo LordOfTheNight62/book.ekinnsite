@@ -1,0 +1,68 @@
+<body>
+    <main class="container-md py-4">
+
+        <div class="container-fluid my-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/admin-panel/books">Kitaplar</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><%= book.name %></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="container-fluid bg-white mb-5 border border-dark-subtle rounded-3 p-3 print">
+            <div class="row">
+                <h1><%= book.name %></h1>
+            </div>
+            <div class="container-fluid mt-3">
+                <div class="row row-cols-1 row-cols-md-2 mb-3">
+                    <div class="col mb-1 mb-md-auto">
+                        <span><strong>Yazar: </strong> <%= book.author %></span>
+                    </div>
+                    <div class="col">
+                        <span><strong>Kitap Eklenme Tarihi: </strong><%= new Date(book.added_at).toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></span>
+                    </div>
+                </div>
+                <div class="row my-2 border border-dark-subtle rounded-3 p-3">
+                    <div class="col">
+                        <h3>Kitap Açıklaması</h3>
+                        <%= book.description %>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col rounded-3 fs-4">
+                        <strong>Fiyat: </strong><%= book.price %><span> TL</span>
+                    </div>
+                </div>
+
+                <div class="row my-2 no-print">
+                    <div class="col">
+                        <a href="/admin-panel/books" class="btn bg-primary text-light w-100" role="button">Geri Dön</a>
+                    </div>
+                </div>
+
+                <div class="row my-2 no-print">
+                    <div class="col">
+                        <btn class="btn bg-primary text-light w-100" role="button" onclick="window.print()"><i class="bi bi-printer"></i> Sayfayı Yazdır</btn>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid my-2">
+            <h2><i class="bi bi-chat-left-text"></i> Yorumlar</h2>
+            <form action="/admin-panel/books/<%= book.id %>" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="text" name="nameOfComment" class="form-control" id="addNameForComment" placeholder="Enter your name" required>
+                    <label for="addNameForComment">Adınız <span class="text-danger">*</span></label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea name="comment" class="form-control" id="addCommentInput" placeholder="Enter Book Description" required></textarea>
+                    <label for="addCommentInput">Yorumunuz <span class="text-danger">*</span></label>
+                </div>
+                <button class="btn bg-primary text-light w-100" type="submit">Yorum Ekle</button>
+            </form>
+        </div>
+    </main>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+</body>

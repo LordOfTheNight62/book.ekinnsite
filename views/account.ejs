@@ -1,0 +1,182 @@
+<body>
+    <main class="container-md py-4">
+        <h1>Hoş Geldin!</h1>
+        <h2 class="mb-3">
+            <% if(user.role === 'admin')  { %>
+                <%="Sayın yönetici " + user.name %>
+                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/admin-panel">Admin Panel</a>
+            <% } else { %>
+                <%= user.name %>
+            <% } %>
+        </h2>
+        <% if(query.req === "delete-account") { %>
+            <button id="openDeleteAccountModalBtn" class="btn bg-primary text-light w-100 opacity-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Sil</button>
+            <div class="modal fade" id="deleteAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5">Hesabını silmek istediğine emin misin?</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/account?req=delete-account" method="POST" class="form-floating my-3">
+                            <h5 class="mt-1 mb-3"><i class="bi bi-lock"></i> Lütfen şifreni gir</h5>
+            
+                            <div class="form-floating mb-3">
+                                <input type="password" name="deleteUserByPassword" class="form-control" id="deleteUserPasswordInput" placeholder="Enter Your Current Password" required>
+                                <label for="deleteUserPasswordInput"> Mevcut Şifreniz <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col text-danger">(*) zorunlu</div>
+                            </div>
+                            <button class="btn bg-danger text-light w-100" type="submit">Hesabımı Sil</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Vazgeç</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        <% } %>
+        <% if(query.message === "success") { %>
+            <div class="container-fluid my-1">
+                <div class="alert alert-success" role="alert">
+                    Değişikler başarıyla kaydedildi
+                </div>
+            </div>
+        <% } else if(query.message === "wrong-password") { %>
+            <div class="container-fluid my-1">
+                <div class="alert alert-danger" role="alert">
+                    Mevcut şifreniz yanlış!
+                </div>
+            </div>
+        <% } else if(query.message === "invalid-password") { %>
+            <div class="container-fluid my-1">
+                <div class="alert alert-danger" role="alert">
+                    Şifreniz uygun değil, lütfen kriterlere uygun şifre belirleyin!
+                </div>
+            </div>
+        <% } else if(query.message === "notmatch-password") { %>
+            <div class="container-fluid my-1">
+                <div class="alert alert-danger" role="alert">
+                    Şifreniz doğru değil!
+                </div>
+            </div>
+        <% } else if(query.message === "same-password") { %>
+            <div class="container-fluid my-1">
+                <div class="alert alert-danger" role="alert">
+                    Şifreniz önceki şifreniz ile aynı olamaz!
+                </div>
+            </div>
+        <% } else if(query.message === "error") { %>
+            <div class="container-fluid my-1">
+                <div class="alert alert-danger" role="alert">
+                    Bir hata oluştu, değişiklikler kaydedilemedi!
+                </div>
+            </div>
+        <% } %>
+        <ul class="nav nav-tabs overflow-x-auto" id="accountTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="personalInfo-tab" data-bs-toggle="tab" data-bs-target="#personalInfo-tab-pane" type="button" role="tab" aria-controls="personalInfo-tab-pane" aria-selected="false"><i class="bi bi-file-person"></i> Kişisel Bilgiler</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false"><i class="bi bi-lock"></i> Şifre İşlemleri</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other-tab-pane" type="button" role="tab" aria-controls="other-tab-pane" aria-selected="false"><i class="bi bi-three-dots"></i> Diğer İşlemler</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="accountTabsContent">
+            <div class="tab-pane fade show active" id="personalInfo-tab-pane" role="tabpanel" aria-labelledby="personalInfo-tab" tabindex="0">
+                <form action="javascript:void(0)" method="POST" class="form-floating my-3">
+                    <h4 class="display-5 mb-3 text-center">Kişisel Bilgilerim</h4>
+                    <div class="row mt-1 mb-2">
+                        <div class="col text-center"><i class="bi bi-person-circle" style="font-size: 4rem;"></i></div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" value="<%= user.name %>" required disabled readonly>
+                        <label for="userNameInput">Adınız <span class="text-danger">*</span></label> 
+                    </div>
+    
+                    <div class="form-floating mb-3">
+                        <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" value="<%= user.surname %>" required disabled readonly>
+                        <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
+                    </div>
+    
+                    <div class="form-floating mb-3">
+                        <input type="email" name="userEmail" class="form-control" id="userEmailInput" placeholder="Enter Your Email" value="<%= user.email %>" required disabled readonly>
+                        <label for="userEmailInput">E-postanız <span class="text-danger">*</span></label>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col"><strong><%= new Date(user.joined_at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) %></strong> tarihinden beridir üyesiniz</div>
+                    </div>
+                
+                    <div class="row mb-2">
+                        <div class="col text-danger">(*) zorunlu</div>
+                    </div>
+                    <button class="btn bg-success text-light w-100" type="submit" disabled>Değişiklikleri Kaydet</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="1">
+                <form action="/account?req=change-password" method="POST" class="form-floating my-3">
+                    <h4 class="display-5 mb-3 text-center">Şifre İşlemleri</h4>
+                    <div class="row my-4">
+                        <div class="col">
+                            <ul class="list-group">
+                                <li class="list-group-item active" aria-current="true"><i class="bi bi-clock-history"></i> Şifrenizi en son değiştirdiğiniz tarih</li>
+                                <li class="list-group-item"><%= user.lastPasswordUpdate_at ? new Date(user.lastPasswordUpdate_at).toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : "-" %></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h5 class="mt-1 mb-3"><i class="bi bi-lock"></i> Şifreni Değiştir</h5>
+    
+                    <div class="form-floating mb-3">
+                        <input type="password" name="userPassword" class="form-control" id="userPasswordInput" placeholder="Enter Your Current Password" required>
+                        <label for="userPasswordInput"> Mevcut Şifreniz <span class="text-danger">*</span></label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="userNewPassword" class="form-control" id="userNewPasswordInput" placeholder="Enter Your New Password" required>
+                        <label for="userNewPasswordInput"> Yeni Şifreniz <span class="text-danger">*</span></label>
+                        <div class="row password-validator my-1">
+                            <div class="row">
+                                <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifrenin uzunluğu en az 8 karakter olmalı</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 büyük ve 1 küçük harf içermeli</div>
+    
+                            </div>
+                            <div class="row">
+                                <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 rakam içermeli</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren "123" veya "6789" gibi art arda yazılmış 2'den fazla tahmin etmesi kolay ve sıralı rakamları içermemeli</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col text-danger">(*) zorunlu</div>
+                    </div>
+                    <button class="btn bg-primary text-light w-100" type="submit">Şifreni Değiştir</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="other-tab-pane" role="tabpanel" aria-labelledby="other-tab" tabindex="2">
+                <div class="row my-3">
+                    <div class="col">
+                        <ul class="list-group">
+                            <li class="list-group-item active" aria-current="true">Hesap Silme</li>
+                            <li class="list-group-item"><a class="link-danger link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/account?req=delete-account"><i class="bi bi-person-dash"></i> Hesabımı Sil</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <div class="row">
+            <div class="col"><a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/logout">Çıkış Yap</a></div>
+        </div>
+    </main>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/error.js"></script>
+    <script src="/assets/js/account.js"></script>
+</body>

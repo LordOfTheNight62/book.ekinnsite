@@ -1,0 +1,40 @@
+body {
+  background-color: #f8f9fa !important;
+  min-height: 100vh;
+}
+
+textarea {
+  min-height: 150px !important;
+  max-height: 300px !important;
+}
+
+.nav-tabs {
+  overflow-x: auto !important;
+  overflow-y:hidden !important;
+  flex-wrap: nowrap !important;
+}
+
+.side-bar > li:hover{
+  background-color: #ced4da;
+  transition: .3s;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print,
+  .print * {
+    visibility: visible;
+  }
+  .print {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .no-print,
+  .no-print * {
+    visibility: hidden;
+  }
+}

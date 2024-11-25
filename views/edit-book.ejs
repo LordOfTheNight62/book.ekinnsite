@@ -1,0 +1,61 @@
+<body>
+    <main class="container-md py-4">
+        <% if(query.message === "success") { %>
+            <div class="container-fluid">
+                <div class="alert alert-success" role="alert">
+                    Kitap başarıyla güncellendi
+                </div>
+            </div>
+        <% } else if(query.message === "error") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Bir hata oluştu, kitap güncellenemedi
+                </div>
+            </div>
+        <% } %>
+
+        <div class="container-fluid my-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/admin-panel/books">Kitaplar</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Kitabı Düzenle</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container-fluid">
+            <h1>Kitabı Güncelle</h1>
+
+            <form action="<%= "/admin-panel/books/edit-book/" + book.id %>" method="POST" class="form-floating my-3">
+                <div class="form-floating mb-3">
+                    <input type="text" name="name" class="form-control" id="addBookNameInput" placeholder="Enter Book Name" value="<%= book.name %>" required>
+                    <label for="addBookNameInput">Kitap Adı <span class="text-danger">*</span></label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea name="description" class="form-control" id="addBookDescInput" placeholder="Enter Book Description"><%= book.description %></textarea>
+                    <label for="addBookDescInput">Kitap Açıklaması</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="author" class="form-control" id="addBookAuthorInput" placeholder="Enter Book Author" value="<%= book.author %>" required>
+                    <label for="addBookAuthorInput">Yazar Adı <span class="text-danger">*</span></label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="number" name="categoryID" class="form-control" id="addBookCategoryInput" placeholder="Enter Book Category" value="<%= book.category_id %>" required>
+                    <label for="addBookCategoryInput">Kategori <span class="text-danger">*</span></label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="number" name="price" class="form-control" id="addBookPriceInput" placeholder="Enter Book Price" step="0.01" value="<%= book.price %>" required>
+                    <label for="addBookPriceInput">Fiyat <span class="text-danger">*</span></label>
+                </div>
+                <button class="btn bg-primary text-light w-100" type="submit">Kitabı Güncelle</button>
+            </form>
+            <div class="text-center mb-3">veya</div>
+            <div class="text-center"><a href="/admin-panel/books/add-book" class="btn bg-primary text-light w-100" role="button">Yeni Kitap Ekle</a></div>
+        </div>
+    </main>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/error.js"></script>
+</body>
