@@ -1,15 +1,92 @@
 <body>
-    <main class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-4">
-                <ul class="side-bar list-group" style="height: 100%;">
-                    <a class="link-underline link-underline-opacity-0" href="/admin-panel/books"><li class="list-group-item">Kitaplar</li></a>
-                    <a class="link-underline link-underline-opacity-0" href="/admin-panel/books/search"><li class="list-group-item">Kitaplarda Ara</li></a>
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar py-3">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img class="rounded-circle" src="/assets/img/ekinnsite_logo.png" alt="ekinn.site Logo" width="64px">
+                </div>
+                <h3 class="text-center">Yönetim Paneli</h3>
+                <ul class="nav flex-column mt-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="bi bi-house-door"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person"></i> Kullanıcılar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin-panel/books">
+                            <i class="bi bi-bar-chart"></i> Kitaplar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-gear"></i> Kategoriler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-danger" href="/logout">
+                            <i class="bi bi-box-arrow-right"></i> Çıkış Yap
+                        </a>
+                    </li>
                 </ul>
-            </div>
-            <div class="col-8"></div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+                    <div class="container-fluid">
+                        <span class="navbar-brand mb-0 h1">Hoşgeldin, sayın <%= user.name %></span>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminPanelNavBar" aria-controls="adminPanelNavBar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="adminPanelNavBar">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/account"><i class="bi bi-person-circle"></i> Profil</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Users</h5>
+                                <p class="card-text">Manage your users here.</p>
+                                <a href="#" class="btn btn-light">View Users</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Analytics</h5>
+                                <p class="card-text">Check your analytics data.</p>
+                                <a href="#" class="btn btn-light">View Analytics</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card text-white bg-warning">
+                            <div class="card-body">
+                                <h5 class="card-title">Settings</h5>
+                                <p class="card-text">Adjust your settings here.</p>
+                                <a href="#" class="btn btn-light">View Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-    </main>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/error.js"></script>
+    </div>
+
 </body>

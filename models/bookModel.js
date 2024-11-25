@@ -57,7 +57,7 @@ class Book {
 
   static async getAllBooks() {
     try {
-      const [rows] = await db.execute('SELECT * FROM books');
+      const [rows] = await db.execute('SELECT * FROM books ORDER BY added_at DESC');
       return rows;
     } catch (err) {
       console.error('Kitap verileri alınamadı, ', err.message);

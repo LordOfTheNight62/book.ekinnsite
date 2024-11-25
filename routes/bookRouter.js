@@ -5,18 +5,12 @@ const bookController = require('../controllers/bookController');
 const { isLoggedIn, isAdmin } = require('../middlewares/auth');
 
 router.get('/admin-panel/books/add-book', isLoggedIn, isAdmin, bookController.getAddNewBookPage);
-router.post;
-'/admin-panel/books/add-book', isLoggedIn, isAdmin, bookController.addNewBook;
+router.post('/admin-panel/books/add-book', isLoggedIn, isAdmin, bookController.addNewBook);
 
 router.get('/admin-panel/books/edit-book/:id', isLoggedIn, isAdmin, bookController.getEditBookPage);
 router.post('/admin-panel/books/edit-book/:id', isLoggedIn, isAdmin, bookController.updateBookByID);
 
-router.get(
-  '/admin-panel/books/delete-book/:id',
-  isLoggedIn,
-  isAdmin,
-  bookController.getDeleteBookPage
-);
+router.get('/admin-panel/books/delete-book/:id', isLoggedIn, isAdmin, bookController.getDeleteBookPage);
 
 router.get('/admin-panel/books', isLoggedIn, isAdmin, bookController.getAllBooksPage);
 
