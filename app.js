@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const path = require('path');
 const helmet = require('helmet');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const db = require('./config/db');
 const PORT = 4000;
-require('dotenv').config();
 
 const cleanRequestBody = require('./middlewares/cleanRequestBody');
 const adminRouter = require('./routes/adminRouter');
@@ -33,11 +35,14 @@ app.set('layout', path.join(__dirname, 'views', 'layouts', 'layout.ejs'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+const sessionStore = new MySQLStore({}, db);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: sessionStore, // MySQL Store'u burada belirtiyoruz
     cookie: {
       secure: true, // HTTPS üzerinden iletilebilir
       httpOnly: true, // JavaScript erişimini engeller
