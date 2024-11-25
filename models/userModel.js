@@ -65,6 +65,15 @@ class User {
       throw err;
     }
   }
+
+  static async getTotalUser() {
+    try {
+      const [result] = await db.execute('SELECT COUNT(*) AS total_users FROM users');
+      return result[0].total_users;
+    } catch (err) {
+      console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);
+    }
+  }
 }
 
 module.exports = User;

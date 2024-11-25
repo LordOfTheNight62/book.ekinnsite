@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar py-3">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img class="rounded-circle" src="/assets/img/ekinnsite_logo.png" alt="ekinn.site Logo" width="64px">
+            <nav class="col-md-3 col-lg-2 d-md-block mb-2 mb-md-0 sidebar bg-dark text-light py-3">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <img class="rounded-circle" src="/assets/img/ekinnsite_logo.png" alt="ekinn.site Logo" style="width: calc(4rem + 6vw);">
                 </div>
                 <h3 class="text-center">Yönetim Paneli</h3>
                 <ul class="nav flex-column mt-4">
@@ -15,17 +15,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="bi bi-person"></i> Kullanıcılar
+                            <i class="bi bi-people"></i> Kullanıcılar
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin-panel/books">
-                            <i class="bi bi-bar-chart"></i> Kitaplar
+                            <i class="bi bi-book"></i> Kitaplar
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="bi bi-gear"></i> Kategoriler
+                            <i class="bi bi-ui-checks-grid"></i> Kategoriler
                         </a>
                     </li>
                     <li class="nav-item">
@@ -38,7 +38,7 @@
 
             <!-- Main Content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+                <nav class="navbar bg-dark text-light navbar-expand-lg sticky-top" data-bs-theme="dark">
                     <div class="container-fluid">
                         <span class="navbar-brand mb-0 h1">Hoşgeldin, sayın <%= user.name %></span>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminPanelNavBar" aria-controls="adminPanelNavBar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,9 +58,9 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card text-white bg-primary">
                             <div class="card-body">
-                                <h5 class="card-title">Users</h5>
-                                <p class="card-text">Manage your users here.</p>
-                                <a href="#" class="btn btn-light">View Users</a>
+                                <h5 class="card-title"><i class="bi bi-people-fill"></i> Kullanıcılar</h5>
+                                <p class="card-text">Toplam <%= statistics.totalUser %> kişi</p>
+                                <a href="#" class="btn btn-light">Tümünü Görüntüle</a>
                             </div>
                         </div>
                     </div>
@@ -88,5 +88,5 @@
             </main>
         </div>
     </div>
-
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 </body>

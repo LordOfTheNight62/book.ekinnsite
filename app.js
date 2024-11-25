@@ -39,6 +39,7 @@ const sessionStore = new MySQLStore({}, db);
 
 app.use(
   session({
+    key: 'session_id.book.ekinn.site',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
