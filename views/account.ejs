@@ -9,7 +9,9 @@
                     <%= user.name %>
                 <% } %>
             </h2>
-            <a class="btn bg-primary text-light my-1 w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Admin Panel</a>
+            <% if(user.role === 'admin')  { %>
+                <a class="btn bg-primary text-light my-1 w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Admin Panel</a>
+            <% } %>
         </div>
         <% if(query.req === "delete-account") { %>
             <button id="openDeleteAccountModalBtn" class="btn bg-primary text-light w-100 opacity-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Sil</button>
