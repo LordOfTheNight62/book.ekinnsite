@@ -44,7 +44,9 @@ exports.loginUser = async (req, res) => {
         req.session.userId = user.id;
         req.session.userName = user.name;
         req.session.role = user.role;
-        return res.status(301).redirect('account');
+        const redirectUrl = req.session.redirectTo || '/account';
+        delete req.session.redirectTo;
+        return res.status(301).redirect(redirectUrl);
       } else return res.status(301).redirect('/login?message=invalid');
     } else return res.status(301).redirect('/login?message=user-notfound');
   } catch (err) {

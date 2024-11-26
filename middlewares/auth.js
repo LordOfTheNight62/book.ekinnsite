@@ -3,12 +3,19 @@ exports.isLoggedIn = (req, res, next) => {
   if (req.session.userId) {
     return next();
   }
+
+  if (req.originalUrl !== '/login' && req.originalUrl !== '/register') {
+    req.session.redirectTo = req.originalUrl;
+    console.log(req.session.redirectTo);
+  }
   return res.redirect('/login');
 };
 
 exports.redirectIfLoggedIn = (req, res, next) => {
   if (req.session.userId) {
-    return res.redirect('/account');
+    const redirectUrl = req.session.redirectTo || '/account';
+    delete req.session.redirectTo;
+    return res.status(301).redirect(redirectUrl);
   }
   next();
 };
