@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const input = btn.closest('.input-group').querySelector('input');
       input.removeAttribute('readonly');
       input.focus();
+      const length = input.value.length;
+      input.setSelectionRange(length, length);
     }
   });
 
@@ -94,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         userNameInput.value = data.userName;
         userSurnameInput.value = data.userSurname;
         const alert = document.querySelector('.alert-saved');
-        console.log(alert);
         alert.classList.toggle('d-none');
+        document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (alert) {
           setTimeout(() => {
             alert.classList.toggle('d-none');
