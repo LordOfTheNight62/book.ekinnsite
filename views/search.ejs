@@ -47,7 +47,7 @@
                                         <div class="col-12"><strong>Fiyat: </strong><%= book.price + " TL" %></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12"><strong>Eklenme Tarihi: </strong><%= new Date(book.added_at).toLocaleString().replace(/GMT[^\s]*/, '').trim() %></div>
+                                        <div class="col-12"><strong>Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %></div>
                                     </div>
                                 </div>
                                 <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">

@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="row mb-2">
-                        <div class="col"><strong><%= new Date(user.joined_at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) %></strong> tarihinden beridir üyesiniz</div>
+                        <div class="col"><strong><%= new Date(user.joined_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %></strong> tarihinden beridir üyesiniz</div>
                     </div>
                 
                     <div class="row mb-2">
