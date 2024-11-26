@@ -9,8 +9,10 @@
                     <%= user.name %>
                 <% } %>
             </h2>
+        </div>
+        <div class="mb-2">
             <% if(user.role === 'admin')  { %>
-                <a class="btn bg-primary text-light my-1 w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Admin Panel</a>
+                <a class="btn bg-primary text-light w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Admin Panel</a>
             <% } %>
         </div>
         <% if(query.req === "delete-account") { %>
