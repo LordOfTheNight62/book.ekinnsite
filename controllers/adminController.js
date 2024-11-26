@@ -16,6 +16,6 @@ exports.getAllUsersPage = async (req, res) => {
     const statistics = {
       totalUser: await User.getTotalUserCount(),
     };
-    res.render('users', { title: 'Tüm Kullanıcılar', users, statistics });
+    res.render('users', { title: 'Üye Listesi', users, statistics });
   } catch (err) {}
 };
