@@ -1,14 +1,16 @@
 <body>
     <main class="container-md py-4">
-        <h1>Hoş Geldin!</h1>
-        <h2 class="mb-3">
-            <% if(user.role === 'admin')  { %>
-                <%="Sayın yönetici " + user.name %>
-                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/admin-panel">Admin Panel</a>
-            <% } else { %>
-                <%= user.name %>
-            <% } %>
-        </h2>
+        <div class="mb-5">
+            <h1>Hoş Geldin!</h1>
+            <h2>
+                <% if(user.role === 'admin')  { %>
+                    <%="Sayın yönetici " + user.name %>
+                <% } else { %>
+                    <%= user.name %>
+                <% } %>
+            </h2>
+            <a class="btn bg-primary text-light my-1 w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Admin Panel</a>
+        </div>
         <% if(query.req === "delete-account") { %>
             <button id="openDeleteAccountModalBtn" class="btn bg-primary text-light w-100 opacity-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Sil</button>
             <div class="modal fade" id="deleteAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
