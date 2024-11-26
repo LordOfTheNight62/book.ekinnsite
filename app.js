@@ -46,7 +46,7 @@ app.use(
     saveUninitialized: false,
     store: sessionStore, // MySQL Store'u burada belirtiyoruz
     cookie: {
-      secure: true, // HTTPS üzerinden iletilebilir
+      //secure: true, // HTTPS üzerinden iletilebilir
       httpOnly: true, // JavaScript erişimini engeller
       sameSite: 'Lax', // Cross-site isteklerinde cookie gönderilir
       maxAge: 1000 * 60 * 60 * 6, // 6 saat (milisaniye cinsinden)

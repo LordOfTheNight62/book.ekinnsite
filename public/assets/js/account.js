@@ -57,11 +57,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const userDataForm = document.getElementById('userDataForm');
+  const userNameInput = document.querySelector('input[name="userName"]');
+  const userSurnameInput = document.querySelector('input[name="userSurname"]');
+
+  userDataForm.addEventListener('click', (e) => {
+    if (e.target.closest('.input-edit-btn')) {
+      const btn = e.target.closest('.input-edit-btn');
+      const input = btn.closest('.input-group').querySelector('input');
+      input.removeAttribute('readonly');
+      input.focus();
+    }
+  });
+
+  userDataForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(userDataForm);
+    console.log('Saf form verisi, ', formData);
+    const userFormData = {};
+    formData.forEach((value, key) => {
+      userFormData[key] = value;
+    });
+    console.log('İşlenmiş form verisi, ', userFormData);
+
+    console.log(userFormData);
+    fetch('/api/user-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userFormData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Sunucudan gelen cevap:', data);
+        userNameInput.value = data.userName;
+        userSurnameInput.value = data.userSurname;
+        const alert = document.querySelector('.alert-saved');
+        console.log(alert);
+        alert.classList.toggle('d-none');
+        if (alert) {
+          setTimeout(() => {
+            alert.classList.toggle('d-none');
+          }, 10000);
+        }
+      })
+      .catch((err) => {
+        console.log('Hata, ', err);
+      });
+  });
+
+  // Avatar Seçimi
+
   const avatarSelect = document.querySelector('.avatar-select');
   const avatarImg = document.querySelector('.avatar-img');
 
   avatarSelect.addEventListener('change', () => {
-    fetch('/user-data', {
+    fetch('/api/user-avatar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,12 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Sunucudan gelen cevap:', data);
         const { userAvatarValue } = data;
         avatarImg.src = `/assets/img/avatars/${userAvatarValue}.png`;
       })
-      .catch((error) => {
-        console.error('Hata oluştu:', error);
+      .catch((err) => {
+        console.error('Hata oluştu:', err);
       });
   });
 });

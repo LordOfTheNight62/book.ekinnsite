@@ -26,6 +26,26 @@ class User {
     }
   }
 
+  static async setUserName(userID, userNewName) {
+    try {
+      const [result] = await db.execute('UPDATE users SET name = ? WHERE id = ?', [userNewName, userID]);
+      return result[0];
+    } catch (err) {
+      console.error('Kullanıcı ismi değiştirilemedi, ', err.message);
+      throw err;
+    }
+  }
+
+  static async setUserSurname(userID, userNewSurname) {
+    try {
+      const [result] = await db.execute('UPDATE users SET surname = ? WHERE id = ?', [userNewSurname, userID]);
+      return result[0];
+    } catch (err) {
+      console.error('Kullanıcı soyadı değiştirilemedi, ', err.message);
+      throw err;
+    }
+  }
+
   static async setUserPassword(userID, userNewPassword) {
     try {
       const [result] = await db.execute('UPDATE users SET password = ? WHERE id = ?', [userNewPassword, userID]);
@@ -84,7 +104,7 @@ class User {
     }
   }
 
-  static async setUserAvatar(userAvatarValue, userID) {
+  static async setUserAvatar(userID, userAvatarValue) {
     try {
       const [result] = await db.execute('UPDATE users SET avatar = ? WHERE id = ?', [userAvatarValue, userID]);
       return result[0];

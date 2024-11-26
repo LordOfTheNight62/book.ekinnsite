@@ -4,6 +4,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const { isLoggedIn } = require('../middlewares/auth');
 
-router.post('/user-data', isLoggedIn, userController.changeUserAvatar);
+router.post('/api/user-data', isLoggedIn, userController.changeUserData);
+router.post('/api/user-avatar', isLoggedIn, userController.changeUserAvatar);
 
 module.exports = router;

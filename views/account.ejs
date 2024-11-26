@@ -80,6 +80,11 @@
                 </div>
             </div>
         <% } %>
+        <div class="container-fluid my-1 alert-saved d-none">
+            <div class="alert alert-success" role="alert">
+                Değişikler başarıyla kaydedildi
+            </div>
+        </div>
         <ul class="nav nav-tabs align-items-center" id="accountTabs" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="personalInfo-tab" data-bs-toggle="tab" data-bs-target="#personalInfo-tab-pane" type="button" role="tab" aria-controls="personalInfo-tab-pane" aria-selected="true"><i class="bi bi-file-person"></i> Kişisel Bilgiler</button>
@@ -96,19 +101,25 @@
         </ul>
           <div class="tab-content" id="accountTabsContent">
             <div class="tab-pane fade show active" id="personalInfo-tab-pane" role="tabpanel" aria-labelledby="personalInfo-tab" tabindex="0">
-                <form action="javascript:void(0)" method="POST" class="form-floating my-3">
+                <form id="userDataForm" class="form-floating my-3" method="POST">
                     <h4 class="display-5 mb-3 text-center">Kişisel Bilgilerim</h4>
                     <div class="d-flex justify-content-center align-items-center mb-3">
                         <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= user.avatar %>.png" alt="ekinn.site Logo" style="width: calc(4.5rem + 6vw);">
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" value="<%= user.name %>" required disabled readonly>
-                        <label for="userNameInput">Adınız <span class="text-danger">*</span></label> 
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" value="<%= user.name %>" required readonly>
+                            <label for="userNameInput">Adınız <span class="text-danger">*</span></label>
+                        </div>
+                        <button class="btn btn-success input-edit-btn" type="button"><i class="bi bi-pencil-square"></i></button>
                     </div>
     
-                    <div class="form-floating mb-3">
-                        <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" value="<%= user.surname %>" required disabled readonly>
-                        <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" value="<%= user.surname %>" required readonly>
+                            <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
+                        </div>
+                        <button class="btn btn-success input-edit-btn" type="button"><i class="bi bi-pencil-square"></i></button>
                     </div>
     
                     <div class="form-floating mb-3">
@@ -123,7 +134,7 @@
                     <div class="row mb-2">
                         <div class="col text-danger">(*) zorunlu</div>
                     </div>
-                    <button class="btn bg-success text-light w-100" type="submit" disabled>Değişiklikleri Kaydet</button>
+                    <button class="btn bg-success text-light w-100" type="submit">Değişiklikleri Kaydet</button>
                 </form>
             </div>
             <div class="tab-pane fade" id="avatar-tab-pane" role="tabpanel" aria-labelledby="avatar-tab" tabindex="1">

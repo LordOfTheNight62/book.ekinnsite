@@ -81,11 +81,20 @@ exports.getAccountPage = async (req, res) => {
   } catch (err) {}
 };
 
+exports.changeUserData = async (req, res) => {
+  try {
+    const { userName, userSurname } = req.body;
+    await User.setUserName(req.session.userId, userName);
+    await User.setUserSurname(req.session.userId, userSurname);
+    res.json({ message: 'Profil bilgileri başarıyla güncellendi', userName, userSurname });
+  } catch (err) {}
+};
+
 exports.changeUserAvatar = async (req, res) => {
   try {
     const { userAvatarValue } = req.body;
     const user = await User.getUserByID(req.session.userId);
-    await User.setUserAvatar(userAvatarValue, req.session.userId);
+    await User.setUserAvatar(req.session.userId, userAvatarValue);
     res.json({ message: 'Profil avatarı başarıyla güncellendi', userAvatarValue });
   } catch (err) {}
 };
