@@ -56,4 +56,26 @@ document.addEventListener('DOMContentLoaded', () => {
       passwordValidatorRows[3].classList.toggle('text-danger', true);
     }
   });
+
+  const avatarSelect = document.querySelector('.avatar-select');
+  const avatarImg = document.querySelector('.avatar-img');
+
+  avatarSelect.addEventListener('change', () => {
+    fetch('/user-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userAvatarValue: avatarSelect.value }), // Gönderilen veri
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Sunucudan gelen cevap:', data);
+        const { userAvatarValue } = data;
+        avatarImg.src = `/assets/img/avatars/${userAvatarValue}.png`;
+      })
+      .catch((error) => {
+        console.error('Hata oluştu:', error);
+      });
+  });
 });

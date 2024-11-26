@@ -81,6 +81,15 @@ exports.getAccountPage = async (req, res) => {
   } catch (err) {}
 };
 
+exports.changeUserAvatar = async (req, res) => {
+  try {
+    const { userAvatarValue } = req.body;
+    const user = await User.getUserByID(req.session.userId);
+    await User.setUserAvatar(userAvatarValue, req.session.userId);
+    res.json({ message: 'Profil avatarı başarıyla güncellendi', userAvatarValue });
+  } catch (err) {}
+};
+
 exports.changeUserPassword = async (req, res) => {
   try {
     const { userPassword, userNewPassword } = req.body;

@@ -11,6 +11,7 @@ const PORT = 4000;
 
 const cleanRequestBody = require('./middlewares/cleanRequestBody');
 const adminRouter = require('./routes/adminRouter');
+const userDataRouter = require('./routes/userDataRouter');
 const userRouter = require('./routes/userRouter');
 const bookRouter = require('./routes/bookRouter');
 
@@ -58,6 +59,7 @@ app.use(express.json());
 app.use(cleanRequestBody);
 
 app.use(adminRouter);
+app.use(userDataRouter);
 app.use(userRouter);
 app.use(bookRouter);
 

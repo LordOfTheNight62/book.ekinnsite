@@ -76,9 +76,12 @@
                 </div>
             </div>
         <% } %>
-        <ul class="nav nav-tabs overflow-x-auto" id="accountTabs" role="tablist">
+        <ul class="nav nav-tabs align-items-center" id="accountTabs" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="personalInfo-tab" data-bs-toggle="tab" data-bs-target="#personalInfo-tab-pane" type="button" role="tab" aria-controls="personalInfo-tab-pane" aria-selected="false"><i class="bi bi-file-person"></i> Kişisel Bilgiler</button>
+              <button class="nav-link active" id="personalInfo-tab" data-bs-toggle="tab" data-bs-target="#personalInfo-tab-pane" type="button" role="tab" aria-controls="personalInfo-tab-pane" aria-selected="true"><i class="bi bi-file-person"></i> Kişisel Bilgiler</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="avatar-tab" data-bs-toggle="tab" data-bs-target="#avatar-tab-pane" type="button" role="tab" aria-controls="avatar-tab-pane" aria-selected="false"><i class="bi bi-person-square"></i> Avatarını Değiştir</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false"><i class="bi bi-lock"></i> Şifre İşlemleri</button>
@@ -86,13 +89,13 @@
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other-tab-pane" type="button" role="tab" aria-controls="other-tab-pane" aria-selected="false"><i class="bi bi-three-dots"></i> Diğer İşlemler</button>
             </li>
-          </ul>
+        </ul>
           <div class="tab-content" id="accountTabsContent">
             <div class="tab-pane fade show active" id="personalInfo-tab-pane" role="tabpanel" aria-labelledby="personalInfo-tab" tabindex="0">
                 <form action="javascript:void(0)" method="POST" class="form-floating my-3">
                     <h4 class="display-5 mb-3 text-center">Kişisel Bilgilerim</h4>
-                    <div class="row mt-1 mb-2">
-                        <div class="col text-center"><i class="bi bi-person-circle" style="font-size: 4rem;"></i></div>
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= user.avatar %>.png" alt="ekinn.site Logo" style="width: calc(4.5rem + 6vw);">
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" value="<%= user.name %>" required disabled readonly>
@@ -119,7 +122,25 @@
                     <button class="btn bg-success text-light w-100" type="submit" disabled>Değişiklikleri Kaydet</button>
                 </form>
             </div>
-            <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="1">
+            <div class="tab-pane fade" id="avatar-tab-pane" role="tabpanel" aria-labelledby="avatar-tab" tabindex="1">
+                <ul class="list-group my-3">
+                    <li class="list-group-item active">Avatarını Değiştir</li>
+                    <li class="list-group-item">
+                        <select class="form-select avatar-select" aria-label="Default select example">
+                            <option selected>Değiştirmek için tıklayın</option>
+                            <option value="0">Sevimli Kedi</option>
+                            <option value="1">Sarı Ördek</option>
+                            <option value="2">Köy Muhtarı</option>
+                            <option value="3">Düşünceli Kadın</option>
+                            <option value="4">Zafer Adamı</option>
+                            <option value="5">Şimşek Lordu</option>
+                            <option value="6">Süper Araba</option>
+                            <option value="7">Korsan Yunus</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="2">
                 <form action="/account?req=change-password" method="POST" class="form-floating my-3">
                     <h4 class="display-5 mb-3 text-center">Şifre İşlemleri</h4>
                     <div class="row my-4">
@@ -161,7 +182,7 @@
                     <button class="btn bg-primary text-light w-100" type="submit">Şifreni Değiştir</button>
                 </form>
             </div>
-            <div class="tab-pane fade" id="other-tab-pane" role="tabpanel" aria-labelledby="other-tab" tabindex="2">
+            <div class="tab-pane fade" id="other-tab-pane" role="tabpanel" aria-labelledby="other-tab" tabindex="3">
                 <div class="row my-3">
                     <div class="col">
                         <ul class="list-group">

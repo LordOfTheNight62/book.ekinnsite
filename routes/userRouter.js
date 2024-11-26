@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/userController');
-const { isLoggedIn, redirectIfLoggedIn, isAdmin } = require('../middlewares/auth');
+const { isLoggedIn, redirectIfLoggedIn } = require('../middlewares/auth');
 
 router.get('/login', redirectIfLoggedIn, userController.getLoginPage);
 router.post('/login', userController.loginUser);

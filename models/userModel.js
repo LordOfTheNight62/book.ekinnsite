@@ -83,6 +83,13 @@ class User {
       console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);
     }
   }
+
+  static async setUserAvatar(userAvatarValue, userID) {
+    try {
+      const [result] = await db.execute('UPDATE users SET avatar = ? WHERE id = ?', [userAvatarValue, userID]);
+      return result[0];
+    } catch (err) {}
+  }
 }
 
 module.exports = User;
