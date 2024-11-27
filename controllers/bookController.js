@@ -3,7 +3,7 @@ const Book = require('../models/bookModel');
 exports.addNewBook = async (req, res) => {
   let { name, description, author, categoryID, price } = req.body;
   if (!name || !author || !categoryID || !price) {
-    return res.status(301).redirect(`/admin-panel/books/add-book?message=error`);
+    return res.status(302).redirect(`/admin-panel/books/add-book?message=error`);
   }
   price = parseFloat(price).toFixed(2);
   const book = new Book(name, description, author, categoryID, price);

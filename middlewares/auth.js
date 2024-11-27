@@ -15,7 +15,7 @@ exports.redirectIfLoggedIn = (req, res, next) => {
   if (req.session.userId) {
     const redirectUrl = req.session.redirectTo || '/account';
     delete req.session.redirectTo;
-    return res.status(301).redirect(redirectUrl);
+    return res.status(302).redirect(redirectUrl);
   }
   next();
 };

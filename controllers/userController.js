@@ -7,7 +7,7 @@ exports.createNewUser = async (req, res) => {
   const { userName, userSurname, userEmail, userPassword } = req.body;
 
   if (!userName || !userSurname || !userEmail || !userPassword) {
-    return res.status(301).redirect('/register?message=error');
+    return res.status(302).redirect('/register?message=error');
   }
 
   if (
@@ -17,7 +17,7 @@ exports.createNewUser = async (req, res) => {
     !/[0-9]/.test(userPassword) ||
     /(012|123|234|345|456|567|678|789|890|987|876|765|654|543|432|321|210)/.test(userPassword)
   ) {
-    return res.status(301).redirect('/register?message=invalid-password');
+    return res.status(302).redirect('/register?message=invalid-password');
   }
 
   const user = new User(userName, userSurname, userEmail, userPassword);
@@ -25,11 +25,11 @@ exports.createNewUser = async (req, res) => {
     const hashedUserPassword = await bcrypt.hash(userPassword, 10);
     user.userPassword = hashedUserPassword;
     await User.createUser(user);
-    return res.status(301).redirect('/login?message=success-newuser');
+    return res.status(302).redirect('/login?message=success-newuser');
   } catch (err) {
     console.error('Kullanıcı oluşturulurken hata meydana geldi, ', err.message);
     return res
-      .status(301)
+      .status(302)
       .redirect(`/register?message=${err.message === 'registered-email' ? 'registered-email' : 'error'}`);
   }
 };
@@ -46,32 +46,32 @@ exports.loginUser = async (req, res) => {
         req.session.role = user.role;
         const redirectUrl = req.session.redirectTo || '/account';
         delete req.session.redirectTo;
-        return res.status(301).redirect(redirectUrl);
-      } else return res.status(301).redirect('/login?message=invalid');
-    } else return res.status(301).redirect('/login?message=user-notfound');
+        return res.status(302).redirect(redirectUrl);
+      } else return res.status(302).redirect('/login?message=invalid');
+    } else return res.status(302).redirect('/login?message=user-notfound');
   } catch (err) {
     console.error('Kullanıcı bilgisi alınamadı, ', err.message);
-    return res.status(301).redirect('/login?message=error');
+    return res.status(302).redirect('/login?message=error');
   }
 };
 
 exports.logoutUser = (req, res) => {
   req.session.destroy((err) => {
     if (err) throw err;
-    res.status(301).redirect('/login');
+    res.status(302).redirect('/login');
   });
 };
 
 exports.getLoginPage = (req, res) => {
   if (req.session.userId) {
-    return res.status(301).redirect('account');
+    return res.status(302).redirect('account');
   }
   res.render('login', { title: 'Giriş Yap', query: req.query || {} });
 };
 
 exports.getRegisterPage = (req, res) => {
   if (req.session.userId) {
-    return res.status(301).redirect('account');
+    return res.status(302).redirect('account');
   }
   res.render('register', { title: 'Üye Ol', query: req.query || {} });
 };
@@ -113,11 +113,11 @@ exports.changeUserPassword = async (req, res) => {
         !/[0-9]/.test(userNewPassword) ||
         /(012|123|234|345|456|567|678|789|890|987|876|765|654|543|432|321|210)/.test(userNewPassword)
       ) {
-        return res.status(301).redirect('/register?message=invalid-password');
+        return res.status(302).redirect('/register?message=invalid-password');
       }
 
       if (userPassword.toLowerCase() === userNewPassword.toLowerCase()) {
-        return res.status(301).redirect('/register?message=same-password');
+        return res.status(302).redirect('/register?message=same-password');
       }
       const user = await User.getUserByID(req.session.userId);
       const isValid = await bcrypt.compare(userPassword, user.password);
@@ -125,14 +125,14 @@ exports.changeUserPassword = async (req, res) => {
       if (isValid) {
         const hashedUserPassword = await bcrypt.hash(userNewPassword, 10);
         await User.setUserPassword(req.session.userId, hashedUserPassword);
-        return res.status(301).redirect('/account?message=success');
+        return res.status(302).redirect('/account?message=success');
       } else {
-        return res.status(301).redirect('/account?message=wrong-password');
+        return res.status(302).redirect('/account?message=wrong-password');
       }
     } else throw err;
   } catch (err) {
     console.error('Değişikler kaydedilemedi, ', err.message);
-    return res.status(301).redirect('/account?message=error');
+    return res.status(302).redirect('/account?message=error');
   }
 };
 
@@ -145,13 +145,13 @@ exports.deleteUserByID = async (req, res) => {
       await User.deleteUser(req.session.userId);
       req.session.destroy((err) => {
         if (err) throw err;
-        res.status(301).redirect('/login?message=success-delete');
+        res.status(302).redirect('/login?message=success-delete');
       });
     } else {
-      res.status(301).redirect('/account?message=notmatch-password');
+      res.status(302).redirect('/account?message=notmatch-password');
     }
   } catch (err) {
     console.error('Hesap silinirken hata meydana geldi, ', err.message);
-    res.status(301).redirect('/login?message=error-delete');
+    res.status(302).redirect('/login?message=error-delete');
   }
 };
