@@ -64,9 +64,9 @@ exports.getBookDetailPage = async (req, res) => {
   try {
     const book = await exports.getBookByID(req, res);
     const statistics = {
-      totalComments: (await Comment.getAllCommentsCount(book.id)) || 0,
+      totalComments: (await Comment.getAllCommentsCountByBookID(book.id)) || 0,
     };
-    const comments = (await Comment.getAllComments(book.id)) || '';
+    const comments = (await Comment.getAllCommentsByBookID(book.id)) || '';
     res.render('admin/book-detail', { title: book.name, book, comments, statistics });
   } catch (err) {
     res.status(404).render('error/error.ejs', { title: '404', statusCode: '404', message: 'Sayfa Bulunamadı' });

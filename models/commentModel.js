@@ -23,7 +23,16 @@ class Comment {
     }
   }
 
-  static async getAllComments(bookID) {
+  static async getAllComments() {
+    try {
+      const [rows] = await db.execute('SELECT * FROM comments ORDER BY created_at DESC');
+      return rows;
+    } catch (err) {
+      console.error('Yorum verileri alınamadı, ', err.message);
+    }
+  }
+
+  static async getAllCommentsByBookID(bookID) {
     try {
       const [rows] = await db.execute('SELECT * FROM comments WHERE book_id = ? ORDER BY created_at DESC', [bookID]);
       return rows;
@@ -32,7 +41,7 @@ class Comment {
     }
   }
 
-  static async getAllCommentsByID(userID) {
+  static async getAllCommentsByUserID(userID) {
     try {
       const [rows] = await db.execute('SELECT * FROM comments WHERE user_id = ? ORDER BY created_at DESC', [userID]);
       return rows;
@@ -41,7 +50,16 @@ class Comment {
     }
   }
 
-  static async getAllCommentsCount(bookID) {
+  static async getAllCommentsCount() {
+    try {
+      const [result] = await db.execute('SELECT COUNT(*) AS total_comments FROM comments');
+      return result[0].total_comments;
+    } catch (err) {
+      console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);
+    }
+  }
+
+  static async getAllCommentsCountByBookID(bookID) {
     try {
       const [result] = await db.execute('SELECT COUNT(*) AS total_comments FROM comments WHERE book_id = ?', [bookID]);
       return result[0].total_comments;
@@ -50,7 +68,7 @@ class Comment {
     }
   }
 
-  static async getAllMyCommentsCount(userID) {
+  static async getAllCommentsCountByUserID(userID) {
     try {
       const [result] = await db.execute('SELECT COUNT(*) AS total_comments FROM comments WHERE user_id = ?', [userID]);
       return result[0].total_comments;

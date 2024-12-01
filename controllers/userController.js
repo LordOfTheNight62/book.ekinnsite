@@ -82,7 +82,7 @@ exports.getAccountPage = async (req, res) => {
   try {
     const statistics = {
       totalBook: await Book.getTotalBookCount(),
-      totalComments: (await Comment.getAllMyCommentsCount(req.session.userId)) || 0,
+      totalComments: (await Comment.getAllCommentsCountByUserID(req.session.userId)) || 0,
     };
     const user = await User.getUserByID(req.session.userId);
     res.render('account', { title: 'Hesabım', user: user, statistics, query: req.query || {} });
@@ -166,9 +166,9 @@ exports.deleteUserByID = async (req, res) => {
 exports.getAllMyCommentsPage = async (req, res) => {
   try {
     const statistics = {
-      totalComments: (await Comment.getAllMyCommentsCount(req.session.userId)) || 0,
+      totalComments: (await Comment.getAllCommentsCountByUserID(req.session.userId)) || 0,
     };
-    const comments = (await Comment.getAllCommentsByID(req.session.userId)) || '';
-    res.render('comments', { title: 'Yorumlarım', comments, statistics, query: req.query || {} });
+    const comments = (await Comment.getAllCommentsByUserID(req.session.userId)) || '';
+    res.render('comments', { title: 'Yorumlarım', comments, statistics });
   } catch (err) {}
 };

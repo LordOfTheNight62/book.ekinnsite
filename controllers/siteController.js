@@ -26,9 +26,9 @@ exports.getBooksPage = async (req, res) => {
 exports.getBookDetailPage = async (req, res) => {
   try {
     const book = await bookController.getBookByID(req, res);
-    const comments = await Comment.getAllComments(req.params.id);
+    const comments = await Comment.getAllCommentsByBookID(req.params.id);
     const statistics = {
-      totalComments: await Comment.getAllCommentsCount(book.id),
+      totalComments: await Comment.getAllCommentsCountByBookID(book.id),
     };
     res.render('book-detail', { title: book.name, book, comments, statistics });
   } catch (err) {
