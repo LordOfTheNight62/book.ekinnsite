@@ -1,6 +1,8 @@
 body {
   background-color: #f8f9fa !important;
   min-height: 100vh;
+  scrollbar-width: thin; /* Kaydırma çubuğu genişliği: 'auto', 'thin', 'none' */
+  scrollbar-color: #0d6efd #f1f1f1; /* thumb rengi ve track rengi */
 }
 
 /* Kaydırma çubuğunun tüm öğesini tanımlar */
