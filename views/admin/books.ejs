@@ -1,10 +1,11 @@
 <main class="container-md py-4">
     <div class="container-fluid">
         <h1><%= "Tüm Kitaplar (" + (books.length > 0 ? books.length + ' adet)' : 'Hiç Kitap Yok)') %></h1>
-        <div class="row my-3">
-            <div class="col"><a href="/books/search" class="btn btn-outline-primary w-100" role="button"><i class="bi bi-search"></i> Kitap Ara</a></div>
+        <div class="row row-cols-1 row-cols-md-2 my-3">
+            <div class="col"><a href="/admin-panel/books/add-book" class="btn btn-primary text-light mb-2 mb-md-auto w-100" role="button"><i class="bi bi-journal-plus"></i> Yeni Kitap Ekle</a></div>
+            <div class="col"><a href="/admin-panel/books/search" class="btn btn-outline-primary w-100" role="button"><i class="bi bi-search"></i> Kitap Ara</a></div>
         </div>
-
+        
         <% if(books.length > 0) { %>
             <div class="row my-2">
                 <div class="col">
@@ -32,7 +33,13 @@
                         <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
                             <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
                                 <div class="col">
-                                    <a href="/books/<%= book.id %>" class="btn bg-success"><i class="bi bi-box-arrow-right text-light"></i></a>
+                                    <a href="/admin-panel/books/<%= book.id %>" class="btn bg-success"><i class="bi bi-box-arrow-right text-light"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="/admin-panel/books/edit-book/<%= book.id %>" class="btn bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="/admin-panel/books/delete-book/<%= book.id %>" class="btn bg-danger text-light"><i class="bi bi-trash"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -44,6 +51,6 @@
 
     </div>
 </main>
-
+<a class="btn text-bg-primary position-fixed top-0 end-0 m-1 p-2 rounded-circle d-flex justify-content-center align-items-center" style="width: 2.5em;height: 2.5em;" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i></a>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/error.js"></script>

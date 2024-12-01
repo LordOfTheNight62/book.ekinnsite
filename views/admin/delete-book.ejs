@@ -1,0 +1,30 @@
+<main class="container-md py-4">
+    <% if(deleteStatus === "success") { %>
+        <div class="container-fluid">
+            <div class="alert alert-success" role="alert">
+                Kitap başarıyla silindi
+            </div>
+        </div>
+    <% } else if(deleteStatus === "error") { %>
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                Bir hata oluştu, kitap silinemedi
+            </div>
+        </div>
+    <% } %>
+
+    <div class="container-fluid my-1">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin-panel/books">Kitaplar</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Kitabı Sil</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="text-center"><a href="/admin-panel/books" class="btn bg-primary text-light w-100" role="button">Tüm Kitapları Listele</a></div>
+    </div>
+</main>
+<a class="btn text-bg-primary position-fixed top-0 end-0 m-1 p-2 rounded-circle d-flex justify-content-center align-items-center" style="width: 2.5em;height: 2.5em;" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i></a>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/error.js"></script>

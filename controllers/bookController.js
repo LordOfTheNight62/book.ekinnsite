@@ -1,4 +1,5 @@
 const Book = require('../models/bookModel');
+const Comment = require('../models/commentModel');
 
 exports.addNewBook = async (req, res) => {
   let { name, description, author, categoryID, price } = req.body;
@@ -42,27 +43,31 @@ exports.updateBookByID = async (req, res) => {
 };
 
 exports.getAddNewBookPage = (req, res) => {
-  res.render('add-book', { title: 'Yeni Kitap Ekle', query: req.query });
+  res.render('admin/add-book', { title: 'Yeni Kitap Ekle', query: req.query });
 };
 
 exports.getEditBookPage = async (req, res) => {
   try {
     const book = await exports.getBookByID(req, res);
-    res.render('edit-book', { title: `${book.name} Kitabını Düzenle`, book, query: req.query || {} });
+    res.render('admin/edit-book', { title: `${book.name} Kitabını Düzenle`, book, query: req.query || {} });
   } catch (err) {}
 };
 
 exports.getAllBooksPage = async (req, res) => {
   try {
     const books = await Book.getAllBooks();
-    res.render('books', { title: 'Tüm Kitaplar', books });
+    res.render('admin/books', { title: 'Tüm Kitaplar', books });
   } catch (err) {}
 };
 
 exports.getBookDetailPage = async (req, res) => {
   try {
     const book = await exports.getBookByID(req, res);
-    res.render('book-detail', { title: book.name, book });
+    const statistics = {
+      totalComments: (await Comment.getAllCommentsCount(book.id)) || 0,
+    };
+    const comments = (await Comment.getAllComments(book.id)) || '';
+    res.render('admin/book-detail', { title: book.name, book, comments, statistics });
   } catch (err) {
     res.status(404).render('error/error.ejs', { title: '404', statusCode: '404', message: 'Sayfa Bulunamadı' });
   }
@@ -72,9 +77,9 @@ exports.getDeleteBookPage = async (req, res) => {
   const id = req.params.id;
   try {
     await Book.deleteBook(id);
-    res.render('delete-book', { title: 'Kitap Sil', deleteStatus: 'success' });
+    res.render('admin/delete-book', { title: 'Kitap Sil', deleteStatus: 'success' });
   } catch (err) {
-    res.render('delete-book', { title: 'Kitap Sil', deleteStatus: 'error' });
+    res.render('admin/delete-book', { title: 'Kitap Sil', deleteStatus: 'error' });
   }
 };
 
@@ -82,10 +87,10 @@ exports.searchBookByTerm = async (req, res) => {
   const { searchTerm } = req.body;
   try {
     const results = await Book.searchBook(searchTerm);
-    res.render('search', { title: `"${searchTerm}" için arama sonuçları `, results, searchTerm });
+    res.render('admin/search', { title: `"${searchTerm}" için arama sonuçları `, results, searchTerm });
   } catch (err) {}
 };
 
 exports.getSearchPage = (req, res) => {
-  res.render('search', { title: 'Kitap Ara' });
+  res.render('admin/search', { title: 'Kitap Ara' });
 };

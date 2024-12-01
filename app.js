@@ -47,7 +47,7 @@ app.use(
     saveUninitialized: false,
     store: sessionStore, // MySQL Store'u burada belirtiyoruz
     cookie: {
-      secure: true, // HTTPS üzerinden iletilebilir
+      //secure: true, // HTTPS üzerinden iletilebilir
       httpOnly: true, // JavaScript erişimini engeller
       sameSite: 'Lax', // Cross-site isteklerinde cookie gönderilir
       maxAge: 1000 * 60 * 60 * 6, // 6 saat (milisaniye cinsinden)
@@ -58,6 +58,13 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cleanRequestBody);
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session?.isAuthenticated || false;
+  res.locals.userFirstname = req.session?.userName || '';
+  res.locals.avatar = req.session?.avatar || '0';
+  next();
+});
 
 app.use(adminRouter);
 app.use(siteRouter);

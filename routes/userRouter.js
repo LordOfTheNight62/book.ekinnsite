@@ -10,6 +10,7 @@ router.get('/register', redirectIfLoggedIn, userController.getRegisterPage);
 router.post('/register', userController.createNewUser);
 
 router.get('/account', isLoggedIn, userController.getAccountPage);
+router.get('/account/mycomments', isLoggedIn, userController.getAllMyCommentsPage);
 router.post('/account', isLoggedIn, (req, res, next) => {
   if (req.query.req === 'change-password') {
     return userController.changeUserPassword(req, res);

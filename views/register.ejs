@@ -1,78 +1,76 @@
-<body class="d-flex justify-content-center align-items-center">
-    <main class="container-md">
-        <% if(typeof query !== 'undefined') { %>
-            <% if(query.message === "error") { %>
-                <div class="container-fluid">
-                    <div class="alert alert-danger" role="alert">
-                        Bir hata oluştu, üye olamadınız
-                    </div>
+<link rel="stylesheet" href="/assets/css/body-center.css">
+<main class="container-md">
+    <% if(typeof query !== 'undefined') { %>
+        <% if(query.message === "error") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Bir hata oluştu, üye olamadınız
                 </div>
-            <% } else if(query.message === "registered-email") { %>
-                <div class="container-fluid">
-                    <div class="alert alert-danger" role="alert">
-                        Bu eposta adresi zaten kayıtlı, lütfen başka bir eposta adresi deneyin!
-                    </div>
-                </div>
-            <% } else if(query.message === "invalid-password") { %>
-                <div class="container-fluid">
-                    <div class="alert alert-danger" role="alert">
-                        Şifreniz uygun değil, lütfen şifrenizi gözden geçirin!
-                    </div>
-                </div>
-            <% } %>
-        <% } %>
-        <div class="container-fluid my-1">
-            <form action="/register" method="POST" class="form-floating my-3">
-                <h2 class="display-2 mb-3 text-center">Üye Ol</h2>
-                <div class="form-floating mb-3">
-                    <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" required>
-                    <label for="userNameInput">Adınız <span class="text-danger">*</span></label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" required>
-                    <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="email" name="userEmail" class="form-control" id="userEmailInput" placeholder="Enter Your Email" required>
-                    <label for="userEmailInput">E-postanız <span class="text-danger">*</span></label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="password" name="userPassword" class="form-control" id="userPasswordInput" placeholder="Enter Your Password" required>
-                    <label for="userPasswordInput">Şifreniz <span class="text-danger">*</span></label>
-                    <div class="row password-validator my-1">
-                        <div class="row">
-                            <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifrenin uzunluğu en az 8 karakter olmalı</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 büyük ve 1 küçük harf içermeli</div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 rakam içermeli</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren "123" veya "6789" gibi art arda yazılmış 2'den fazla tahmin etmesi kolay ve sıralı rakamları içermemeli</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col">Üye olarak <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="javascript:void(0)">Kullanıcı Sözleşmesini</a> kabul etmiş olursun.</div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col text-danger">(*) zorunlu</div>
-                </div>
-                <button class="btn bg-primary text-light w-100" type="submit">Üye Ol</button>
-            </form>
-            <div class="row">
-                <div class="col">Zaten üye misin? <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login">Hemen giriş yap</a></div>
             </div>
+        <% } else if(query.message === "registered-email") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Bu eposta adresi zaten kayıtlı, lütfen başka bir eposta adresi deneyin!
+                </div>
+            </div>
+        <% } else if(query.message === "invalid-password") { %>
+            <div class="container-fluid">
+                <div class="alert alert-danger" role="alert">
+                    Şifreniz uygun değil, lütfen şifrenizi gözden geçirin!
+                </div>
+            </div>
+        <% } %>
+    <% } %>
+    <div class="container-fluid my-1">
+        <form action="/register" method="POST" class="form-floating my-3">
+            <h2 class="display-2 mb-3 text-center">Üye Ol</h2>
+            <div class="form-floating mb-3">
+                <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" required>
+                <label for="userNameInput">Adınız <span class="text-danger">*</span></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" required>
+                <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" name="userEmail" class="form-control" id="userEmailInput" placeholder="Enter Your Email" required>
+                <label for="userEmailInput">E-postanız <span class="text-danger">*</span></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password" name="userPassword" class="form-control" id="userPasswordInput" placeholder="Enter Your Password" required>
+                <label for="userPasswordInput">Şifreniz <span class="text-danger">*</span></label>
+                <div class="row password-validator my-1">
+                    <div class="row">
+                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifrenin uzunluğu en az 8 karakter olmalı</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 büyük ve 1 küçük harf içermeli</div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 rakam içermeli</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren "123" veya "6789" gibi art arda yazılmış 2'den fazla tahmin etmesi kolay ve sıralı rakamları içermemeli</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col">Üye olarak <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="javascript:void(0)">Kullanıcı Sözleşmesini</a> kabul etmiş olursun.</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col text-danger">(*) zorunlu</div>
+            </div>
+            <button class="btn bg-primary text-light w-100" type="submit">Üye Ol</button>
+        </form>
+        <div class="row">
+            <div class="col">Zaten üye misin? <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login">Hemen giriş yap</a></div>
         </div>
-    </main>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/error.js"></script>
-    <script src="/assets/js/register.js"></script>
-</body>
-</html>
+    </div>
+</main>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/error.js"></script>
+<script src="/assets/js/register.js"></script>

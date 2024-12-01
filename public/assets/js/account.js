@@ -75,14 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
   userDataForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(userDataForm);
-    console.log('Saf form verisi, ', formData);
     const userFormData = {};
     formData.forEach((value, key) => {
       userFormData[key] = value;
     });
-    console.log('İşlenmiş form verisi, ', userFormData);
 
-    console.log(userFormData);
     fetch('/api/user-data', {
       method: 'POST',
       headers: {

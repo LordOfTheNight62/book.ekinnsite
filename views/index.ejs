@@ -1,6 +1,24 @@
-<body class="d-flex justify-content-center align-items-center">
-    <main class="container-md d-flex justify-content-center">
-        <a class="btn btn-primary" role="button" href="/login">Giriş Yap</a>
-    </main>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-</body>
+<link rel="stylesheet" href="/assets/css/body-center.css">
+<main class="container-md d-flex justify-content-center">
+    <div class="row">
+        <div class="col-12 mb-4 text-center">
+            <% if(isAuthenticated) { %>
+                <h1>Kitap Bilgi Portalı'na Hoş Geldin <%= user.name %></h1>
+            <% } else { %>
+                <h1>Kitap Bilgi Portalı'na Hoş Geldin</h1>
+            <% } %>
+        </div>
+        <div class="col">
+            <% if(isAuthenticated) { %>
+                <a class="btn btn-primary w-100" role="button" href="/account">Hesabım</a>
+            <% } else { %>
+                <a class="btn btn-primary w-100" role="button" href="/login">Giriş Yap</a>
+            <% } %>
+        </div>
+        <div class="col">
+            <a class="btn btn-primary w-100" role="button" href="/books">Tüm Kitaplar</a>
+        </div>
+    </div>
+    
+</main>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>

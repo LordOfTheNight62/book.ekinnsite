@@ -1,0 +1,31 @@
+<main class="container-md py-4">
+    <h2 class="mb-3">Üye Listesi (<%= statistics.totalUser %> kişi)</h2>
+    <% if(users.length > 0) { %>
+        <div class="overflow-x-auto">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">İsim</th>
+                        <th scope="col">Soyisim</th>
+                        <th scope="col">E-posta</th>
+                        <th scope="col">Rol</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <% users.forEach((user) => { %>
+                        <tr>
+                            <td><%= user.name %></td>
+                            <td><%= user.surname %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.role %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</main>
+<a class="btn text-bg-primary position-fixed top-0 end-0 m-1 p-2 rounded-circle d-flex justify-content-center align-items-center" style="width: 2.5em;height: 2.5em;" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i></a>
+
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/error.js"></script>

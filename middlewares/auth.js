@@ -6,7 +6,6 @@ exports.isLoggedIn = (req, res, next) => {
 
   if (req.originalUrl !== '/login' && req.originalUrl !== '/register') {
     req.session.redirectTo = req.originalUrl;
-    console.log(req.session.redirectTo);
   }
   return res.redirect('/login');
 };

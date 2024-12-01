@@ -6,7 +6,8 @@ exports.getAdminPanelPage = async (req, res) => {
     const statistics = {
       totalUser: await User.getTotalUserCount(),
     };
-    res.render('admin-panel', { title: 'Yönetim Paneli', user, statistics });
+    res.locals.layout = 'layouts/admin-layout';
+    res.render('admin/admin-panel', { title: 'Yönetim Paneli', user, statistics });
   } catch (err) {}
 };
 
@@ -16,6 +17,6 @@ exports.getAllUsersPage = async (req, res) => {
     const statistics = {
       totalUser: await User.getTotalUserCount(),
     };
-    res.render('users', { title: 'Üye Listesi', users, statistics });
+    res.render('admin/users', { title: 'Üye Listesi', users, statistics });
   } catch (err) {}
 };

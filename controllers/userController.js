@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
+const Book = require('../models/bookModel');
+const Comment = require('../models/commentModel');
 const bcrypt = require('bcrypt');
-
-const { isLoggedIn, isAdmin } = require('../middlewares/auth');
 
 exports.createNewUser = async (req, res) => {
   const { userName, userSurname, userEmail, userPassword } = req.body;
@@ -44,6 +44,8 @@ exports.loginUser = async (req, res) => {
         req.session.userId = user.id;
         req.session.userName = user.name;
         req.session.role = user.role;
+        req.session.avatar = user.avatar;
+        req.session.isAuthenticated = true;
         const redirectUrl = req.session.redirectTo || '/account';
         delete req.session.redirectTo;
         return res.status(302).redirect(redirectUrl);
@@ -58,7 +60,7 @@ exports.loginUser = async (req, res) => {
 exports.logoutUser = (req, res) => {
   req.session.destroy((err) => {
     if (err) throw err;
-    res.status(302).redirect('/login');
+    res.status(302).redirect('/');
   });
 };
 
@@ -78,8 +80,12 @@ exports.getRegisterPage = (req, res) => {
 
 exports.getAccountPage = async (req, res) => {
   try {
+    const statistics = {
+      totalBook: await Book.getTotalBookCount(),
+      totalComments: (await Comment.getAllMyCommentsCount(req.session.userId)) || 0,
+    };
     const user = await User.getUserByID(req.session.userId);
-    res.render('account', { title: 'Hesabım', user: user, query: req.query || {} });
+    res.render('account', { title: 'Hesabım', user: user, statistics, query: req.query || {} });
   } catch (err) {}
 };
 
@@ -97,6 +103,7 @@ exports.changeUserAvatar = async (req, res) => {
     const { userAvatarValue } = req.body;
     const user = await User.getUserByID(req.session.userId);
     await User.setUserAvatar(req.session.userId, userAvatarValue);
+    req.session.avatar = userAvatarValue;
     res.json({ message: 'Profil avatarı başarıyla güncellendi', userAvatarValue });
   } catch (err) {}
 };
@@ -154,4 +161,14 @@ exports.deleteUserByID = async (req, res) => {
     console.error('Hesap silinirken hata meydana geldi, ', err.message);
     res.status(302).redirect('/login?message=error-delete');
   }
+};
+
+exports.getAllMyCommentsPage = async (req, res) => {
+  try {
+    const statistics = {
+      totalComments: (await Comment.getAllMyCommentsCount(req.session.userId)) || 0,
+    };
+    const comments = (await Comment.getAllCommentsByID(req.session.userId)) || '';
+    res.render('comments', { title: 'Yorumlarım', comments, statistics, query: req.query || {} });
+  } catch (err) {}
 };

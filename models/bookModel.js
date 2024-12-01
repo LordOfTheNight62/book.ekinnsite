@@ -10,7 +10,6 @@ class Book {
   }
 
   static async addBook(bookData) {
-    console.log(bookData);
     const { name, description, author, categoryID, price } = bookData;
     try {
       const [result] = await db.execute(
@@ -61,6 +60,15 @@ class Book {
       return rows;
     } catch (err) {
       console.error('Kitap verileri alınamadı, ', err.message);
+    }
+  }
+
+  static async getTotalBookCount() {
+    try {
+      const [result] = await db.execute('SELECT COUNT(*) AS total_books FROM books');
+      return result[0].total_books;
+    } catch (err) {
+      console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);
     }
   }
 
