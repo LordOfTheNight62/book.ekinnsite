@@ -10,6 +10,10 @@
     </div>
 
     <div class="container-fluid bg-white mb-5 border border-dark-subtle rounded-3 p-3 print">
+        <div class="d-flex align-items-center mb-3 no-print">
+            <a href="/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <h1 class="d-inline m-auto ms-2">Kitap Detayı</h1>
+        </div>
         <div class="row">
             <h1><%= book.name %></h1>
         </div>
@@ -31,12 +35,6 @@
             <div class="row my-2">
                 <div class="col rounded-3 fs-4">
                     <strong>Fiyat: </strong><%= book.price %><span> TL</span>
-                </div>
-            </div>
-
-            <div class="row my-2 no-print">
-                <div class="col">
-                    <a href="/admin-panel/books" class="btn bg-primary text-light w-100" role="button">Geri Dön</a>
                 </div>
             </div>
 

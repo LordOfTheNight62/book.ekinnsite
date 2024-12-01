@@ -44,7 +44,7 @@
                         <% if(userFirstname) { %>
                             <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= avatar %>.png" width="24"> <%= userFirstname %>
                         <% } else { %>
-                            <i class="bi bi-person-circle"></i>
+                            <i class="bi bi-person-circle"></i> Hoş Geldin
                         <% } %>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -60,8 +60,8 @@
                                 </a>
                             </li>
                         <% } else { %>
-                            <li><a class="dropdown-item" href="/login">Giriş Yap</a></li>
-                            <li><a class="dropdown-item" href="/register">Üye Ol</a></li>
+                            <li><a class="dropdown-item" href="/login"><i class="bi bi-box-arrow-in-right"></i> Giriş Yap</a></li>
+                            <li><a class="dropdown-item" href="/register"><i class="bi bi-person-plus-fill"></i> Üye Ol</a></li>
                         <% } %>
                     </ul>
                 </li>
