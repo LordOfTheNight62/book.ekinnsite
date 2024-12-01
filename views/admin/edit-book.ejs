@@ -22,7 +22,10 @@
         </nav>
     </div>
     <div class="container-fluid">
-        <h1>Kitabı Güncelle</h1>
+        <div class="d-flex align-items-center mb-3">
+            <a href="/admin-panel/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <h1 class="d-inline m-auto ms-2">Kitabı Düzenle</h1>
+        </div>
 
         <form action="<%= "/admin-panel/books/edit-book/" + book.id %>" method="POST" class="form-floating my-3">
             <div class="form-floating mb-3">

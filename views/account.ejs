@@ -2,7 +2,7 @@
     <div class="mb-5">
         <h1>Hoş Geldin!</h1>
         <h2>
-            <% if(user.role === 'admin')  { %>
+            <% if(userRole === 'admin')  { %>
                 <%="Sayın yönetici " + user.name %>
             <% } else { %>
                 <%= user.name %>
@@ -10,8 +10,8 @@
         </h2>
     </div>
     <div class="mb-2">
-        <% if(user.role === 'admin')  { %>
-            <a class="btn bg-primary text-light w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Admin Panel</a>
+        <% if(userRole === 'admin')  { %>
+            <a class="btn bg-primary text-light w-100" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i> Yönetici Paneli</a>
         <% } %>
     </div>
     <% if(query.req === "delete-account") { %>

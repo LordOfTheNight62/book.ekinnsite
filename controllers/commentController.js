@@ -1,12 +1,13 @@
 const Comment = require('../models/commentModel');
 
 exports.addNewComment = async (req, res) => {
-  const { name, comment, bookID } = req.body;
-  if (!name || !comment || !bookID) {
+  const { comment, bookID } = req.body;
+  if (!comment || !bookID) {
     const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
     return res.status(302).redirect(fullUrl + '?message=error');
   }
   try {
+    const name = req.session.userName;
     const commentObject = new Comment(name, comment, bookID, req.session.userId);
     await Comment.addComment(commentObject);
     const lastComment = await Comment.getLastComment(bookID);

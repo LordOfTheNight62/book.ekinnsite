@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Avatar Seçimi
 
   const avatarSelect = document.querySelector('.avatar-select');
-  const avatarImg = document.querySelector('.avatar-img');
+  const avatarImgs = document.querySelectorAll('.avatar-img');
 
   avatarSelect.addEventListener('change', () => {
     fetch('/api/user-avatar', {
@@ -122,7 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((response) => response.json())
       .then((data) => {
         const { userAvatarValue } = data;
-        avatarImg.src = `/assets/img/avatars/${userAvatarValue}.png`;
+        avatarImgs.forEach((avatarImg) => (avatarImg.src = `/assets/img/avatars/${userAvatarValue}.png`));
+        const alert = document.querySelector('.alert-saved');
+        alert.classList.toggle('d-none');
+        document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (alert) {
+          setTimeout(() => {
+            alert.classList.toggle('d-none');
+          }, 10000);
+        }
       })
       .catch((err) => {
         console.error('Hata oluştu:', err);

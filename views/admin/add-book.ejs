@@ -22,7 +22,10 @@
         </nav>
     </div>
     <div class="container-fluid">
-        <h1>Yeni Kitap Ekle</h1>
+        <div class="d-flex align-items-center mb-3">
+            <a href="/admin-panel/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <h1 class="d-inline m-auto ms-2">Yeni Kitap Ekle</h1>
+        </div>
 
         <form action="/admin-panel/books/add-book" method="POST" class="form-floating my-3">
             <div class="form-floating mb-3">
@@ -51,11 +54,6 @@
             </div>
             <button class="btn bg-primary text-light w-100" type="submit">Kitap Ekle</button>
         </form>
-        <div class="row my-2">
-            <div class="col">
-                <a href="/admin-panel/books" class="btn bg-primary text-light w-100" role="button">Geri Dön</a>
-            </div>
-        </div>
     </div>
 </main>
 <a class="btn text-bg-primary position-fixed top-0 end-0 m-1 p-2 rounded-circle d-flex justify-content-center align-items-center" style="width: 2.5em;height: 2.5em;" role="button" href="/admin-panel"><i class="bi bi-person-gear"></i></a>

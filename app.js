@@ -61,6 +61,7 @@ app.use(cleanRequestBody);
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session?.isAuthenticated || false;
+  res.locals.userRole = req.session?.role || null;
   res.locals.userFirstname = req.session?.userName || '';
   res.locals.avatar = req.session?.avatar || '0';
   next();

@@ -9,7 +9,10 @@
         </nav>
     </div>
     <div class="container-fluid">
-        <h1>Kitap Ara</h1>
+        <div class="d-flex align-items-center mb-3">
+            <a href="/admin-panel/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <h1 class="d-inline m-auto ms-2">Kitap Ara</h1>
+        </div>
 
         <form action="/admin-panel/books/search" method="POST" class="form-floating my-2">
             <div class="form-floating mb-2">
@@ -19,7 +22,6 @@
 
         <button class="btn btn-outline-primary w-100 my-2" type="submit"><i class="bi bi-search"></i> Kitap Ara</button>
         </form>
-        <a href="/admin-panel/books" class="btn bg-primary text-light mb-5 w-100" role="button">Geri Dön</a>
         <h3><b>
             <%if(typeof results !== "undefined") {%>
             <%= "Sonuçlar (" + (results.length > 0 ? results.length + ' adet)' : 'Sonuç Yok)') %>

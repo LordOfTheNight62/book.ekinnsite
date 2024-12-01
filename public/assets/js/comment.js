@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const commentForm = document.getElementById('commentForm');
-  const nameInput = document.querySelector('input[name="name"]');
   const commentText = document.querySelector('textarea[name="comment"]');
   const commentsField = document.querySelector('.comments-field');
   const commentCount = document.querySelector('.comment-count');
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     pathParts = window.location.pathname.split('/');
     commentFormData['bookID'] = pathParts[pathParts.length - 1];
-    console.log(commentFormData);
+
     fetch('/api/user-comment', {
       method: 'POST',
       headers: {
@@ -23,10 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Sunucudan gelen cevap:', data);
         const alert = document.querySelector('.alert-sent');
         alert.classList.toggle('d-none');
-        nameInput.value = '';
         commentText.value = '';
         const date = new Date(data.comment.created_at).toLocaleString('tr-TR', {
           day: 'numeric',
@@ -44,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const commentDiv = document.createElement('div');
         commentDiv.classList.add('card', 'my-1', 'w-100');
         commentDiv.innerHTML = commentContent;
+        commentsField.children[1].scrollIntoView({ behavior: 'smooth', block: 'end' });
         if (commentsField.firstChild) {
           commentsField.insertBefore(commentDiv, commentsField.firstChild); // İlk çocuk olarak ekler
         } else {
