@@ -39,23 +39,26 @@
                 <label for="userEmailInput">E-postanız <span class="text-danger">*</span></label>
             </div>
 
-            <div class="form-floating mb-3">
-                <input type="password" name="userPassword" class="form-control" id="userPasswordInput" placeholder="Enter Your Password" required>
-                <label for="userPasswordInput">Şifreniz <span class="text-danger">*</span></label>
-                <div class="row password-validator my-1">
-                    <div class="row">
-                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifrenin uzunluğu en az 8 karakter olmalı</div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 büyük ve 1 küçük harf içermeli</div>
+            <div class="input-group mb-3">
+                <div class="form-floating">
+                    <input type="password" name="userPassword" class="form-control" id="userPasswordInput" placeholder="Enter Your Password" required>
+                    <label for="userPasswordInput">Şifreniz <span class="text-danger">*</span></label>
+                </div>
+                <button class="btn password-show-hide-toggle" type="button" style="background-color: #d3d4d5;"><i class="bi bi-eye-fill"></i></button>
+            </div>
+            <div class="row password-validator my-1">
+                <div class="row">
+                    <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifrenin uzunluğu en az 8 karakter olmalı</div>
+                </div>
+                <div class="row">
+                    <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 büyük ve 1 küçük harf içermeli</div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 rakam içermeli</div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren "123" veya "6789" gibi art arda yazılmış 2'den fazla tahmin etmesi kolay ve sıralı rakamları içermemeli</div>
-                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren en az 1 rakam içermeli</div>
+                </div>
+                <div class="row">
+                    <div class="col text-danger"><i class="bi bi-exclamation-lg"></i>Şifren "123" veya "6789" gibi art arda yazılmış 2'den fazla tahmin etmesi kolay ve sıralı rakamları içermemeli</div>
                 </div>
             </div>
             <div class="row mb-1">
@@ -74,3 +77,4 @@
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/error.js"></script>
 <script src="/assets/js/register.js"></script>
+<script src="/assets/js/passwordShowHide.js"></script>
