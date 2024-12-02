@@ -41,13 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const commentDiv = document.createElement('div');
         commentDiv.classList.add('card', 'my-1', 'w-100');
         commentDiv.innerHTML = commentContent;
-        commentsField.children[1].scrollIntoView({ behavior: 'smooth', block: 'end' });
         if (commentsField.firstChild) {
           commentsField.insertBefore(commentDiv, commentsField.firstChild); // İlk çocuk olarak ekler
         } else {
           commentsField.appendChild(commentDiv); // Eğer hiç çocuk yoksa, appendChild ile ekler
         }
-
+        commentsField.firstChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
         commentCount.innerText = `Tüm Yorumlar (${data.statistics.totalComments} adet)`;
         if (alert) {
           setTimeout(() => {
