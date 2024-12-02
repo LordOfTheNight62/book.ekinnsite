@@ -9,12 +9,12 @@ class Book {
     this.price = price || 0.0;
   }
 
-  static async addBook(bookData) {
+  static async addBook(bookData, userID) {
     const { name, description, author, categoryID, price } = bookData;
     try {
       const [result] = await db.execute(
-        'INSERT INTO books (name, description, author, category_id, price) VALUES (?, ?, ?, ?, ?)',
-        [name, description, author, categoryID, price]
+        'INSERT INTO books (name, description, author, category_id, price, user_id) VALUES (?, ?, ?, ?, ?, ?)',
+        [name, description, author, categoryID, price, userID]
       );
       return result[0];
     } catch (err) {
@@ -63,9 +63,27 @@ class Book {
     }
   }
 
+  static async getBooksByUserID(userID) {
+    try {
+      const [rows] = await db.execute('SELECT * FROM books WHERE user_id = ? ORDER BY added_at DESC', [userID]);
+      return rows;
+    } catch (err) {
+      console.error('Kitap verileri alınamadı, ', err.message);
+    }
+  }
+
   static async getTotalBookCount() {
     try {
       const [result] = await db.execute('SELECT COUNT(*) AS total_books FROM books');
+      return result[0].total_books;
+    } catch (err) {
+      console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);
+    }
+  }
+
+  static async getTotalBookCountByUserId(userID) {
+    try {
+      const [result] = await db.execute('SELECT COUNT(*) AS total_books FROM books WHERE user_id = ?', [userID]);
       return result[0].total_books;
     } catch (err) {
       console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);

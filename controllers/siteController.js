@@ -47,3 +47,7 @@ exports.searchBookByTerm = async (req, res) => {
 exports.getSearchPage = (req, res) => {
   res.render('search', { title: 'Kitap Ara' });
 };
+
+exports.getPrivacyPoliciesPage = (req, res) => {
+  res.render('privacy-policies', { title: 'Gizlilik Politikası' });
+};

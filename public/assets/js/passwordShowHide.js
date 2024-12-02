@@ -1,11 +1,17 @@
 window.addEventListener('load', () => {
-  const userPasswordInput = document.getElementById('userPasswordInput');
-  const btnPasswordToggle = document.querySelector('.password-show-hide-toggle');
-  const eyeIcon = btnPasswordToggle.querySelector('.bi');
+  const btnPasswordToggles = document.querySelectorAll('.password-show-hide-toggle');
 
-  btnPasswordToggle.addEventListener('click', () => {
-    userPasswordInput.type = userPasswordInput.type === 'password' ? 'text' : 'password';
-    eyeIcon.classList.toggle('bi-eye-fill');
-    eyeIcon.classList.toggle('bi-eye-slash-fill');
+  btnPasswordToggles.forEach((btnPasswordToggle) => {
+    btnPasswordToggle.addEventListener('click', () => {
+      const toggleId = btnPasswordToggle.getAttribute('data-toggle-id');
+      const input = document.querySelector(`.user-password-input[data-toggle-id="${toggleId}"]`);
+      const eyeIcon = btnPasswordToggle.querySelector('[class*="bi-eye"]');
+
+      if (input) {
+        input.type = input.type === 'password' ? 'text' : 'password';
+        eyeIcon.classList.toggle('bi-eye-fill');
+        eyeIcon.classList.toggle('bi-eye-slash-fill');
+      }
+    });
   });
 });

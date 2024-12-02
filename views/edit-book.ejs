@@ -14,20 +14,12 @@
     <% } %>
 
     <div class="container-fluid my-1">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin-panel/books">Kitaplar</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Kitabı Düzenle</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container-fluid">
         <div class="d-flex align-items-center mb-3">
-            <a href="/admin-panel/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <a href="/account/mybooks" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
             <h1 class="d-inline m-auto ms-2">Kitabı Düzenle</h1>
         </div>
 
-        <form action="<%= "/admin-panel/books/edit-book/" + book.id %>" method="POST" class="form-floating my-3">
+        <form action="<%= "/books/edit-book/" + book.id %>" method="POST" class="form-floating my-3">
             <div class="form-floating mb-3">
                 <input type="text" name="name" class="form-control" id="addBookNameInput" placeholder="Enter Book Name" value="<%= book.name %>" required>
                 <label for="addBookNameInput">Kitap Adı <span class="text-danger">*</span></label>
@@ -54,8 +46,6 @@
             </div>
             <button class="btn bg-primary text-light w-100" type="submit">Kitabı Güncelle</button>
         </form>
-        <div class="text-center mb-3">veya</div>
-        <div class="text-center"><a href="/admin-panel/books/add-book" class="btn bg-primary text-light w-100" role="button">Yeni Kitap Ekle</a></div>
     </div>
 </main>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>

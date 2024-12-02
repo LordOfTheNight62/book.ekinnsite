@@ -14,20 +14,12 @@
     <% } %>
 
     <div class="container-fluid my-1">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin-panel/books">Kitaplar</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Kitap Ekle</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container-fluid">
         <div class="d-flex align-items-center mb-3">
-            <a href="/admin-panel/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <a href="/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
             <h1 class="d-inline m-auto ms-2">Yeni Kitap Ekle</h1>
         </div>
 
-        <form action="/admin-panel/books/add-book" method="POST" class="form-floating my-3">
+        <form action="/books/add-book" method="POST" class="form-floating my-3">
             <div class="form-floating mb-3">
                 <input type="text" name="name" class="form-control" id="addBookNameInput" placeholder="Enter Book Name" required>
                 <label for="addBookNameInput">Kitap Adı <span class="text-danger">*</span></label>

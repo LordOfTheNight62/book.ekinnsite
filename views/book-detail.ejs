@@ -1,20 +1,12 @@
 <main class="container-md py-4">
-
-    <div class="container-fluid my-1">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/books">Kitaplar</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><%= book.name %></li>
-            </ol>
-        </nav>
-    </div>
     <div class="d-flex align-items-center mb-3 no-print">
         <a href="/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
         <h1 class="d-inline m-auto ms-2">Kitap Detayı</h1>
     </div>
 
-    <div class="container-fluid bg-white mb-5 border border-dark-subtle rounded-3 p-3 print">
-        <div class="row">
+    <div class="container-fluid position-relative bg-white mb-5 border border-dark-subtle rounded-3 p-3 print">
+        <btn class="btn position-absolute top-0 end-0 bg-primary text-light m-1" role="button" onclick="window.print()"><i class="bi bi-printer"></i> Yazdır</btn>
+        <div class="row mt-3">
             <h1><%= book.name %></h1>
         </div>
         <div class="container-fluid mt-3">
@@ -26,7 +18,7 @@
                     <span><strong>Kitap Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %></span>
                 </div>
             </div>
-            <div class="row my-2 border border-dark-subtle rounded-3 p-3">
+            <div class="row mt-5 mb-3 border border-dark-subtle rounded-3 p-3">
                 <div class="col">
                     <h3>Kitap Açıklaması</h3>
                     <%= book.description %>
@@ -38,11 +30,6 @@
                 </div>
             </div>
 
-            <div class="row my-2 no-print">
-                <div class="col">
-                    <btn class="btn bg-primary text-light w-100" role="button" onclick="window.print()"><i class="bi bi-printer"></i> Sayfayı Yazdır</btn>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -71,9 +58,9 @@
                 <% comments.forEach(comment => { %>
                     <div class="card my-1 w-100">
                         <div class="card-body">
-                            <h5 class="card-title"><%= comment.name %></h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%= new Date(comment.created_at + ' UTC').toLocaleString('tr-TR', {day: 'numeric',month: 'long',year: 'numeric',hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Istanbul',}) %></h6>
-                            <p class="card-text"><%= comment.comment %></p>
+                            <h5 class="card-title comment-user-name"><%= comment.name %> <span class="card-subtitle text-muted comment-date">- <%= new Date(comment.created_at + ' UTC').toLocaleString('tr-TR', {day: 'numeric',month: 'long',year: 'numeric',hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Istanbul',}) %></span></h5>
+                            
+                            <p class="card-text comment-text"><%= comment.comment %></p>
                         </div>   
                     </div>                   
                 <% }); %>

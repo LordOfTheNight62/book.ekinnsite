@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Book = require('../models/bookModel');
 const Comment = require('../models/commentModel');
 
 exports.getAdminPanelPage = async (req, res) => {
@@ -6,6 +7,7 @@ exports.getAdminPanelPage = async (req, res) => {
     const user = await User.getUserByID(req.session.userId);
     const statistics = {
       totalUser: await User.getTotalUserCount(),
+      totalBooks: await Book.getTotalBookCount(),
       totalComments: await Comment.getAllCommentsCount(),
     };
     res.locals.layout = 'layouts/admin-layout';
@@ -15,9 +17,11 @@ exports.getAdminPanelPage = async (req, res) => {
 
 exports.getAllUsersPage = async (req, res) => {
   try {
+    const userID = req.session.userId;
     const users = await User.getAllUser();
     const statistics = {
       totalUser: await User.getTotalUserCount(),
+      totalMyBooks: await Book.getTotalBookCountByUserId(userID),
     };
     res.render('admin/users', { title: 'Üye Listesi', users, statistics });
   } catch (err) {}

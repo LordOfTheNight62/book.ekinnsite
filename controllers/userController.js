@@ -80,8 +80,10 @@ exports.getRegisterPage = (req, res) => {
 
 exports.getAccountPage = async (req, res) => {
   try {
+    const userID = req.session.userId;
     const statistics = {
-      totalBook: await Book.getTotalBookCount(),
+      totalBooks: await Book.getTotalBookCount(),
+      totalMyBooks: await Book.getTotalBookCountByUserId(userID),
       totalComments: (await Comment.getAllCommentsCountByUserID(req.session.userId)) || 0,
     };
     const user = await User.getUserByID(req.session.userId);
@@ -163,12 +165,23 @@ exports.deleteUserByID = async (req, res) => {
   }
 };
 
+exports.getMyBooksPage = async (req, res) => {
+  try {
+    const userID = req.session.userId;
+    const books = await Book.getBooksByUserID(userID);
+    const statistics = {
+      totalBooks: (await Book.getTotalBookCountByUserId(userID)) || 0,
+    };
+    res.render('mybooks', { title: 'Tüm Kitaplarım', books, statistics });
+  } catch (err) {}
+};
+
 exports.getAllMyCommentsPage = async (req, res) => {
   try {
     const statistics = {
       totalComments: (await Comment.getAllCommentsCountByUserID(req.session.userId)) || 0,
     };
     const comments = (await Comment.getAllCommentsByUserID(req.session.userId)) || '';
-    res.render('comments', { title: 'Yorumlarım', comments, statistics });
+    res.render('mycomments', { title: 'Yorumlarım', comments, statistics });
   } catch (err) {}
 };
