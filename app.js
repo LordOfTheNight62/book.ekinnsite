@@ -50,7 +50,7 @@ app.use(
       secure: true, // HTTPS üzerinden iletilebilir
       httpOnly: true, // JavaScript erişimini engeller
       sameSite: 'Lax', // Cross-site isteklerinde cookie gönderilir
-      maxAge: 1000 * 60 * 60 * 6, // 6 saat (milisaniye cinsinden)
+      maxAge: 1000 * 60 * 60 * 12, // 12 saat (milisaniye cinsinden)
     },
   })
 );
