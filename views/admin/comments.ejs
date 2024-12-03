@@ -33,7 +33,7 @@
                             <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
                                 <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
                                     <div class="col">
-                                        <a href="javascript:void(0)" class="delete-comment btn bg-danger text-light" data-comment-id="<%= comment.id %>"><i class="bi bi-trash"></i></a>
+                                        <a href="javascript:void(0)" class="delete-comment btn bg-danger text-light" data-comment-id="<%= comment.id %>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Yorumu Sil"><i class="bi bi-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +44,5 @@
         <% } %>
     </div>
 </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/allcomments.js"></script>
 <script src="/assets/js/cardSearch.js"></script>
