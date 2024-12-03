@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
           minute: '2-digit',
           timeZone: 'Asia/Istanbul',
         });
+        console.log(date);
         const commentContent = `<div class="card-body">
-        <h5 class="card-title">${data.comment.name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">${date}</h6>
-        <p class="card-text">${data.comment.comment}</p>
+        <h5 class="card-title comment-user-name"> ${data.comment.name} <span class="card-subtitle text-muted comment-date">- ${date}</span></h5>
+        <p class="card-text comment-text">${data.comment.comment}</p>
       </div>`;
         const commentDiv = document.createElement('div');
         commentDiv.classList.add('card', 'my-1', 'w-100');
