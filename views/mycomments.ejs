@@ -3,6 +3,13 @@
         <a href="/account" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
         <h3 class="comment-count d-inline m-auto ms-2"><%= "Tüm Yorumlarım (" + (statistics.totalComments > 0 ? statistics.totalComments + ' adet)' : 'Yorum Yok)') %></h3>
     </div>
+    <div class="input-group mb-3">
+        <div class="form-floating">
+            <input type="text" class="form-control card-search-input" id="searchCommentInput" placeholder="Search comment">
+            <label for="searchCommentInput">Yorumlarda Arayın</label>
+        </div>
+        <button class="btn clear-card-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+    </div>
     <div class="container-fluid my-1 alert-deleted d-none">
         <div class="alert alert-success" role="alert">
             Yorumunuz başarıyla silindi
@@ -39,3 +46,4 @@
 </main>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/mycomments.js"></script>
+<script src="/assets/js/cardSearch.js"></script>
