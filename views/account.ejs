@@ -9,6 +9,48 @@
             <% } %>
         </h2>
     </div>
+    <% if(query.message === "success") { %>
+        <div class="container-fluid my-1">
+            <div class="alert alert-success" role="alert">
+                Değişiklikler başarıyla kaydedildi
+            </div>
+        </div>
+    <% } else if(query.message === "wrong-password") { %>
+        <div class="container-fluid my-1">
+            <div class="alert alert-danger" role="alert">
+                Mevcut şifreniz yanlış!
+            </div>
+        </div>
+    <% } else if(query.message === "invalid-password") { %>
+        <div class="container-fluid my-1">
+            <div class="alert alert-danger" role="alert">
+                Şifreniz uygun değil, lütfen kriterlere uygun şifre belirleyin!
+            </div>
+        </div>
+    <% } else if(query.message === "notmatch-password") { %>
+        <div class="container-fluid my-1">
+            <div class="alert alert-danger" role="alert">
+                Şifreniz doğru değil!
+            </div>
+        </div>
+    <% } else if(query.message === "same-password") { %>
+        <div class="container-fluid my-1">
+            <div class="alert alert-danger" role="alert">
+                Şifreniz önceki şifreniz ile aynı olamaz!
+            </div>
+        </div>
+    <% } else if(query.message === "error") { %>
+        <div class="container-fluid my-1">
+            <div class="alert alert-danger" role="alert">
+                Bir hata oluştu, değişiklikler kaydedilemedi!
+            </div>
+        </div>
+    <% } %>
+    <div class="container-fluid my-1 alert-saved d-none">
+        <div class="alert alert-success" role="alert">
+            Değişiklikler başarıyla kaydedildi
+        </div>
+    </div>
     <div class="row my-3">
         <h3 class="mb-2"><i class="bi bi-stars"></i> Sana Özel</h3>
         <div class="col-lg-4 col-md-6 mb-4">
@@ -76,48 +118,6 @@
             </div>
         </div>
     <% } %>
-    <% if(query.message === "success") { %>
-        <div class="container-fluid my-1">
-            <div class="alert alert-success" role="alert">
-                Değişiklikler başarıyla kaydedildi
-            </div>
-        </div>
-    <% } else if(query.message === "wrong-password") { %>
-        <div class="container-fluid my-1">
-            <div class="alert alert-danger" role="alert">
-                Mevcut şifreniz yanlış!
-            </div>
-        </div>
-    <% } else if(query.message === "invalid-password") { %>
-        <div class="container-fluid my-1">
-            <div class="alert alert-danger" role="alert">
-                Şifreniz uygun değil, lütfen kriterlere uygun şifre belirleyin!
-            </div>
-        </div>
-    <% } else if(query.message === "notmatch-password") { %>
-        <div class="container-fluid my-1">
-            <div class="alert alert-danger" role="alert">
-                Şifreniz doğru değil!
-            </div>
-        </div>
-    <% } else if(query.message === "same-password") { %>
-        <div class="container-fluid my-1">
-            <div class="alert alert-danger" role="alert">
-                Şifreniz önceki şifreniz ile aynı olamaz!
-            </div>
-        </div>
-    <% } else if(query.message === "error") { %>
-        <div class="container-fluid my-1">
-            <div class="alert alert-danger" role="alert">
-                Bir hata oluştu, değişiklikler kaydedilemedi!
-            </div>
-        </div>
-    <% } %>
-    <div class="container-fluid my-1 alert-saved d-none">
-        <div class="alert alert-success" role="alert">
-            Değişiklikler başarıyla kaydedildi
-        </div>
-    </div>
     <ul class="nav nav-tabs align-items-center" id="accountTabs" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="personalInfo-tab" data-bs-toggle="tab" data-bs-target="#personalInfo-tab-pane" type="button" role="tab" aria-controls="personalInfo-tab-pane" aria-selected="true"><i class="bi bi-file-person"></i> Kişisel Bilgiler</button>
