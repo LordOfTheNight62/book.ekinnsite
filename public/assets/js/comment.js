@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data.comment);
         const alert = document.querySelector('.alert-sent');
         alert.classList.toggle('d-none');
         commentText.value = '';
@@ -33,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
           minute: '2-digit',
           timeZone: 'Asia/Istanbul',
         });
-        console.log(date);
+
         const commentContent = `<div class="card-body">
-        <h5 class="card-title comment-user-name"> ${data.comment.name} <span class="card-subtitle text-muted comment-date">- ${date}</span></h5>
+        <h5 class="card-title comment-user-name"><img class="rounded-circle avatar-img" src="/assets/img/avatars/${data.comment.avatar}.png" width="48" loading="lazy"> ${data.comment.name} <span class="card-subtitle text-muted comment-date">- ${date} </span></h5>
         <p class="card-text comment-text">${data.comment.comment}</p>
       </div>`;
         const commentDiv = document.createElement('div');

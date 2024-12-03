@@ -7,8 +7,7 @@ exports.addNewComment = async (req, res) => {
     return res.status(302).redirect(fullUrl + '?message=error');
   }
   try {
-    const name = req.session.userName;
-    const commentObject = new Comment(name, comment, bookID, req.session.userId);
+    const commentObject = new Comment(comment, bookID, req.session.userId);
     await Comment.addComment(commentObject);
     const lastComment = await Comment.getLastComment(bookID);
     const statistics = {

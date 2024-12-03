@@ -1,18 +1,16 @@
 const db = require('../config/db');
 
 class Comment {
-  constructor(name, comment, bookID, userID) {
-    this.name = name || '';
+  constructor(comment, bookID, userID) {
     this.comment = comment || '';
     this.bookID = bookID || null;
     this.userID = userID || null;
   }
 
   static async addComment(commentData) {
-    const { name, comment, bookID, userID } = commentData;
+    const { comment, bookID, userID } = commentData;
     try {
-      const [result] = await db.execute('INSERT INTO comments (name, comment, book_id, user_id) VALUES (?, ?, ?, ?)', [
-        name,
+      const [result] = await db.execute('INSERT INTO comments (comment, book_id, user_id) VALUES (?, ?, ?)', [
         comment,
         bookID,
         userID,
@@ -25,7 +23,9 @@ class Comment {
 
   static async getAllComments() {
     try {
-      const [rows] = await db.execute('SELECT * FROM comments ORDER BY created_at DESC');
+      const [rows] = await db.execute(
+        'SELECT comments.id, comments.comment, comments.created_at, users.name, users.avatar FROM comments JOIN users ON comments.user_id = users.id ORDER BY created_at DESC'
+      );
       return rows;
     } catch (err) {
       console.error('Yorum verileri alınamadı, ', err.message);
@@ -34,7 +34,10 @@ class Comment {
 
   static async getAllCommentsByBookID(bookID) {
     try {
-      const [rows] = await db.execute('SELECT * FROM comments WHERE book_id = ? ORDER BY created_at DESC', [bookID]);
+      const [rows] = await db.execute(
+        'SELECT comments.id, comments.comment, comments.created_at, users.name, users.avatar FROM comments JOIN users ON comments.user_id = users.id WHERE book_id = ? ORDER BY created_at DESC',
+        [bookID]
+      );
       return rows;
     } catch (err) {
       console.error('Yorum verileri alınamadı, ', err.message);
@@ -43,7 +46,10 @@ class Comment {
 
   static async getAllCommentsByUserID(userID) {
     try {
-      const [rows] = await db.execute('SELECT * FROM comments WHERE user_id = ? ORDER BY created_at DESC', [userID]);
+      const [rows] = await db.execute(
+        'SELECT comments.id, comments.comment, comments.created_at, users.name, users.avatar FROM comments JOIN users ON comments.user_id = users.id WHERE user_id = ? ORDER BY created_at DESC',
+        [userID]
+      );
       return rows;
     } catch (err) {
       console.error('Yorum verileri alınamadı, ', err.message);
@@ -88,9 +94,10 @@ class Comment {
 
   static async getLastComment(bookID) {
     try {
-      const [result] = await db.execute('SELECT * FROM comments WHERE book_id = ? ORDER BY created_at DESC LIMIT 1', [
-        bookID,
-      ]);
+      const [result] = await db.execute(
+        'SELECT comments.id, comments.comment, comments.created_at, users.name, users.avatar FROM comments JOIN users ON comments.user_id = users.id WHERE book_id = ? ORDER BY created_at DESC LIMIT 1',
+        [bookID]
+      );
       return result[0];
     } catch (err) {
       console.error('Yorum verileri alınamadı, ', err.message);

@@ -86,9 +86,11 @@ class User {
     }
   }
 
-  static async getAllUser() {
+  static async getAllUserWithStatistics() {
     try {
-      const [rows] = await db.execute('SELECT * FROM users ORDER BY joined_at DESC');
+      const [rows] = await db.execute(
+        'SELECT users.id, users.name, users.surname, users.email, users.role, COUNT(books.id) AS book_count, COUNT(comments.id) AS comment_count FROM users LEFT JOIN books ON users.id = books.user_id LEFT JOIN comments ON users.id = comments.user_id GROUP BY users.id ORDER BY users.name ASC'
+      );
       return rows;
     } catch (err) {
       console.error('Tüm kullanıcılar alınırken hata oluştu, ', err.message);

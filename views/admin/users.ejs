@@ -9,6 +9,8 @@
                         <th scope="col">Soyisim</th>
                         <th scope="col">E-posta</th>
                         <th scope="col">Yetki</th>
+                        <th scope="col">Eklediği Kitap Sayısı</th>
+                        <th scope="col">Yazdığı Yorum Sayısı</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -18,6 +20,8 @@
                             <td><%= user.surname %></td>
                             <td><%= user.email %></td>
                             <td><%= user.role %></td>
+                            <td><%= user.book_count %></td>
+                            <td><%= user.comment_count %></td>
                         </tr>
                     <% }); %>
                 </tbody>

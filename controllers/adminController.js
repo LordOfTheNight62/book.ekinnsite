@@ -17,8 +17,7 @@ exports.getAdminPanelPage = async (req, res) => {
 
 exports.getAllUsersPage = async (req, res) => {
   try {
-    const userID = req.session.userId;
-    const users = await User.getAllUser();
+    const users = await User.getAllUserWithStatistics();
     const statistics = {
       totalUser: await User.getTotalUserCount(),
     };
