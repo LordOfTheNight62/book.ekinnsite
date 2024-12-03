@@ -21,7 +21,6 @@ exports.getAllUsersPage = async (req, res) => {
     const users = await User.getAllUser();
     const statistics = {
       totalUser: await User.getTotalUserCount(),
-      totalMyBooks: await Book.getTotalBookCountByUserId(userID),
     };
     res.render('admin/users', { title: 'Üye Listesi', users, statistics });
   } catch (err) {}
