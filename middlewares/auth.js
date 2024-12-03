@@ -37,7 +37,7 @@ exports.checkBookOwnerShip = async (req, res, next) => {
   try {
     const book = await bookController.getBookByID(req, res);
 
-    if (book.user_id === req.session.userId) {
+    if (book.user_id === req.session.userId || req.session.role === 'admin') {
       return next();
     }
 
