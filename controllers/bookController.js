@@ -2,12 +2,12 @@ const Book = require('../models/bookModel');
 const Comment = require('../models/commentModel');
 
 exports.addNewBook = async (req, res) => {
-  let { name, description, author, categoryID, price } = req.body;
-  if (!name || !author || !categoryID || !price) {
+  let { name, description, author, categoryID } = req.body;
+  if (!name || !author || !categoryID) {
     return res.status(302).redirect(`/books/add-book?message=error`);
   }
-  price = parseFloat(price).toFixed(2);
-  const book = new Book(name, description, author, categoryID, price);
+
+  const book = new Book(name, description, author, categoryID);
   const userID = req.session.userId;
   try {
     await Book.addBook(book, userID);
@@ -28,12 +28,12 @@ exports.getBookByID = async (req, res) => {
 };
 
 exports.updateBookByID = async (req, res) => {
-  const { name, description, author, categoryID, price } = req.body;
+  const { name, description, author, categoryID } = req.body;
   const id = req.params.id;
-  if (!name || !author || !categoryID || !price) {
+  if (!name || !author || !categoryID) {
     return res.redirect(`/books/edit-book/${id}?message=error`);
   }
-  const book = new Book(name, description, author, categoryID, price);
+  const book = new Book(name, description, author, categoryID);
 
   try {
     await book.updateBook(id, book);

@@ -1,20 +1,19 @@
 const db = require('../config/db');
 
 class Book {
-  constructor(name, description, author, categoryID, price) {
+  constructor(name, description, author, categoryID) {
     this.name = name || '';
     this.description = description || '';
     this.author = author || '';
     this.categoryID = categoryID || null;
-    this.price = price || 0.0;
   }
 
   static async addBook(bookData, userID) {
-    const { name, description, author, categoryID, price } = bookData;
+    const { name, description, author, categoryID } = bookData;
     try {
       const [result] = await db.execute(
-        'INSERT INTO books (name, description, author, category_id, price, user_id) VALUES (?, ?, ?, ?, ?, ?)',
-        [name, description, author, categoryID, price, userID]
+        'INSERT INTO books (name, description, author, category_id, user_id) VALUES (?, ?, ?, ?, ?)',
+        [name, description, author, categoryID, userID]
       );
       return result[0];
     } catch (err) {
@@ -32,12 +31,12 @@ class Book {
   }
 
   async updateBook(id, bookData) {
-    const { name, description, author, categoryID, price } = bookData;
+    const { name, description, author, categoryID } = bookData;
 
     try {
       const [result] = await db.execute(
-        'UPDATE books SET name = ?, description = ?, author = ?, category_id = ?, price = ? WHERE id = ?',
-        [name, description, author, categoryID, price, id]
+        'UPDATE books SET name = ?, description = ?, author = ?, category_id = ? WHERE id = ?',
+        [name, description, author, categoryID, id]
       );
       return result[0];
     } catch (err) {
