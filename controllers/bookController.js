@@ -1,5 +1,6 @@
 const Book = require('../models/bookModel');
 const Comment = require('../models/commentModel');
+const { updateSitemap } = require('../utils/sitemap');
 
 exports.addNewBook = async (req, res) => {
   let { name, description, author, categoryID } = req.body;
@@ -11,7 +12,9 @@ exports.addNewBook = async (req, res) => {
   const userID = req.session.userId;
   try {
     await Book.addBook(book, userID);
-    return res.redirect('/books/add-book?message=success');
+    res.redirect('/books/add-book?message=success');
+    updateSitemap();
+    return;
   } catch (err) {
     console.error('Kitap eklenirken hata meydana geldi:', err);
     return res.redirect(`/books/add-book?message=error`);
@@ -79,6 +82,7 @@ exports.getDeleteBookPage = async (req, res) => {
   try {
     await Book.deleteBook(id);
     res.render('delete-book', { title: 'Kitap Sil', deleteStatus: 'success' });
+    updateSitemap();
   } catch (err) {
     res.render('delete-book', { title: 'Kitap Sil', deleteStatus: 'error' });
   }
