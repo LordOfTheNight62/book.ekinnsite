@@ -3,15 +3,14 @@
         <a href="/admin-panel" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
         <h2 class="d-inline m-auto ms-2"><%= "Tüm Kitaplar (" + (statistics.totalUser > 1 ? statistics.totalUser + ' kişi)' : 'Hiç Üye Yok)') %></h2>
     </div>
-
-    <div class="input-group mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control table-search-input" id="searchUserInput" placeholder="Search user">
-            <label for="searchUserInput">Listeden Üye Bulun</label>
-        </div>
-        <button class="btn clear-table-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
-    </div>
     <% if(users.length > 0) { %>
+        <div class="input-group mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control table-search-input" id="searchUserInput" placeholder="Search user">
+                <label for="searchUserInput">Listeden Üye Bulun</label>
+            </div>
+            <button class="btn clear-table-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+        </div>
         <div class="overflow-x-auto">
             <table class="table table-striped text-center">
                 <thead class="table-dark">

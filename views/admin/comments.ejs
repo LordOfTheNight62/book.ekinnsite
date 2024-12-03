@@ -3,13 +3,6 @@
         <a href="/admin-panel" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
         <h3 class="comment-count d-inline m-auto ms-2"><%= "Tüm Yorumlar (" + (statistics.totalComments > 0 ? statistics.totalComments + ' adet)' : 'Yorum Yok)') %></h3>
     </div>
-    <div class="input-group mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control card-search-input" id="searchCommentInput" placeholder="Search comment">
-            <label for="searchCommentInput">Yorumlarda Arayın</label>
-        </div>
-        <button class="btn clear-card-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
-    </div>
     <div class="container-fluid my-1 alert-deleted d-none">
         <div class="alert alert-success" role="alert">
             Yorum başarıyla silindi
@@ -17,6 +10,13 @@
     </div>
     <div class="all-comments-field my-3">
         <% if(comments.length > 0) { %>
+            <div class="input-group mb-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control card-search-input" id="searchCommentInput" placeholder="Search comment">
+                    <label for="searchCommentInput">Yorumlarda Arayın</label>
+                </div>
+                <button class="btn clear-card-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+            </div>
             <% comments.forEach(comment => { %>
                 <div class="card my-1 w-100">
                     <div class="card-body">
