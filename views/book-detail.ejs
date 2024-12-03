@@ -59,7 +59,6 @@
                     <div class="card my-1 w-100">
                         <div class="card-body">
                             <h5 class="card-title comment-user-name"><%= comment.name %> <span class="card-subtitle text-muted comment-date">- <%= new Date(comment.created_at + ' UTC').toLocaleString('tr-TR', {day: 'numeric',month: 'long',year: 'numeric',hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Istanbul',}) %></span></h5>
-                            
                             <p class="card-text comment-text"><%= comment.comment %></p>
                         </div>   
                     </div>                   
