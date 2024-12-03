@@ -1,3 +1,5 @@
+const bookController = require('../controllers/bookController');
+
 // Oturum kontrol middleware'i
 exports.isLoggedIn = (req, res, next) => {
   if (req.session.userId) {
@@ -27,6 +29,29 @@ exports.isAdmin = (req, res, next) => {
   return res.status(403).render('error/error.ejs', {
     title: '403',
     statusCode: '403',
-    message: 'Sanırım yanlış geldiniz :)',
+    message: 'Erişim Reddedildi',
   });
+};
+
+exports.checkBookOwnerShip = async (req, res, next) => {
+  try {
+    const book = await bookController.getBookByID(req, res);
+
+    if (book.user_id === req.session.userId) {
+      return next();
+    }
+
+    return res.status(403).render('error/error.ejs', {
+      title: '403',
+      statusCode: '403',
+      message: 'Erişim Reddedildi',
+    });
+  } catch (err) {
+    console.error('Kitap sahipliği kontrol hatası:', err.message);
+    return res.status(500).render('error/error.ejs', {
+      title: '500',
+      statusCode: '500',
+      message: 'Sunucu Hatası',
+    });
+  }
 };
