@@ -4,15 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearTableSearchBtn = document.querySelector('.clear-table-search-btn');
     const rows = document.querySelectorAll('tbody tr');
 
+    // Türkçe karakterleri normalize etme fonksiyonu
+    const normalizeText = (text) => {
+      const map = {
+        ı: 'i',
+        İ: 'i',
+        ş: 's',
+        Ş: 's',
+        ğ: 'g',
+        Ğ: 'g',
+        ü: 'u',
+        Ü: 'u',
+        ö: 'o',
+        Ö: 'o',
+        ç: 'c',
+        Ç: 'c',
+      };
+      return text
+        .split('')
+        .map((char) => map[char] || char)
+        .join('');
+    };
+
     tableSearchInput.addEventListener('input', () => {
-      const filterText = tableSearchInput.value.toLowerCase();
+      const filterText = normalizeText(tableSearchInput.value.toLowerCase());
 
       rows.forEach((row) => {
         const cells = row.getElementsByTagName('td');
         let isMatched = false;
 
         for (let i = 0; i < cells.length; i++) {
-          if (cells[i].textContent.toLowerCase().includes(filterText)) {
+          if (normalizeText(cells[i].textContent.toLowerCase()).includes(filterText)) {
             isMatched = true;
           }
         }

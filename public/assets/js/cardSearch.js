@@ -4,13 +4,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearCardSearchBtn = document.querySelector('.clear-card-search-btn');
     const cards = document.querySelectorAll('.card');
 
+    // Türkçe karakterleri normalize etme fonksiyonu
+    const normalizeText = (text) => {
+      const map = {
+        ı: 'i',
+        İ: 'i',
+        ş: 's',
+        Ş: 's',
+        ğ: 'g',
+        Ğ: 'g',
+        ü: 'u',
+        Ü: 'u',
+        ö: 'o',
+        Ö: 'o',
+        ç: 'c',
+        Ç: 'c',
+      };
+      return text
+        .split('')
+        .map((char) => map[char] || char)
+        .join('');
+    };
+
     cardSearchInput.addEventListener('input', () => {
-      const filterText = cardSearchInput.value.toLowerCase();
+      const filterText = normalizeText(cardSearchInput.value.toLowerCase());
 
       cards.forEach((card) => {
+        const cardText = normalizeText(card.textContent.toLowerCase());
         let isMatched = false;
 
-        if (card.textContent.toLowerCase().includes(filterText)) {
+        if (cardText.includes(filterText)) {
           isMatched = true;
         }
 
@@ -28,5 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.display = '';
       });
     });
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+  }
 });
