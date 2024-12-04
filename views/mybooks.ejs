@@ -10,6 +10,13 @@
     </div>
     <div class="my-comments-field my-3">
         <% if(books.length > 0) { %>
+            <div class="input-group mb-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control card-search-input" id="searchCommentInput" placeholder="Search comment">
+                    <label for="searchCommentInput">Eklediğin Kitaplarda Ara</label>
+                </div>
+                <button class="btn clear-card-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+            </div>
             <% books.forEach(book => { %>
                 <div class="card my-1 w-100">
                     <div class="card-body">
@@ -45,3 +52,4 @@
         <% } %>
     </div>
 </main>
+<script src="/assets/js/cardSearch.js"></script>
