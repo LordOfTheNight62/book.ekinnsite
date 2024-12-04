@@ -10,6 +10,7 @@ const db = require('./config/db');
 const PORT = 4000;
 
 const cleanRequestBody = require('./middlewares/cleanRequestBody');
+const { toUrlString } = require('./utils/urlFormatter');
 const adminRouter = require('./routes/adminRouter');
 const siteRouter = require('./routes/siteRouter');
 const userDataRouter = require('./routes/userDataRouter');
@@ -61,6 +62,7 @@ app.use(express.json());
 app.use(cleanRequestBody);
 
 app.use((req, res, next) => {
+  app.locals.toUrlString = toUrlString;
   res.locals.isAuthenticated = req.session?.isAuthenticated || false;
   res.locals.userRole = req.session?.role || null;
   res.locals.userFirstname = req.session?.userName || '';

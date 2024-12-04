@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const { toUrlString } = require('./urlFormatter');
 const Book = require('../models/bookModel');
 
 exports.updateSitemap = async () => {
@@ -24,7 +25,7 @@ exports.updateSitemap = async () => {
   const books = await Book.getAllBooks();
 
   books.forEach((book) => {
-    sitemap += `<url>\n<loc>https://book.ekinn.site/books/${
+    sitemap += `<url>\n<loc>https://book.ekinn.site/books/${toUrlString(book.name)}-b${
       book.id
     }</loc>\n<lastmod>${new Date().toISOString()}</lastmod>\n<priority>0.8</priority>\n</url>\n`;
   });
