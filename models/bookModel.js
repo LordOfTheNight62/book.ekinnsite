@@ -71,6 +71,56 @@ class Book {
     }
   }
 
+  static async addFavorite(userID, bookID) {
+    try {
+      const [result] = await db.execute('INSERT INTO favorites (user_id, book_id) VALUES (?, ?)', [userID, bookID]);
+      return result[0];
+    } catch (err) {
+      console.error('Favorilere eklenirken hata meydana geldi, ', err.message);
+    }
+  }
+
+  static async deleteFavorite(userID, bookID) {
+    try {
+      const [result] = await db.execute('DELETE FROM favorites WHERE user_id = ? AND book_id = ?', [userID, bookID]);
+      return result;
+    } catch (err) {
+      console.error('Kitap favorilerden silinirken bir hata oluştu, ', err.message);
+    }
+  }
+
+  static async isFavorite(userID, bookID) {
+    try {
+      const [rows] = await db.execute('SELECT 1 FROM favorites WHERE user_id = ? AND book_id = ?', [userID, bookID]);
+      return rows.length > 0; // Favori varsa true, yoksa false
+    } catch (err) {
+      console.error('Favori kontrolünde hata: ', err.message);
+    }
+  }
+
+  static async getFavoritesByUserID(userID) {
+    try {
+      const [rows] = await db.execute(
+        'SELECT books.* FROM favorites JOIN books ON favorites.book_id = books.id WHERE favorites.user_id = ? ORDER BY created_at DESC',
+        [userID]
+      );
+      return rows;
+    } catch (err) {
+      console.error('Favori kitaplar alınamadı, ', err.message);
+    }
+  }
+
+  static async getFavoritesCountByUserID(userID) {
+    try {
+      const [result] = await db.execute('SELECT COUNT(*) AS total_favorites FROM favorites WHERE user_id = ?', [
+        userID,
+      ]);
+      return result[0].total_favorites;
+    } catch (err) {
+      console.error('Toplam kullanıcı sayısı alınamadı, ', err.message);
+    }
+  }
+
   static async getTotalBookCount() {
     try {
       const [result] = await db.execute('SELECT COUNT(*) AS total_books FROM books');

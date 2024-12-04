@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           alert.classList.toggle('d-none');
           const deletedComment = document.querySelector(`[data-comment-id="${data.deletedCommentID}"`);
           deletedComment.closest('.card').remove();
+          document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
           commentCount.innerText =
             data.statistics.totalComments > 0
               ? `Tüm Yorumlarım (${data.statistics.totalComments} adet)`

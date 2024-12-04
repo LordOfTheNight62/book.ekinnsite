@@ -3,7 +3,7 @@ const Comment = require('../models/commentModel');
 const { updateSitemap } = require('../utils/sitemap');
 
 exports.addNewBook = async (req, res) => {
-  let { name, description, author, categoryID } = req.body;
+  const { name, description, author, categoryID } = req.body;
   if (!name || !author || !categoryID) {
     return res.status(302).redirect(`/books/add-book?message=error`);
   }
@@ -15,6 +15,37 @@ exports.addNewBook = async (req, res) => {
     res.redirect('/books/add-book?message=success');
     updateSitemap();
     return;
+  } catch (err) {
+    console.error('Kitap eklenirken hata meydana geldi:', err);
+    return res.redirect(`/books/add-book?message=error`);
+  }
+};
+
+exports.addNewFavorite = async (req, res) => {
+  const { userID, bookID } = req.body;
+  try {
+    const isFavorite = await Book.isFavorite(userID, bookID);
+    if (!isFavorite) {
+      const favorites = await Book.addFavorite(userID, bookID);
+      return res.json({ message: 'Favorilere başarıyla eklendi', favorites });
+    }
+  } catch (err) {
+    console.error('Kitap eklenirken hata meydana geldi:', err);
+    return res.redirect(`/books/add-book?message=error`);
+  }
+};
+
+exports.deleteFavorite = async (req, res) => {
+  const { userID, bookID } = req.body;
+  try {
+    const isFavorite = await Book.isFavorite(userID, bookID);
+    if (isFavorite) {
+      await Book.deleteFavorite(userID, bookID);
+      const statistics = {
+        totalFavorites: (await Book.getFavoritesCountByUserID(userID)) || 0,
+      };
+      return res.json({ message: 'Favorilerden başarıyla kaldırıldı', deletedBookID: bookID, statistics });
+    }
   } catch (err) {
     console.error('Kitap eklenirken hata meydana geldi:', err);
     return res.redirect(`/books/add-book?message=error`);
@@ -67,11 +98,16 @@ exports.getAllBooksPage = async (req, res) => {
 exports.getBookDetailPage = async (req, res) => {
   try {
     const book = await exports.getBookByID(req, res);
+    let isFavorite = false;
+    if (req.session.isAuthenticated) {
+      const userID = req.session?.userId;
+      isFavorite = await Book.isFavorite(userID, book.id);
+    }
     const statistics = {
       totalComments: (await Comment.getAllCommentsCountByBookID(book.id)) || 0,
     };
     const comments = (await Comment.getAllCommentsByBookID(book.id)) || '';
-    res.render('book-detail', { title: book.name, book, comments, statistics });
+    res.render('book-detail', { title: book.name, book, comments, statistics, isFavorite });
   } catch (err) {
     res.status(404).render('error/error.ejs', { title: '404', statusCode: '404', message: 'Sayfa Bulunamadı' });
   }

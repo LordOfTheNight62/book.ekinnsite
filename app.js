@@ -63,6 +63,7 @@ app.use(cleanRequestBody);
 app.use((req, res, next) => {
   app.locals.toUrlString = toUrlString;
   res.locals.isAuthenticated = req.session?.isAuthenticated || false;
+  res.locals.userId = req.session?.userId || null;
   res.locals.userRole = req.session?.role || null;
   res.locals.userFirstname = req.session?.userName || '';
   res.locals.avatar = req.session?.avatar || '0';

@@ -85,6 +85,7 @@ exports.getAccountPage = async (req, res) => {
       totalBooks: await Book.getTotalBookCount(),
       totalMyBooks: await Book.getTotalBookCountByUserId(userID),
       totalComments: (await Comment.getAllCommentsCountByUserID(req.session.userId)) || 0,
+      totalFavorites: (await Book.getFavoritesCountByUserID(userID)) || 0,
     };
     const user = await User.getUserByID(req.session.userId);
     res.render('account', { title: 'Hesabım', user: user, statistics, query: req.query || {} });
@@ -173,6 +174,17 @@ exports.getMyBooksPage = async (req, res) => {
       totalBooks: (await Book.getTotalBookCountByUserId(userID)) || 0,
     };
     res.render('mybooks', { title: 'Tüm Kitaplarım', books, statistics });
+  } catch (err) {}
+};
+
+exports.getMyFavoritesPage = async (req, res) => {
+  try {
+    const userID = req.session.userId;
+    const books = await Book.getFavoritesByUserID(userID);
+    const statistics = {
+      totalFavorites: (await Book.getFavoritesCountByUserID(userID)) || 0,
+    };
+    res.render('myfavorites', { title: 'Favori Kitaplarım', books, statistics });
   } catch (err) {}
 };
 

@@ -21,10 +21,9 @@ exports.deleteCommentByID = async (req, res) => {
   try {
     const { commentID } = req.body;
     await Comment.deleteCommentByID(commentID);
-    const comments = await Comment.getAllCommentsByUserID(req.session.userId);
     const statistics = {
       totalComments: await Comment.getAllCommentsCountByUserID(req.session.userId),
     };
-    res.send({ message: 'Yorumunuz başarıyla silindi', comments, deletedCommentID: commentID, statistics });
+    res.json({ message: 'Yorumunuz başarıyla silindi', deletedCommentID: commentID, statistics });
   } catch (err) {}
 };
