@@ -20,9 +20,11 @@ const csp = {
   directives: {
     defaultSrc: ["'self'"], // Yalnızca kendi domain'den içerik al
     connectSrc: ["'self'", 'https:'], // HTTPS'yi ekleyin
-    scriptSrc: ["'self'", "'unsafe-inline'"], // Inline script'lere izin ver
     styleSrc: ["'self'", "'unsafe-inline'"], // Inline stil etiketlerine izin ver
-    scriptSrcAttr: ["'self'", "'unsafe-inline'"], // Inline event handler'lara izin ver
+    scriptSrc: ["'self'"], // Sadece kendi domain'inden script al
+    imgSrc: ["'self'"], // Yalnızca kendi domain'den görsel al
+    fontSrc: ["'self'", 'https://fonts.gstatic.com'], // Harici font kaynaklarına izin ver
+    upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
   },
 };
 
