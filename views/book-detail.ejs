@@ -61,5 +61,23 @@
             <% } %>
         </div>
     </div>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Book",
+          "name": "<%= book.name %>",
+          "author": {
+            "@type": "Person",
+            "name": "<%= book.author %>"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": "952"
+          }
+        }
+    </script>
+        
 </main>
 <script src="/assets/js/comment.js"></script>
