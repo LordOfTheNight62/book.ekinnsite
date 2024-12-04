@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.forEach((value, key) => {
       commentFormData[key] = value;
     });
-    pathParts = window.location.pathname.split('/');
-    commentFormData['bookID'] = pathParts[pathParts.length - 1];
+
+    commentFormData['bookID'] = document.getElementsByTagName('main')[0].getAttribute('data-book-id');
 
     fetch('/api/user-comment', {
       method: 'POST',
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.comment);
         const alert = document.querySelector('.alert-sent');
         alert.classList.toggle('d-none');
         commentText.value = '';
