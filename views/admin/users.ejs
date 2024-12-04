@@ -1,7 +1,7 @@
 <main class="container-md py-4">
     <div class="d-flex align-items-center mb-3">
         <a href="/admin-panel" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
-        <h2 class="d-inline m-auto ms-2"><%= "Tüm Kitaplar (" + (statistics.totalUser > 1 ? statistics.totalUser + ' kişi)' : 'Hiç Üye Yok)') %></h2>
+        <h2 class="d-inline m-auto ms-2"><%= "Tüm Üyeler (" + (statistics.totalUser > 1 ? statistics.totalUser + ' kişi)' : 'Hiç Üye Yok)') %></h2>
     </div>
     <% if(users.length > 0) { %>
         <div class="input-group mb-3">
