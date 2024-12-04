@@ -3,5 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
 
   const printBtn = document.querySelector('.print-btn');
-  printBtn.addEventListener('click', () => window.print());
+  if (printBtn) {
+    printBtn.addEventListener('click', () => window.print());
+  }
 });
