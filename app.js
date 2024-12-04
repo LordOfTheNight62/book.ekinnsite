@@ -22,8 +22,7 @@ const csp = {
     defaultSrc: ["'self'"], // Yalnızca kendi domain'den içerik al
     connectSrc: ["'self'", 'https:'], // HTTPS'yi ekleyin
     styleSrc: ["'self'", "'unsafe-inline'"], // Inline stil etiketlerine izin ver
-    scriptSrc: ["'self'"], // Sadece kendi domain'inden script al
-    fontSrc: ["'self'", 'https://fonts.gstatic.com'], // Harici font kaynaklarına izin ver
+    scriptSrc: ["'self'", "'unsafe-inline'"], // Inline script'lere izin ver
     upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
   },
 };
