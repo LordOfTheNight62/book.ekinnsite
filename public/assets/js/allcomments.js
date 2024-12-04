@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
               ? `Tüm Yorumlar (${data.statistics.totalComments} adet)`
               : 'Tüm Yorumlar (Yorum Yok)';
 
+          if (data.statistics.totalComments === 0) document.querySelector('.search-field').remove();
           if (alert) {
             setTimeout(() => {
               alert.classList.toggle('d-none');

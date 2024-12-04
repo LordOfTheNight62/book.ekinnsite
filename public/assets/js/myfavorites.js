@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
               ? `Favori Kitaplarım (${data.statistics.totalFavorites} adet)`
               : 'Favori Kitaplarım (Kitap Yok)';
 
+          if (data.statistics.totalFavorites === 0) document.querySelector('.search-field').remove();
           if (alert) {
             setTimeout(() => {
               alert.classList.toggle('d-none');

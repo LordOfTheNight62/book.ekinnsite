@@ -4,7 +4,7 @@
         <h2 class="d-inline m-auto ms-2"><%= "Tüm Üyeler (" + (statistics.totalUser > 1 ? statistics.totalUser + ' kişi)' : 'Hiç Üye Yok)') %></h2>
     </div>
     <% if(users.length > 0) { %>
-        <div class="input-group mb-3">
+        <div class="search-field input-group mb-3">
             <div class="form-floating">
                 <input type="text" class="form-control table-search-input" id="searchUserInput" placeholder="Search user">
                 <label for="searchUserInput">Listeden Üye Bulun</label>
