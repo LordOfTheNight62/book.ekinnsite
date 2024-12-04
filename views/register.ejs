@@ -24,14 +24,19 @@
     <div class="container-fluid my-1">
         <form action="/register" method="POST" class="form-floating my-3">
             <h2 class="display-2 mb-3 text-center">Üye Ol</h2>
-            <div class="form-floating mb-3">
-                <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" required>
-                <label for="userNameInput">Adınız <span class="text-danger">*</span></label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" required>
-                <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input type="text" name="userName" class="form-control" id="userNameInput" placeholder="Enter Your Name" required>
+                        <label for="userNameInput">Adınız <span class="text-danger">*</span></label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input type="text" name="userSurname" class="form-control" id="userSurnameInput" placeholder="Enter Your Surname" required>
+                        <label for="userSurnameInput">Soyadınız <span class="text-danger">*</span></label>
+                    </div>
+                </div>
             </div>
 
             <div class="form-floating mb-3">
