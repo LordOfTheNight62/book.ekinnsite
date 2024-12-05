@@ -31,8 +31,13 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="number" name="categoryID" class="form-control" id="addBookCategoryInput" placeholder="Enter Book Category" required>
-                <label for="addBookCategoryInput">Kategori <span class="text-danger">*</span></label>
+                <select id="categorySelect" class="form-select" aria-label="Default select change">
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                    <% }) %>
+                    
+                </select>
+                <label for="categorySelect">Kategori <span class="text-danger">*</span></label>
             </div>
 
             <div class="form-floating mb-3">

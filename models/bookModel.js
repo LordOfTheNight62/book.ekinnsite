@@ -23,7 +23,10 @@ class Book {
 
   static async getBook(bookID) {
     try {
-      const [result] = await db.execute('SELECT * FROM books WHERE id = ?', [bookID]);
+      const [result] = await db.execute(
+        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id WHERE books.id = ?',
+        [bookID]
+      );
       return result[0];
     } catch (error) {
       console.error('Kitap bilgisi alınırken hata oluştu, ', err.message);
@@ -55,7 +58,9 @@ class Book {
 
   static async getAllBooks() {
     try {
-      const [rows] = await db.execute('SELECT * FROM books ORDER BY added_at DESC');
+      const [rows] = await db.execute(
+        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id ORDER BY added_at DESC'
+      );
       return rows;
     } catch (err) {
       console.error('Kitap verileri alınamadı, ', err.message);
@@ -64,7 +69,10 @@ class Book {
 
   static async getBooksByUserID(userID) {
     try {
-      const [rows] = await db.execute('SELECT * FROM books WHERE user_id = ? ORDER BY added_at DESC', [userID]);
+      const [rows] = await db.execute(
+        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id WHERE books.user_id = ? ORDER BY added_at DESC',
+        [userID]
+      );
       return rows;
     } catch (err) {
       console.error('Kitap verileri alınamadı, ', err.message);

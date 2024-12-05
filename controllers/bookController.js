@@ -1,4 +1,5 @@
 const Book = require('../models/bookModel');
+const Category = require('../models/categoryModel');
 const Comment = require('../models/commentModel');
 const { updateSitemap } = require('../utils/sitemap');
 
@@ -77,14 +78,18 @@ exports.updateBookByID = async (req, res) => {
   }
 };
 
-exports.getAddNewBookPage = (req, res) => {
-  res.render('add-book', { title: 'Yeni Kitap Ekle', query: req.query });
+exports.getAddNewBookPage = async (req, res) => {
+  try {
+    const categories = await Category.getCategories();
+    res.render('add-book', { title: 'Yeni Kitap Ekle', categories, query: req.query });
+  } catch (err) {}
 };
 
 exports.getEditBookPage = async (req, res) => {
   try {
     const book = await exports.getBookByID(req, res);
-    res.render('edit-book', { title: `${book.name} Kitabını Düzenle`, book, query: req.query || {} });
+    const categories = await Category.getCategories();
+    res.render('edit-book', { title: `${book.name} Kitabını Düzenle`, book, categories, query: req.query || {} });
   } catch (err) {}
 };
 
