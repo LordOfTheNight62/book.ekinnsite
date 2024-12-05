@@ -1,2 +1,2 @@
 body,main{display: flex !important;flex-direction: column !important;justify-content: center !important;align-items: center !important;}
-main {flex-grow: 1;text-align: center;}
+main {flex-grow: 1;}
