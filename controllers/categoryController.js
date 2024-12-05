@@ -8,13 +8,24 @@ exports.addNewCategory = async (req, res) => {
   }
   try {
     const category = new Category(categoryName, categoryDescription);
-    console.log(category);
     await Category.addCategory(category);
+    const categories = await Category.getCategories();
     const lastCategory = await Category.getLastCategory();
     const statistics = {
       totalCategories: await Category.getCategoriesCount(),
     };
-    res.json({ message: 'Kategori başarıyla eklendi', category: lastCategory, statistics });
+    res.json({ message: 'Kategori başarıyla eklendi', categories, category: lastCategory, statistics });
+  } catch (err) {}
+};
+
+exports.updateCategoryByID = async (req, res) => {
+  const { categoryNewName, categoryNewDescription, categoryID } = req.body;
+  try {
+    const category = new Category(categoryNewName, categoryNewDescription);
+    await Category.updateCategory(categoryID, category);
+    const categories = await Category.getCategories();
+    const updatedCategory = await Category.getCategoriesByID(categoryID);
+    res.json({ message: 'Kategori başarıyla güncellendi', categories, updatedCategory });
   } catch (err) {}
 };
 
@@ -22,9 +33,10 @@ exports.deleteCategoryByID = async (req, res) => {
   try {
     const { categoryID } = req.body;
     await Category.deleteCategoryByID(categoryID);
+    const categories = await Category.getCategories();
     const statistics = {
       totalCategories: await Category.getCategoriesCount(),
     };
-    res.json({ message: 'Yorumunuz başarıyla silindi', deletedCategoryID: categoryID, statistics });
+    res.json({ message: 'Yorumunuz başarıyla silindi', categories, deletedCategoryID: categoryID, statistics });
   } catch (err) {}
 };

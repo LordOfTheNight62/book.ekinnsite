@@ -68,10 +68,10 @@ exports.updateBookByID = async (req, res) => {
   if (!name || !author || !categoryID) {
     return res.redirect(`/books/edit-book/${id}?message=error`);
   }
-  const book = new Book(name, description, author, categoryID);
 
   try {
-    await book.updateBook(id, book);
+    const book = new Book(name, description, author, categoryID);
+    await Book.updateBook(id, book);
     return res.redirect(`/books/edit-book/${id}?message=success`);
   } catch (err) {
     return res.redirect(`/books/edit-book/${id}?message=error`);

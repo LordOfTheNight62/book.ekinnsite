@@ -33,7 +33,7 @@ class Book {
     }
   }
 
-  async updateBook(id, bookData) {
+  static async updateBook(id, bookData) {
     const { name, description, author, categoryID } = bookData;
 
     try {

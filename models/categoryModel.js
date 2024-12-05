@@ -19,10 +19,31 @@ class Category {
     }
   }
 
+  static async updateCategory(categoryID, categoryData) {
+    try {
+      const { name, description } = categoryData;
+      const [result] = await db.execute('UPDATE categories SET name = ?, description = ? WHERE id = ?', [
+        name,
+        description,
+        categoryID,
+      ]);
+      return result[0];
+    } catch (err) {
+      console.error('Kitap bilgileri güncellenirken bir hata meydana geldi, ', err.message);
+    }
+  }
+
   static async getCategories() {
     try {
       const [rows] = await db.execute('SELECT * FROM categories');
       return rows;
+    } catch (err) {}
+  }
+
+  static async getCategoriesByID(categoryID) {
+    try {
+      const [result] = await db.execute('SELECT * FROM categories WHERE id = ?', [categoryID]);
+      return result[0];
     } catch (err) {}
   }
 
