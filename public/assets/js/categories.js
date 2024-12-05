@@ -7,13 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   newCategoryForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const tbody = document.getElementsByTagName('tbody')[0];
     const formData = new FormData(newCategoryForm);
     const categoryFormData = {};
     formData.forEach((value, key) => {
       categoryFormData[key] = value;
     });
-
-    categoryFormData['categoryID'] = document.querySelector('[data-category-id]').getAttribute('data-category-id');
 
     fetch('/api/add-category', {
       method: 'POST',
@@ -26,14 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((data) => {
         const alert = document.querySelector('.alert-added');
         alert.classList.toggle('d-none');
-        categoryCount.innerText = `Tüm Kategoriler (${data.statistics.totalComments} adet)`;
+        categoryCount.innerText = `Tüm Kategoriler (${data.statistics.totalCategories} adet)`;
         categoryNameInput.value = '';
         categoryDescText.value = '';
+        const categoryRow = `<tr><td>${data.category.name}</td><td>${data.category.description}</td><td><a href="javascript:void(0)" class="delete-category btn bg-danger text-light" data-category-id="${data.category.id}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Kategoriyi Sil"><i class="bi bi-trash"></i></a></td></tr>`;
+        tbody.innerHTML += categoryRow;
         if (alert) {
           setTimeout(() => {
             alert.classList.toggle('d-none');
-          }, 5000);
+          }, 3000);
         }
+        setTimeout(() => {
+          document.body.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }, 3000);
       })
       .catch((err) => {
         console.log('Hata, ', err);
