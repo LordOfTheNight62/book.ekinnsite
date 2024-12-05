@@ -109,7 +109,7 @@ class Book {
   static async getFavoritesByUserID(userID) {
     try {
       const [rows] = await db.execute(
-        'SELECT books.* FROM favorites JOIN books ON favorites.book_id = books.id WHERE favorites.user_id = ? ORDER BY created_at DESC',
+        'SELECT books.*, categories.name AS category_name FROM favorites JOIN books ON favorites.book_id = books.id JOIN categories ON books.category_id = categories.id WHERE favorites.user_id = ? ORDER BY favorites.created_at DESC',
         [userID]
       );
       return rows;

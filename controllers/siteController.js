@@ -1,7 +1,5 @@
 const User = require('../models/userModel');
 const Book = require('../models/bookModel');
-const Comment = require('../models/commentModel');
-const bookController = require('./bookController');
 
 exports.getHomePage = async (req, res) => {
   try {
