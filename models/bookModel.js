@@ -150,7 +150,7 @@ class Book {
   static async searchBook(term) {
     try {
       const [results] = await db.execute(
-        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id WHERE name LIKE ? OR author LIKE ? OR categories.name LIKE ?',
+        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id WHERE books.name LIKE ? OR books.author LIKE ? OR categories.name LIKE ?',
         [`%${term}%`, `%${term}%`, `%${term}%`]
       );
       return results;
