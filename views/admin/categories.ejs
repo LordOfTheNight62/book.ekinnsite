@@ -1,7 +1,7 @@
 <main class="container-md py-4">
   <div class="d-flex align-items-center mb-3">
       <a href="/admin-panel" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
-      <h2 class="category-count d-inline m-auto ms-2"><%= "Tüm Kategoriler (" + (statistics.totalCategories > 0 ? statistics.totalCategories + ' adet)' : 'Hiç Kategori Yok)') %></h2>
+      <h2 class="category-count d-inline m-auto ms-2" data-total-categories="<%= statistics.totalCategories %>"><%= "Tüm Kategoriler (" + (statistics.totalCategories > 0 ? statistics.totalCategories + ' adet)' : 'Hiç Kategori Yok)') %></h2>
   </div>
 
   <div class="container-fluid my-1 alert-added d-none">
@@ -50,37 +50,35 @@
       </div>
     </div>
 
-    <% if(categories.length > 1) { %>
-      <div class="edit-collapse collapse my-1" id="editCategoryCollapse">
-        <div class="card card-body">
-          <form id="editCategoryForm" action="POST">
-            <h3>Kategoriyi Düzenle</h3>
-            <div class="form-floating mb-3">
-              <select id="categorySelect" class="form-select" aria-label="Default select change">
-                  <% categories.forEach(category => { %>
-                      <% if(category.name !== 'Diğer') { %>
-                        <option value="<%= category.id %>"><%= category.name %></option>
-                      <% } %>
-                  <% }) %>
-                  
-              </select>
-              <label for="categorySelect">Düzenlenecek Kategoriyi Seç <span class="text-danger">*</span></label>
-          </div>
-            <div class="form-floating mb-3">
-              <input type="text" name="categoryNewName" class="form-control" id="editCategoryInput" placeholder="Edit Category Name" required>
-              <label for="editCategoryInput">Yeni Kategori Adı <span class="text-danger">*</span></label>
-            </div>
-  
-            <div class="form-floating mb-3">
-                <textarea name="categoryNewDescription" class="form-control" id="editCategoryDescInput" placeholder="Edit Book Description"></textarea>
-                <label for="editCategoryDescInput">Yeni Kategori Açıklaması</label>
-            </div>
-  
-            <button class="btn bg-success-subtle w-100" type="submit">Kaydet</button>
-          </form>
+    <div class="edit-collapse collapse my-1" id="editCategoryCollapse">
+      <div class="card card-body">
+        <form id="editCategoryForm" action="POST">
+          <h3>Kategoriyi Düzenle</h3>
+          <div class="form-floating mb-3">
+            <select id="categorySelect" class="form-select" aria-label="Default select change">
+                <% categories.forEach(category => { %>
+                    <% if(category.name !== 'Diğer') { %>
+                      <option value="<%= category.id %>"><%= category.name %></option>
+                    <% } %>
+                <% }) %>
+                
+            </select>
+            <label for="categorySelect">Düzenlenecek Kategoriyi Seç <span class="text-danger">*</span></label>
         </div>
+          <div class="form-floating mb-3">
+            <input type="text" name="categoryNewName" class="form-control" id="editCategoryInput" placeholder="Edit Category Name" required>
+            <label for="editCategoryInput">Yeni Kategori Adı <span class="text-danger">*</span></label>
+          </div>
+
+          <div class="form-floating mb-3">
+              <textarea name="categoryNewDescription" class="form-control" id="editCategoryDescInput" placeholder="Edit Book Description"></textarea>
+              <label for="editCategoryDescInput">Yeni Kategori Açıklaması</label>
+          </div>
+
+          <button class="btn bg-success-subtle w-100" type="submit">Kaydet</button>
+        </form>
       </div>
-    <% } %>
+    </div>
   </div>
 
   <% if(categories.length > 0) { %>

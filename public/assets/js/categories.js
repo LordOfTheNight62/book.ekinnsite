@@ -68,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
           editCollapseBtn.classList.remove('d-none');
           editCollapse.classList.remove('d-none');
         }
+
+        if (Number(categoryCount.getAttribute('data-categories-count')) > 1) {
+          editCollapseBtn.classList.remove('d-none');
+          editCollapse.classList.remove('d-none');
+        }
       })
       .catch((err) => {
         console.log('Hata, ', err);
