@@ -65,6 +65,7 @@ class Category {
 
   static async deleteCategoryByID(categoryID) {
     try {
+      await db.execute('UPDATE books SET category_id = 1 WHERE category_id = ?', [categoryID]);
       const [result] = await db.execute('DELETE FROM categories WHERE id = ?', [categoryID]);
       return result[0];
     } catch (err) {

@@ -78,6 +78,7 @@ class User {
 
   static async deleteUser(userID) {
     try {
+      await db.execute('UPDATE books SET user_id = 1 WHERE user_id = ?', [userID]);
       const [result] = await db.execute('DELETE FROM users WHERE id = ?', [userID]);
       return result[0];
     } catch (err) {
