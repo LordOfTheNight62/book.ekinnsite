@@ -72,6 +72,7 @@ exports.updateBookByID = async (req, res) => {
   try {
     const book = new Book(name, description, author, categoryID);
     await Book.updateBook(id, book);
+    updateSitemap();
     return res.redirect(`/books/edit-book/${id}?message=success`);
   } catch (err) {
     return res.redirect(`/books/edit-book/${id}?message=error`);

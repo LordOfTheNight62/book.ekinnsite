@@ -31,11 +31,10 @@
             </div>
 
             <div class="form-floating mb-3">
-                <select id="categorySelect" class="form-select" aria-label="Default select change">
+                <select id="categorySelect" name="categoryID" class="form-select" aria-label="Default select change">
                     <% categories.forEach(category => { %>
                         <option value="<%= category.id %>"><%= category.name %></option>
                     <% }) %>
-                    
                 </select>
                 <label for="categorySelect">Kategori <span class="text-danger">*</span></label>
             </div>
