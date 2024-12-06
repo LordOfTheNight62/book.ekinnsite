@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadingBlock = document.querySelector('.loading-block');
 
   myCommentsField.addEventListener('click', (e) => {
-    loading.classList.toggle('d-none');
-    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-comment')) {
+      loading.classList.toggle('d-none');
+      loadingBlock.classList.toggle('d-none');
       const btn = e.target.closest('.delete-comment');
       const commentID = btn.getAttribute('data-comment-id');
       fetch('/api/user-delete-comment', {

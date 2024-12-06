@@ -137,9 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   categoriesField.addEventListener('click', (e) => {
-    loading.classList.toggle('d-none');
-    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-category')) {
+      loading.classList.toggle('d-none');
+      loadingBlock.classList.toggle('d-none');
       const row = e.target.closest('tr');
       const categoryID = row.getAttribute('data-category-id');
       fetch('/api/delete-category', {

@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadingBlock = document.querySelector('.loading-block');
 
   myFavoritesField.addEventListener('click', (e) => {
-    loading.classList.toggle('d-none');
-    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-favorite-btn')) {
+      loading.classList.toggle('d-none');
+      loadingBlock.classList.toggle('d-none');
       const userID = document.querySelector('[data-user-id]').getAttribute('data-user-id');
       const bookID = document.querySelector('[data-book-id]').getAttribute('data-book-id');
       const btn = e.target.closest('delete-favorite-btn');
