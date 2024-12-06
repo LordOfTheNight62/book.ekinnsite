@@ -24,11 +24,9 @@
       <button class="add-collapse-btn btn bg-success-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#newCategoryCollapse" aria-expanded="false" aria-controls="newCategoryCollapse">
         <i class="bi bi-plus-square"></i> Yeni
       </button>
-      <% if(categories.length > 1) { %>
-        <button class="edit-collapse-btn btn bg-warning-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#editCategoryCollapse" aria-expanded="false" aria-controls="editCategoryCollapse">
-          <i class="bi bi-pencil-square"></i> Düzenle
-        </button>
-      <% } %>
+      <button class="edit-collapse-btn btn bg-warning-subtle d-none" type="button" data-bs-toggle="collapse" data-bs-target="#editCategoryCollapse" aria-expanded="false" aria-controls="editCategoryCollapse">
+        <i class="bi bi-pencil-square"></i> Düzenle
+      </button>
     </div>
 
     <div class="add-collapse collapse my-1" id="newCategoryCollapse">
@@ -50,7 +48,7 @@
       </div>
     </div>
 
-    <div class="edit-collapse collapse my-1" id="editCategoryCollapse">
+    <div class="edit-collapse collapse my-1 d-none" id="editCategoryCollapse">
       <div class="card card-body">
         <form id="editCategoryForm" action="POST">
           <h3>Kategoriyi Düzenle</h3>
