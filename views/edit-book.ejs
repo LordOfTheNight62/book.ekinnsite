@@ -33,7 +33,11 @@
             <div class="form-floating mb-3">
                 <select id="categorySelect" name="categoryID" class="form-select" aria-label="Default select change">
                     <% categories.forEach(category => { %>
-                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% if(book.category_name === category.name) { %>
+                            <option value="<%= category.id %>" selected><%= category.name %></option>
+                        <% } else { %>
+                            <option value="<%= category.id %>"><%= category.name %></option>
+                        <% } %>
                     <% }) %>
                 </select>
                 <label for="categorySelect">Kategori <span class="text-danger">*</span></label>

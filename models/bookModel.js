@@ -24,7 +24,7 @@ class Book {
   static async getBook(bookID) {
     try {
       const [result] = await db.execute(
-        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id WHERE books.id = ?',
+        'SELECT books.*, categories.name AS category_name, COUNT(favorites.book_id) AS favorites_count FROM books JOIN categories ON books.category_id = categories.id LEFT JOIN favorites ON books.id = favorites.book_id WHERE books.id = ? GROUP BY books.id',
         [bookID]
       );
       return result[0];

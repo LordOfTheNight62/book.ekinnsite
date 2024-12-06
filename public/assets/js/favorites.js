@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addFavoriteBtn.addEventListener('click', () => {
       addFavoriteBtn.classList.toggle('d-none');
       deleteFavoriteBtn.classList.toggle('d-none');
+      loading.classList.toggle('d-none');
+      loadingBlock.classList.toggle('d-none');
       fetch('/api/add-favorite', {
         method: 'POST',
         headers: {
@@ -22,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.error('Hata, ', err);
+        })
+        .finally(() => {
+          loading.classList.toggle('d-none');
+          loadingBlock.classList.toggle('d-none');
         });
     });
   }
