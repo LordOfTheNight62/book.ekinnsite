@@ -90,7 +90,7 @@ class User {
   static async getAllUserWithStatistics() {
     try {
       const [rows] = await db.execute(
-        'SELECT users.id, users.name, users.surname, users.email, users.role, COUNT(books.id) AS book_count, COUNT(comments.id) AS comment_count FROM users LEFT JOIN books ON users.id = books.user_id LEFT JOIN comments ON users.id = comments.user_id GROUP BY users.id ORDER BY users.name ASC'
+        'SELECT users.id, users.name, users.surname, users.email, users.role, COUNT(DISTINCT books.id) AS book_count, COUNT(DISTINCT comments.id) AS comment_count, COUNT(DISTINCT favorites.id) AS favorite_count FROM users LEFT JOIN books ON users.id = books.user_id LEFT JOIN comments ON users.id = comments.user_id LEFT JOIN favorites ON users.id = favorites.user_id GROUP BY users.id ORDER BY users.name ASC'
       );
       return rows;
     } catch (err) {
