@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryCount.innerText = `Tüm Kategoriler (${data.statistics.totalCategories} adet)`;
         categoryNameInput.value = '';
         categoryDescText.value = '';
-        const categoryRow = `<tr data-category-id="${data.category.id}"><td>${data.category.name}</td><td>${data.category.description}</td><td><a href="javascript:void(0)" class="delete-category btn bg-danger text-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Kategoriyi Sil"><i class="bi bi-trash"></i></a></td></tr>`;
+        const categoryRow = `<tr data-category-id="${data.category.id}"><td>${data.category.name}</td><td>${data.category.description}</td><td><a href="javascript:void(0)" class="delete-category btn bg-danger text-light" title="Kategoriyi Sil"><i class="bi bi-trash"></i></a></td></tr>`;
         tbody.innerHTML += categoryRow;
         if (alert) {
           setTimeout(() => {
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const alert = document.querySelector('.alert-edited');
         alert.classList.toggle('d-none');
         document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        const categoryRow = `<td>${data.updatedCategory.name}</td><td>${data.updatedCategory.description}</td><td><a href="javascript:void(0)" class="delete-category btn bg-danger text-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Kategoriyi Sil"><i class="bi bi-trash"></i></a></td>`;
+        const categoryRow = `<td>${data.updatedCategory.name}</td><td>${data.updatedCategory.description}</td><td><a href="javascript:void(0)" class="delete-category btn bg-danger text-light" title="Kategoriyi Sil"><i class="bi bi-trash"></i></a></td>`;
         updatedCategory.innerHTML = categoryRow;
         if (alert) {
           setTimeout(() => {
