@@ -20,6 +20,9 @@ exports.addNewCategory = async (req, res) => {
 
 exports.updateCategoryByID = async (req, res) => {
   const { categoryNewName, categoryNewDescription, categoryID } = req.body;
+  if (!categoryNewName || !categoryID) {
+    return res.json({ message: 'Lütfen gerekli alanları boş bırakmayınız!', alert: true });
+  }
   try {
     const category = new Category(categoryNewName, categoryNewDescription);
     await Category.updateCategory(categoryID, category);

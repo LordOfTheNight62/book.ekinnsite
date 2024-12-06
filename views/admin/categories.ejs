@@ -4,6 +4,11 @@
       <h2 class="category-count d-inline m-auto ms-2" data-total-categories="<%= statistics.totalCategories %>"><%= "Tüm Kategoriler (" + (statistics.totalCategories > 0 ? statistics.totalCategories + ' adet)' : 'Hiç Kategori Yok)') %></h2>
   </div>
 
+  <div class="container-fluid my-1 server-alert d-none">
+    <div class="alert alert-success" role="alert">
+        Kategori başarıyla eklendi
+    </div>
+  </div>
   <div class="container-fluid my-1 alert-added d-none">
     <div class="alert alert-success" role="alert">
         Kategori başarıyla eklendi

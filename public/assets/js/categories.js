@@ -105,6 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (data.alert) {
+          const alert = document.querySelector('.server-alert');
+          alert.classList.toggle('d-none');
+          alert.querySelector('alert').innerText = `${data.message}`;
+          throw new Error('Gerekli alanları doldurun');
+        }
         const alert = document.querySelector('.alert-edited');
         alert.classList.toggle('d-none');
         document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
