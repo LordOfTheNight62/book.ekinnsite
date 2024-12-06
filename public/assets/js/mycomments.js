@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const myCommentsField = document.querySelector('.my-comments-field');
   const commentCount = document.querySelector('.comment-count');
+  const loading = document.querySelector('.loading');
+  const loadingBlock = document.querySelector('.loading-block');
 
   myCommentsField.addEventListener('click', (e) => {
+    loading.classList.toggle('d-none');
+    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-comment')) {
       const btn = e.target.closest('.delete-comment');
       const commentID = btn.getAttribute('data-comment-id');
@@ -35,6 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.log('Hata, ', err);
+        })
+        .finally(() => {
+          loading.classList.toggle('d-none');
+          loadingBlock.classList.toggle('d-none');
         });
     }
   });

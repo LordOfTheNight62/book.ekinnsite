@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const myFavoritesField = document.querySelector('.my-favorites-field');
   const favoritesCount = document.querySelector('.favorites-count');
+  const loading = document.querySelector('.loading');
+  const loadingBlock = document.querySelector('.loading-block');
 
   myFavoritesField.addEventListener('click', (e) => {
+    loading.classList.toggle('d-none');
+    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-favorite-btn')) {
       const userID = document.querySelector('[data-user-id]').getAttribute('data-user-id');
       const bookID = document.querySelector('[data-book-id]').getAttribute('data-book-id');
@@ -36,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.log('Hata, ', err);
+        })
+        .finally(() => {
+          loading.classList.toggle('d-none');
+          loadingBlock.classList.toggle('d-none');
         });
     }
   });

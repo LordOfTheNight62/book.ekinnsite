@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const addCollapse = document.querySelector('.add-collapse');
   const editCollapse = document.querySelector('.edit-collapse');
   const categorySelect = document.getElementById('categorySelect');
+  const loading = document.querySelector('.loading');
+  const loadingBlock = document.querySelector('.loading-block');
 
   addCollapseBtn.addEventListener('click', () => {
     editCollapse.classList.contains('show') && editCollapseBtn.click();
@@ -23,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   newCategoryForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    loading.classList.toggle('d-none');
+    loadingBlock.classList.toggle('d-none');
     const tbody = document.getElementsByTagName('tbody')[0];
     const formData = new FormData(newCategoryForm);
     const categoryFormData = {};
@@ -67,11 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch((err) => {
         console.log('Hata, ', err);
+      })
+      .finally(() => {
+        loading.classList.toggle('d-none');
+        loadingBlock.classList.toggle('d-none');
       });
   });
 
   editCategoryForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    loading.classList.toggle('d-none');
+    loadingBlock.classList.toggle('d-none');
     const updatedCategory = document.querySelector(`[data-category-id="${categorySelect.value}"]`);
     const formData = new FormData(editCategoryForm);
     const categoryFormData = {};
@@ -114,10 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch((err) => {
         console.log('Hata, ', err);
+      })
+      .finally(() => {
+        loading.classList.toggle('d-none');
+        loadingBlock.classList.toggle('d-none');
       });
   });
 
   categoriesField.addEventListener('click', (e) => {
+    loading.classList.toggle('d-none');
+    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-category')) {
       const row = e.target.closest('tr');
       const categoryID = row.getAttribute('data-category-id');
@@ -162,6 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.log('Hata, ', err);
+        })
+        .finally(() => {
+          loading.classList.toggle('d-none');
+          loadingBlock.classList.toggle('d-none');
         });
     }
   });

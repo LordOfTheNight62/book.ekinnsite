@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const allCommentsField = document.querySelector('.all-comments-field');
   const commentCount = document.querySelector('.comment-count');
+  const loading = document.querySelector('.loading');
+  const loadingBlock = document.querySelector('.loading-block');
 
   allCommentsField.addEventListener('click', (e) => {
+    loading.classList.toggle('d-none');
+    loadingBlock.classList.toggle('d-none');
     if (e.target.closest('.delete-comment')) {
       const btn = e.target.closest('.delete-comment');
       const commentID = btn.getAttribute('data-comment-id');
@@ -18,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('Sunucudan gelen cevap:', data);
           const alert = document.querySelector('.alert-deleted');
           alert.classList.toggle('d-none');
+          document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
           const deletedComment = document.querySelector(`[data-comment-id="${data.deletedCommentID}"`);
           deletedComment.closest('.card').remove();
           commentCount.innerText =
@@ -34,6 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.log('Hata, ', err);
+        })
+        .finally(() => {
+          loading.classList.toggle('d-none');
+          loadingBlock.classList.toggle('d-none');
         });
     }
   });
