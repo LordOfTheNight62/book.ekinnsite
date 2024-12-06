@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const addFavoriteBtn = document.querySelector('.add-favorite-btn');
   const deleteFavoriteBtn = document.querySelector('.delete-favorite-btn');
+  const loading = document.querySelector('.loading');
+  const loadingBlock = document.querySelector('.loading-block');
   if (addFavoriteBtn) {
     const userID = document.querySelector('[data-user-id]').getAttribute('data-user-id');
     const bookID = document.querySelector('[data-book-id]').getAttribute('data-book-id');
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteFavoriteBtn.addEventListener('click', () => {
       addFavoriteBtn.classList.toggle('d-none');
       deleteFavoriteBtn.classList.toggle('d-none');
+      loading.classList.toggle('d-none');
+      loadingBlock.classList.toggle('d-none');
       fetch('/api/delete-favorite', {
         method: 'POST',
         headers: {
@@ -43,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.error('Hata, ', err);
+        })
+        .finally(() => {
+          loading.classList.toggle('d-none');
+          loadingBlock.classList.toggle('d-none');
         });
     });
   }
