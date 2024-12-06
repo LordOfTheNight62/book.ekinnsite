@@ -2,9 +2,8 @@ const Category = require('../models/categoryModel');
 
 exports.addNewCategory = async (req, res) => {
   const { categoryName, categoryDescription } = req.body;
-  if (!categoryName || !categoryName) {
-    const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-    return res.status(302).redirect(fullUrl + '?message=error');
+  if (!categoryName) {
+    return res.json({ message: 'Lütfen gerekli alanları boş bırakmayınız!', alert: true });
   }
   try {
     const category = new Category(categoryName, categoryDescription);
