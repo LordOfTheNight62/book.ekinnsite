@@ -14,11 +14,11 @@
             <% if(isAuthenticated) { %>
                 <div class="col-6 col-sm-8 text-start">
                     <% if(!isFavorite) { %>
-                        <button class="btn add-favorite-btn fs-4" type="button"><i class="bi bi-star text-warning"></i> Favorilerime Ekle</button>
-                        <button class="btn delete-favorite-btn fs-4 d-none" type="button"><i class="bi bi-star-fill text-warning"></i> Favorilerimden Çıkar</button>
+                        <button class="responsive-text btn add-favorite-btn fs-4" type="button"><i class="bi bi-star text-warning"></i> Favorilerime Ekle</button>
+                        <button class="responsive-text btn delete-favorite-btn fs-4 d-none" type="button"><i class="bi bi-star-fill text-warning"></i> Favorilerimden Çıkar</button>
                     <% } else { %>
-                        <button class="btn delete-favorite-btn fs-4" type="button"><i class="bi bi-star-fill text-warning"></i> Favorilerimden Çıkar</button>
-                        <button class="btn add-favorite-btn fs-4 d-none" type="button"><i class="bi bi-star text-warning"></i> Favorilerime Ekle</button>
+                        <button class="responsive-text btn delete-favorite-btn fs-4" type="button"><i class="bi bi-star-fill text-warning"></i> Favorilerimden Çıkar</button>
+                        <button class="responsive-text btn add-favorite-btn fs-4 d-none" type="button"><i class="bi bi-star text-warning"></i> Favorilerime Ekle</button>
                     <% } %>
                 </div>
                 <div class="col-6 col-sm-4 text-end">

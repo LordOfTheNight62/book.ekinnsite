@@ -3,6 +3,13 @@ body {
   min-height: 100vh !important;
 }
 
+.responsive-big-text{
+  font-size: calc(1.2rem + 1.2vw) !important;
+}
+.responsive-text{
+  font-size: calc(.8rem + .8vw) !important;
+}
+
 .loading-block{
   position: fixed;
   top: 0;
