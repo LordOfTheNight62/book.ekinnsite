@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (data.alert) {
+          const alert = document.querySelector('.server-alert');
+          alert.classList.toggle('d-none');
+          alert.querySelector('.alert').innerText = `${data.message}`;
+          setTimeout(() => {
+            alert.classList.toggle('d-none');
+          }, 5000);
+          throw new Error('Gerekli alanları doldurun');
+        }
         const alert = document.querySelector('.alert-added');
         alert.classList.toggle('d-none');
         document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -108,7 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.alert) {
           const alert = document.querySelector('.server-alert');
           alert.classList.toggle('d-none');
-          alert.querySelector('alert').innerText = `${data.message}`;
+          alert.querySelector('.alert').innerText = `${data.message}`;
+          setTimeout(() => {
+            alert.classList.toggle('d-none');
+          }, 5000);
           throw new Error('Gerekli alanları doldurun');
         }
         const alert = document.querySelector('.alert-edited');
