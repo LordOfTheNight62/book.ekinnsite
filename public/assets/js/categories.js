@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     editCollapse.classList.contains('show') && editCollapseBtn.click();
   });
 
+  if (Number(categoryCount.getAttribute('data-total-categories')) > 1) {
+    editCollapseBtn.classList.remove('d-none');
+    editCollapse.classList.remove('d-none');
+  }
+
   if (editCollapseBtn) {
     editCollapseBtn.addEventListener('click', () => {
       addCollapse.classList.contains('show') && addCollapseBtn.click();
@@ -78,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
           editCollapse.classList.remove('d-none');
         }
 
-        if (Number(categoryCount.getAttribute('data-categories-count')) > 1) {
+        if (Number(categoryCount.getAttribute('data-total-categories')) > 1) {
           editCollapseBtn.classList.remove('d-none');
           editCollapse.classList.remove('d-none');
         }
