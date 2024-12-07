@@ -62,6 +62,13 @@ exports.logoutUser = (req, res) => {
     if (err) throw err;
     res.status(302).redirect('/');
   });
+  res.clearCookie('session_id.book.ekinn.site');
+};
+
+exports.logoutUserFromEverywhere = async (req, res) => {
+  const userID = req.session.userId;
+  await User.deleteSessionsByID(userID);
+  exports.logoutUser(req, res);
 };
 
 exports.getLoginPage = (req, res) => {

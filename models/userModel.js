@@ -76,6 +76,14 @@ class User {
     }
   }
 
+  static async deleteSessionsByID(userID) {
+    try {
+      await db.execute('DELETE FROM sessions WHERE data LIKE ?', [`%userId":${userID}%`]);
+    } catch (err) {
+      console.error('Kullanıcıya ait tüm oturumlar silinemedi, ', err.message);
+    }
+  }
+
   static async deleteUser(userID) {
     try {
       await db.execute('UPDATE books SET user_id = 1 WHERE user_id = ?', [userID]);

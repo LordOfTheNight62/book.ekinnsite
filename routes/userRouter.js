@@ -21,5 +21,6 @@ router.post('/account', isLoggedIn, (req, res, next) => {
   }
 });
 router.get('/logout', isLoggedIn, userController.logoutUser);
+router.get('/logout-all', isLoggedIn, userController.logoutUserFromEverywhere);
 
 module.exports = router;
