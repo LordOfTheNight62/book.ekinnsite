@@ -1,0 +1,122 @@
+<main class="container-md py-4">
+  <div class="d-flex align-items-center mb-3">
+      <a href="/admin-panel" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+      <h2 class="category-count d-inline m-auto ms-2" data-total-categories="<%= statistics.totalCategories %>"><%= "Tüm Kategoriler (" + (statistics.totalCategories > 0 ? statistics.totalCategories + ' adet)' : 'Hiç Kategori Yok)') %></h2>
+  </div>
+
+  <div class="container-fluid my-1 server-alert d-none">
+    <div class="alert alert-danger" role="alert">
+        Kategori başarıyla eklendi
+    </div>
+  </div>
+  <div class="container-fluid my-1 alert-added d-none">
+    <div class="alert alert-success" role="alert">
+        Kategori başarıyla eklendi
+    </div>
+  </div>
+  <div class="container-fluid my-1 alert-edited d-none">
+    <div class="alert alert-success" role="alert">
+        Kategori başarıyla güncellendi
+    </div>
+  </div>
+  <div class="container-fluid my-1 alert-deleted d-none">
+    <div class="alert alert-success" role="alert">
+        Kategori silindi
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="text-end">
+      <button class="add-collapse-btn btn bg-success-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#newCategoryCollapse" aria-expanded="false" aria-controls="newCategoryCollapse">
+        <i class="bi bi-plus-square"></i> Yeni
+      </button>
+      <button class="edit-collapse-btn btn bg-warning-subtle d-none" type="button" data-bs-toggle="collapse" data-bs-target="#editCategoryCollapse" aria-expanded="false" aria-controls="editCategoryCollapse">
+        <i class="bi bi-pencil-square"></i> Düzenle
+      </button>
+    </div>
+
+    <div class="add-collapse collapse my-1" id="newCategoryCollapse">
+      <div class="card card-body">
+        <form id="newCategoryForm" action="POST">
+          <h3>Yeni Kategori</h3>
+          <div class="form-floating mb-3">
+            <input type="text" name="categoryName" class="form-control" id="addNewCategoryInput" placeholder="Enter Category Name" required>
+            <label for="addNewCategoryInput">Kategori Adı <span class="text-danger">*</span></label>
+          </div>
+
+          <div class="form-floating mb-3">
+              <textarea name="categoryDescription" class="form-control" id="addNewCategoryDescInput" placeholder="Enter Book Description"></textarea>
+              <label for="addNewCategoryDescInput">Kategori Açıklaması</label>
+          </div>
+
+          <button class="btn bg-success-subtle w-100" type="submit">Kategori Ekle</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="edit-collapse collapse my-1 d-none" id="editCategoryCollapse">
+      <div class="card card-body">
+        <form id="editCategoryForm" action="POST">
+          <h3>Kategoriyi Düzenle</h3>
+          <div class="form-floating mb-3">
+            <select id="categorySelect" class="form-select" aria-label="Default select change">
+                <% categories.forEach(category => { %>
+                    <% if(category.name !== 'Diğer') { %>
+                      <option value="<%= category.id %>"><%= category.name %></option>
+                    <% } %>
+                <% }) %>
+                
+            </select>
+            <label for="categorySelect">Düzenlenecek Kategoriyi Seç <span class="text-danger">*</span></label>
+        </div>
+          <div class="form-floating mb-3">
+            <input type="text" name="categoryNewName" class="form-control" id="editCategoryInput" placeholder="Edit Category Name" required>
+            <label for="editCategoryInput">Yeni Kategori Adı <span class="text-danger">*</span></label>
+          </div>
+
+          <div class="form-floating mb-3">
+              <textarea name="categoryNewDescription" class="form-control" id="editCategoryDescInput" placeholder="Edit Book Description"></textarea>
+              <label for="editCategoryDescInput">Yeni Kategori Açıklaması</label>
+          </div>
+
+          <button class="btn bg-success-subtle w-100" type="submit">Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <% if(categories.length > 0) { %>
+      <div class="search-field input-group mb-3">
+          <div class="form-floating">
+              <input type="text" class="form-control table-search-input" id="searchCategoryInput" placeholder="Search category">
+              <label for="searchCategoryInput">Kategori Arayın</label>
+          </div>
+          <button class="btn clear-table-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="overflow-x-auto">
+          <table class="category-field table table-striped text-center">
+              <thead class="table-dark">
+                  <tr>
+                      <th scope="col">Kategori Adı</th>
+                      <th scope="col">Kategori Açıklaması</th>
+                      <th scope="col"></th>
+                  </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                  <% categories.forEach((category) => { %>
+                      <tr data-category-id="<%= category.id %>">
+                          <td><%= category.name %></td>
+                          <td><%= category.description %></td>
+                          <% if(category.name === 'Diğer') { %>
+                            <td>Varsayılan</td>
+                          <% } else { %>
+                            <td><a href="javascript:void(0)" class="delete-category btn bg-danger text-light" title="Kategoriyi Sil"><i class="bi bi-trash"></i></a></td>
+                          <% } %>
+                      </tr>
+                  <% }); %>
+              </tbody>
+          </table>
+      </div>
+  <% } %>
+</main>
+<script src="/assets/js/categories.js"></script>
+<script src="/assets/js/tableSearch.js"></script>

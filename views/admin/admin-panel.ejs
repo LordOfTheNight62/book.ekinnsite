@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/admin-panel/categories">
                         <i class="bi bi-ui-checks-grid"></i> Kategoriler
                     </a>
                 </li>
@@ -30,6 +30,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/admin-panel/comments">
                         <i class="bi bi-chat-left-text"></i> Yorumlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://book.ekinn.site/sitemap.xml" target="_blank">
+                        <i class="bi bi-rss-fill" style="color: #f26522;"></i> Site Haritası
                     </a>
                 </li>
                 <li class="nav-item">
@@ -51,7 +56,7 @@
                     <div class="collapse navbar-collapse" id="adminPanelNavBar">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/account"><i class="bi bi-person-circle"></i> Profil</a>
+                                <a class="nav-link" href="/account"><img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= avatar %>.png" width="36" height="36"> Hesabım</a>
                             </li>
                         </ul>
                     </div>
@@ -63,7 +68,7 @@
                     <div class="card text-white bg-primary">
                         <div class="card-body">
                             <h5 class="card-title"><i class="bi bi-people-fill"></i> Üyeler</h5>
-                            <p class="card-text">Toplam <%= statistics.totalUser %> kişi üye</p>
+                            <p class="card-text">Toplam <%= statistics.totalUser %> üye var</p>
                             <a href="/admin-panel/users" class="btn btn-light">Tümünü Görüntüle</a>
                         </div>
                     </div>
@@ -92,5 +97,4 @@
         </main>
     </div>
 </div>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
 

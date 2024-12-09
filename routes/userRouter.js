@@ -12,6 +12,7 @@ router.post('/register', userController.createNewUser);
 router.get('/account', isLoggedIn, userController.getAccountPage);
 router.get('/account/mycomments', isLoggedIn, userController.getAllMyCommentsPage);
 router.get('/account/mybooks', isLoggedIn, userController.getMyBooksPage);
+router.get('/account/myfavorites', isLoggedIn, userController.getMyFavoritesPage);
 router.post('/account', isLoggedIn, (req, res, next) => {
   if (req.query.req === 'change-password') {
     return userController.changeUserPassword(req, res);
@@ -20,5 +21,6 @@ router.post('/account', isLoggedIn, (req, res, next) => {
   }
 });
 router.get('/logout', isLoggedIn, userController.logoutUser);
+router.get('/logout-all', isLoggedIn, userController.logoutUserFromEverywhere);
 
 module.exports = router;

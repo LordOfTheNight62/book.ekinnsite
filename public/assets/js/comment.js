@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.forEach((value, key) => {
       commentFormData[key] = value;
     });
-    pathParts = window.location.pathname.split('/');
-    commentFormData['bookID'] = pathParts[pathParts.length - 1];
+
+    commentFormData['bookID'] = document.getElementsByTagName('main')[0].getAttribute('data-book-id');
 
     fetch('/api/user-comment', {
       method: 'POST',
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.comment);
         const alert = document.querySelector('.alert-sent');
         alert.classList.toggle('d-none');
         commentText.value = '';
@@ -38,9 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const commentContent = `<div class="card-body">
         <h5 class="card-title comment-user-name"><img class="rounded-circle avatar-img" src="/assets/img/avatars/${data.comment.avatar}.png" width="48" loading="lazy"> ${data.comment.name} <span class="card-subtitle text-muted comment-date">- ${date} </span></h5>
         <p class="card-text comment-text">${data.comment.comment}</p>
+        <div>
+        <button class="add-like-btn btn p-0" type="button"><i class="bi bi-hand-thumbs-up text-primary"></i> <span class="like-count">0</span></button>
+        <button class="add-dislike-btn btn p-0" type="button"><i class="bi bi-hand-thumbs-down text-primary"></i> <span class="dislike-count">0</span></button>
+        </div>
       </div>`;
         const commentDiv = document.createElement('div');
         commentDiv.classList.add('card', 'my-1', 'w-100');
+        commentDiv.setAttribute('data-comment-id', `${data.comment.id}`);
         commentDiv.innerHTML = commentContent;
         if (commentsField.firstChild) {
           commentsField.insertBefore(commentDiv, commentsField.firstChild); // İlk çocuk olarak ekler
@@ -56,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch((err) => {
-        console.log('Hata, ', err);
+        console.error('Hata, ', err);
       });
   });
 });

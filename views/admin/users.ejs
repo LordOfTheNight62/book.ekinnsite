@@ -1,6 +1,16 @@
 <main class="container-md py-4">
-    <h2 class="mb-3">Üye Listesi (<%= statistics.totalUser %> kişi)</h2>
+    <div class="d-flex align-items-center mb-3">
+        <a href="/admin-panel" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+        <h2 class="d-inline m-auto ms-2"><%= "Tüm Üyeler (" + (statistics.totalUser > 1 ? statistics.totalUser + ' kişi)' : 'Hiç Üye Yok)') %></h2>
+    </div>
     <% if(users.length > 0) { %>
+        <div class="search-field input-group mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control table-search-input" id="searchUserInput" placeholder="Search user">
+                <label for="searchUserInput">Listeden Üye Bulun</label>
+            </div>
+            <button class="btn clear-table-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+        </div>
         <div class="overflow-x-auto">
             <table class="table table-striped text-center">
                 <thead class="table-dark">
@@ -10,6 +20,7 @@
                         <th scope="col">E-posta</th>
                         <th scope="col">Yetki</th>
                         <th scope="col">Eklediği Kitap Sayısı</th>
+                        <th scope="col">Favorilediği Kitap Sayısı</th>
                         <th scope="col">Yazdığı Yorum Sayısı</th>
                     </tr>
                 </thead>
@@ -21,6 +32,7 @@
                             <td><%= user.email %></td>
                             <td><%= user.role %></td>
                             <td><%= user.book_count %></td>
+                            <td><%= user.favorite_count %></td>
                             <td><%= user.comment_count %></td>
                         </tr>
                     <% }); %>
@@ -29,5 +41,5 @@
         </div>
     <% } %>
 </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/error.js"></script>
+<script src="/assets/js/tableSearch.js"></script>

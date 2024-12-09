@@ -26,27 +26,26 @@
             </div>
 
             <div class="form-floating mb-3">
-                <textarea name="description" class="form-control" id="addBookDescInput" placeholder="Enter Book Description"></textarea>
-                <label for="addBookDescInput">Kitap Açıklaması</label>
-            </div>
-
-            <div class="form-floating mb-3">
                 <input type="text" name="author" class="form-control" id="addBookAuthorInput" placeholder="Enter Book Author" required>
                 <label for="addBookAuthorInput">Yazar Adı <span class="text-danger">*</span></label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="number" name="categoryID" class="form-control" id="addBookCategoryInput" placeholder="Enter Book Category" required>
-                <label for="addBookCategoryInput">Kategori <span class="text-danger">*</span></label>
+                <select id="categorySelect" name="categoryID" class="form-select" aria-label="Default select change">
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                    <% }) %>
+                </select>
+                <label for="categorySelect">Kategori <span class="text-danger">*</span></label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="number" name="price" class="form-control" id="addBookPriceInput" placeholder="Enter Book Price" min="0" step="0.01" required>
-                <label for="addBookPriceInput">Fiyat <span class="text-danger">*</span></label>
+                <textarea name="description" class="form-control" id="addBookDescInput" placeholder="Enter Book Description"></textarea>
+                <label for="addBookDescInput">Kitap Açıklaması</label>
             </div>
+
             <button class="btn bg-primary text-light w-100" type="submit">Kitap Ekle</button>
         </form>
     </div>
 </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/error.js"></script>

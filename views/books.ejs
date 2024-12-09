@@ -9,8 +9,10 @@
             </div>
         <% } else { %>
             <div class="row my-3">
-                <div class="col">
-                    <p class="border border-dark-subtle rounded-3 p-3">Kitap ekleyebilmek için lütfen <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login">giriş yapın</a></p>
+                <div class="col-12">
+                    <div class="alert alert-warning my-2" role="alert">
+                        Kitap ekleyebilmek için lütfen <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login">giriş yapın</a>
+                    </div>
                 </div>
             </div>
             <div class="row my-3">
@@ -21,7 +23,7 @@
         <% if(books.length > 0) { %>
             <div class="row my-2">
                 <div class="col">
-                    <btn class="btn bg-primary text-light w-100" role="button" onclick="window.print()"><i class="bi bi-printer"></i> Listeyi Yazdır</btn>
+                    <btn class="btn print-btn bg-primary text-light w-100" role="button"><i class="bi bi-printer"></i> Listeyi Yazdır</btn>
                 </div>
             </div>
             <ul class="list-group rounded-3 print">
@@ -36,7 +38,7 @@
                                 <div class="col-12"><strong>Yazar: </strong><%= book.author %></div>
                             </div>
                             <div class="row">
-                                <div class="col-12"><strong>Fiyat: </strong><%= book.price + " TL" %></div>
+                                <div class="col-12"><strong>Kategori: </strong><%= book.category_name %></div>
                             </div>
                             <div class="row">
                                 <div class="col-12"><strong>Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %></div>
@@ -45,7 +47,7 @@
                         <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
                             <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
                                 <div class="col">
-                                    <a href="/books/<%= book.id %>" class="btn bg-success"><i class="bi bi-box-arrow-right text-light"></i></a>
+                                    <a href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>" class="btn bg-success" title="Kitabı Görüntüle"><i class="bi bi-box-arrow-right text-light"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -58,5 +60,4 @@
     </div>
 </main>
 
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/error.js"></script>

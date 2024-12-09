@@ -76,8 +76,17 @@ class User {
     }
   }
 
+  static async deleteSessionsByID(userID) {
+    try {
+      await db.execute('DELETE FROM sessions WHERE data LIKE ?', [`%userId":${userID}%`]);
+    } catch (err) {
+      console.error('Kullanıcıya ait tüm oturumlar silinemedi, ', err.message);
+    }
+  }
+
   static async deleteUser(userID) {
     try {
+      await db.execute('UPDATE books SET user_id = 1 WHERE user_id = ?', [userID]);
       const [result] = await db.execute('DELETE FROM users WHERE id = ?', [userID]);
       return result[0];
     } catch (err) {
@@ -89,7 +98,7 @@ class User {
   static async getAllUserWithStatistics() {
     try {
       const [rows] = await db.execute(
-        'SELECT users.id, users.name, users.surname, users.email, users.role, COUNT(books.id) AS book_count, COUNT(comments.id) AS comment_count FROM users LEFT JOIN books ON users.id = books.user_id LEFT JOIN comments ON users.id = comments.user_id GROUP BY users.id ORDER BY users.name ASC'
+        'SELECT users.*, COUNT(DISTINCT books.id) AS book_count, COUNT(DISTINCT comments.id) AS comment_count, COUNT(DISTINCT favorites.id) AS favorite_count FROM users LEFT JOIN books ON users.id = books.user_id LEFT JOIN comments ON users.id = comments.user_id LEFT JOIN favorites ON users.id = favorites.user_id GROUP BY users.id ORDER BY users.name ASC'
       );
       return rows;
     } catch (err) {

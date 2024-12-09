@@ -5,11 +5,11 @@
             <div class="col">
                 <h2 class="display-2">
                 <% if(statusCode === "500") { %>
-                    <i class="bi bi-5-square"></i><i class="bi bi-0-square mx-1"></i><i class="bi bi-0-square"></i>
+                    <img class="img-fluid" src="/assets/img/errors/500.png" alt="<%= statusCode %>" width="256">
                 <%  } else if(statusCode === "403") { %>
-                    <i class="bi bi-4-square"></i><i class="bi bi-0-square mx-1"></i><i class="bi bi-3-square"></i>
+                    <img class="img-fluid" src="/assets/img/errors/403.png" alt="<%= statusCode %>" width="256">
                 <% } else {%>
-                    <i class="bi bi-4-square"></i><i class="bi bi-0-square mx-1"></i><i class="bi bi-4-square"></i>
+                    <img class="img-fluid" src="/assets/img/errors/404.png" alt="<%= statusCode %>" width="256">
                 <% } %>
                 </h2>
             </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-auto mx-auto my-5">
-                <a class="btn btn-outline-primary btn-open-icon w-100" href="/" role="button">Ana Sayfaya Dön</a>
+                <a class="btn btn-primary btn-open-icon w-100" href="/" role="button">Ana Sayfaya Dön</a>
             </div>
         </div>
     </div>

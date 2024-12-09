@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch((err) => {
-        console.log('Hata, ', err);
+        console.error('Hata, ', err);
       });
   });
 

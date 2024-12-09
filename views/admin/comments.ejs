@@ -10,6 +10,13 @@
     </div>
     <div class="all-comments-field my-3">
         <% if(comments.length > 0) { %>
+            <div class="search-field input-group mb-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control card-search-input" id="searchCommentInput" placeholder="Search comment">
+                    <label for="searchCommentInput">Yorumlarda Arayın</label>
+                </div>
+                <button class="btn clear-card-search-btn" type="button" style="background-color: #f0f0f0;"><i class="bi bi-x-lg"></i></button>
+            </div>
             <% comments.forEach(comment => { %>
                 <div class="card my-1 w-100">
                     <div class="card-body">
@@ -26,7 +33,7 @@
                             <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
                                 <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
                                     <div class="col">
-                                        <a href="javascript:void(0)" class="delete-comment btn bg-danger text-light" data-comment-id="<%= comment.id %>"><i class="bi bi-trash"></i></a>
+                                        <a href="javascript:void(0)" class="delete-comment btn bg-danger text-light" data-comment-id="<%= comment.id %>" title="Yorumu Sil"><i class="bi bi-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -37,5 +44,5 @@
         <% } %>
     </div>
 </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/allcomments.js"></script>
+<script src="/assets/js/cardSearch.js"></script>

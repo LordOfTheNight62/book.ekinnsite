@@ -13,7 +13,7 @@ router.post('/books/add-book', isLoggedIn, bookController.addNewBook);
 router.get('/books/edit-book/:id', checkBookOwnerShip, bookController.getEditBookPage);
 router.post('/books/edit-book/:id', checkBookOwnerShip, bookController.updateBookByID);
 router.get('/books/delete-book/:id', checkBookOwnerShip, bookController.getDeleteBookPage);
-router.get('/books/:id', siteController.getBookDetailPage);
+router.get('/books/:author/:title-b:id', bookController.getBookDetailPage);
 
 router.use('/admin-panel', isLoggedIn, isAdmin);
 

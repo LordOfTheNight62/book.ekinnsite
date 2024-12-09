@@ -24,7 +24,7 @@
     <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
-            <img src="/assets/img/ekinnsite_logo.png" alt="book.ekinn.site Logo" height="40">
+            <img src="/assets/img/ekinnsite_logo.png" alt="book.ekinn.site Logo" width="40" height="40">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <% if(userFirstname) { %>
-                            <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= avatar %>.png" width="24"> <%= userFirstname %>
+                            <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= avatar %>.png" width="36" height="36">
+                            <b><%= userFirstname %></b>
+                            <span data-user-id="<%= userId %>"></span>
                         <% } else { %>
                             <i class="bi bi-person-circle"></i> Hoş Geldin
                         <% } %>

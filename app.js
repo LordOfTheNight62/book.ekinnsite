@@ -10,6 +10,7 @@ const db = require('./config/db');
 const PORT = 4000;
 
 const cleanRequestBody = require('./middlewares/cleanRequestBody');
+const { toUrlString } = require('./utils/urlFormatter');
 const adminRouter = require('./routes/adminRouter');
 const siteRouter = require('./routes/siteRouter');
 const userDataRouter = require('./routes/userDataRouter');
@@ -20,9 +21,9 @@ const csp = {
   directives: {
     defaultSrc: ["'self'"], // Yalnızca kendi domain'den içerik al
     connectSrc: ["'self'", 'https:'], // HTTPS'yi ekleyin
-    scriptSrc: ["'self'", "'unsafe-inline'"], // Inline script'lere izin ver
     styleSrc: ["'self'", "'unsafe-inline'"], // Inline stil etiketlerine izin ver
-    scriptSrcAttr: ["'self'", "'unsafe-inline'"], // Inline event handler'lara izin ver
+    scriptSrc: ["'self'", "'unsafe-inline'"], // Inline script'lere izin ver
+    upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
   },
 };
 
@@ -47,8 +48,8 @@ app.use(
     saveUninitialized: false,
     store: sessionStore, // MySQL Store'u burada belirtiyoruz
     cookie: {
-      secure: true, // HTTPS üzerinden iletilebilir
-      httpOnly: true, // JavaScript erişimini engeller
+      secure: true,
+      httpOnly: true,
       sameSite: 'Lax', // Cross-site isteklerinde cookie gönderilir
       maxAge: 1000 * 60 * 60 * 12, // 12 saat (milisaniye cinsinden)
     },
@@ -60,7 +61,9 @@ app.use(express.json());
 app.use(cleanRequestBody);
 
 app.use((req, res, next) => {
+  app.locals.toUrlString = toUrlString;
   res.locals.isAuthenticated = req.session?.isAuthenticated || false;
+  res.locals.userId = req.session?.userId || null;
   res.locals.userRole = req.session?.role || null;
   res.locals.userFirstname = req.session?.userName || '';
   res.locals.avatar = req.session?.avatar || '0';

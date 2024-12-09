@@ -1,24 +1,20 @@
 <main class="container-md py-4">
-    <div class="container-fluid my-1">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/books">Kitaplar</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Kitap Ara</li>
-            </ol>
-        </nav>
-    </div>
     <div class="container-fluid">
-        <h1>Kitap Ara</h1>
+        <div class="d-flex align-items-center mb-3 no-print">
+            <a href="/books" class="btn btn-primary d-inline"><i class="bi bi-arrow-left"></i> Geri</a>
+            <h1 class="d-inline m-auto ms-2">Kitap Ara</h1>
+        </div>
 
         <form action="/books/search" method="POST" class="form-floating my-2">
-            <div class="form-floating mb-2">
-                <input type="search" name="searchTerm" class="form-control" id="searchBookInput" placeholder="Search" required>
-                <label for="searchBookInput">Kitap Adı veya Yazar Adı</label>
+            <div class="input-group mb-3">
+                <div class="form-floating">
+                    <input type="search" name="searchTerm" class="form-control" id="searchBookInput" placeholder="Search" required>
+                    <label for="searchBookInput">Kitap Adı, Yazar Adı veya Kategori arayın</label>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
             </div>
 
-        <button class="btn btn-outline-primary w-100 my-2" type="submit"><i class="bi bi-search"></i> Kitap Ara</button>
         </form>
-        <a href="/books" class="btn bg-primary text-light mb-5 w-100" role="button">Geri Dön</a>
         <h3><b>
             <%if(typeof results !== "undefined") {%>
             <%= "Sonuçlar (" + (results.length > 0 ? results.length + ' adet)' : 'Sonuç Yok)') %>
@@ -42,7 +38,7 @@
                                     <div class="col-12"><strong>Yazar: </strong><%= book.author %></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12"><strong>Fiyat: </strong><%= book.price + " TL" %></div>
+                                    <div class="col-12"><strong>Kategori: </strong><%= book.category_name %></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12"><strong>Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %></div>
@@ -51,7 +47,7 @@
                             <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
                                 <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
                                     <div class="col">
-                                        <a href="/books/<%= book.id %>" class="btn bg-success"><i class="bi bi-box-arrow-right text-light"></i></a>
+                                        <a href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>" class="btn bg-success" title="Kitabı Görüntüle"><i class="bi bi-box-arrow-right text-light"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -69,4 +65,3 @@
         </div>
     </div>
 </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>

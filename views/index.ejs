@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-12 mb-4 text-center">
             <% if(isAuthenticated) { %>
-                <h1>Kitap Bilgi Portalı'na<br>Hoş Geldin <%= user.name %></h1>
+                <h1>Kitap Bilgi Portalı'na<br><span class="underline-effect">Hoş Geldin <%= user.name %></span></h1>
             <% } else { %>
-                <h1>Kitap Bilgi Portalı'na<br>Hoş Geldin</h1>
+                <h1>Kitap Bilgi Portalı'na<br><span class="underline-effect">Hoş Geldin</span></h1>
             <% } %>
         </div>
         <div class="col">
@@ -21,4 +21,3 @@
     </div>
     
 </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
