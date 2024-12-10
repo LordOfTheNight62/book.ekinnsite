@@ -2,26 +2,36 @@ const User = require('../models/userModel');
 const Book = require('../models/bookModel');
 const Comment = require('../models/commentModel');
 const bcrypt = require('bcrypt');
+const axios = require('axios');
 
 exports.createNewUser = async (req, res) => {
   const { userName, userSurname, userEmail, userPassword } = req.body;
+  const recaptchaResponse = req.body['g-recaptcha-response'];
+  const secretKey = process.env.GOOGLE_reCAPTCHA;
+  const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`;
 
-  if (!userName || !userSurname || !userEmail || !userPassword) {
-    return res.status(302).redirect('/register?message=error');
-  }
-
-  if (
-    userPassword.length < 8 ||
-    !/[A-Z]/.test(userPassword) ||
-    !/[a-z]/.test(userPassword) ||
-    !/[0-9]/.test(userPassword) ||
-    /(012|123|234|345|456|567|678|789|890|987|876|765|654|543|432|321|210)/.test(userPassword)
-  ) {
-    return res.status(302).redirect('/register?message=invalid-password');
-  }
-
-  const user = new User(userName, userSurname, userEmail, userPassword);
   try {
+    const response = await axios.get(recaptchaVerificationUrl);
+    const recaptchaData = response.data;
+
+    if (!recaptchaData.success) {
+      return res.status(302).redirect('/register?message=invalid-recaptcha');
+    }
+    if (!userName || !userSurname || !userEmail || !userPassword) {
+      return res.status(302).redirect('/register?message=error');
+    }
+
+    if (
+      userPassword.length < 8 ||
+      !/[A-Z]/.test(userPassword) ||
+      !/[a-z]/.test(userPassword) ||
+      !/[0-9]/.test(userPassword) ||
+      /(012|123|234|345|456|567|678|789|890|987|876|765|654|543|432|321|210)/.test(userPassword)
+    ) {
+      return res.status(302).redirect('/register?message=invalid-password');
+    }
+
+    const user = new User(userName, userSurname, userEmail, userPassword);
     const hashedUserPassword = await bcrypt.hash(userPassword, 10);
     user.userPassword = hashedUserPassword;
     await User.createUser(user);
@@ -36,7 +46,16 @@ exports.createNewUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { userEmail, userPassword } = req.body;
+  const recaptchaResponse = req.body['g-recaptcha-response'];
+  const secretKey = process.env.GOOGLE_reCAPTCHA;
+  const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`;
   try {
+    const response = await axios.get(recaptchaVerificationUrl);
+    const recaptchaData = response.data;
+
+    if (!recaptchaData.success) {
+      return res.status(302).redirect('/login?message=invalid-recaptcha');
+    }
     const user = await User.getUserByEmail(userEmail);
     if (user) {
       const isValid = await bcrypt.compare(userPassword, user.password);

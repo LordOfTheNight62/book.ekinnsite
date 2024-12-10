@@ -12,6 +12,12 @@
                 Yanlış eposta veya şifre!
             </div>
         </div>
+    <% } else if(query.message === "invalid-recaptcha") { %>
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                Robot olmadığınız doğrulanamadı!
+            </div>
+        </div>
     <% } else if(query.message === "success-delete") { %>
         <div class="container-fluid">
             <div class="alert alert-success" role="alert">
@@ -56,12 +62,14 @@
             <div class="row mb-2">
                 <div class="col">(<span class="text-danger">*</span>) zorunlu</div>
             </div>
-            <button class="btn bg-primary text-light w-100" type="submit">Giriş Yap</button>
+            <div class="g-recaptcha" data-sitekey="6LfNC5gqAAAAAM4JQ56pl9b8RwlP0UQm3dTlfOrV"></div>
+            <button class="btn bg-primary text-light w-100 mt-2" type="submit">Giriş Yap</button>
         </form>
         <div class="row">
             <div class="col">Üye değil misin? <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/register">Hemen üye ol</a></div>
         </div>
     </div>
 </main>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="/assets/js/error.js"></script>
 <script src="/assets/js/passwordShowHide.js"></script>

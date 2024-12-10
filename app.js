@@ -19,10 +19,12 @@ const bookRouter = require('./routes/bookRouter');
 
 const csp = {
   directives: {
-    defaultSrc: ["'self'"], // Yalnızca kendi domain'den içerik al
-    connectSrc: ["'self'", 'https:'], // HTTPS'yi ekleyin
-    styleSrc: ["'self'", "'unsafe-inline'"], // Inline stil etiketlerine izin ver
-    scriptSrc: ["'self'", "'unsafe-inline'"], // Inline script'lere izin ver
+    defaultSrc: ["'self'"],
+    connectSrc: ["'self'", 'https:', 'www.google.com', 'www.recaptcha.net'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'", 'www.google.com', 'www.gstatic.com'],
+    imgSrc: ["'self'", 'www.gstatic.com', 'www.google.com', 'www.w3.org', 'data:'],
+    frameSrc: ["'self'", 'www.google.com', 'www.recaptcha.net'],
     upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
   },
 };
