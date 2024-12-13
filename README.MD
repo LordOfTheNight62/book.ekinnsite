@@ -1,6 +1,6 @@
 # book.ekinn.site Projesi
 
-Developed by Ekin
+Developed by Ekin 2024
 
 ## https://book.ekinn.site
 
