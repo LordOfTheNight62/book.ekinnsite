@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const { toUrlString } = require('./urlFormatter');
-const Book = require('../models/bookModel');
+const Book = require(path.join(__dirname, '../models/bookModel'));
 
 exports.updateSitemap = async () => {
   let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';

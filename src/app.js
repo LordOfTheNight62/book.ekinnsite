@@ -34,11 +34,11 @@ app.set('trust proxy', true);
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy(csp)); // Özelleştirilmiş CSP'yi uyguluyoruz
 
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, './public')));
 app.use(expressLayouts);
 app.set('layout', path.join(__dirname, 'views', 'layouts', 'layout.ejs'));
 app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set('views', path.join(__dirname, './views'));
 
 const sessionStore = new MySQLStore({}, db);
 

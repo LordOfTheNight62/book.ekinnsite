@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
-const { isLoggedIn, isAdmin } = require('../middlewares/auth');
-const adminController = require('../controllers/adminController');
-const categoryController = require('../controllers/categoryController');
+const { isLoggedIn, isAdmin } = require(path.join(__dirname, '../middlewares/auth'));
+const adminController = require(path.join(__dirname, '../controllers/adminController'));
+const categoryController = require(path.join(__dirname, '../controllers/categoryController'));
 
 router.use('/admin-panel', isLoggedIn, isAdmin);
 

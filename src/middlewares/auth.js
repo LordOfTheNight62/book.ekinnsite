@@ -1,4 +1,5 @@
-const bookController = require('../controllers/bookController');
+const path = require('path');
+const bookController = require(path.join(__dirname, '../controllers/bookController'));
 
 // Oturum kontrol middleware'i
 exports.isLoggedIn = (req, res, next) => {

@@ -1,5 +1,6 @@
-const User = require('../models/userModel');
-const Book = require('../models/bookModel');
+const path = require('path');
+const User = require(path.join(__dirname, '../models/userModel'));
+const Book = require(path.join(__dirname, '../models/bookModel'));
 
 exports.getHomePage = async (req, res) => {
   try {

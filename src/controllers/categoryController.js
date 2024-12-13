@@ -1,4 +1,5 @@
-const Category = require('../models/categoryModel');
+const path = require('path');
+const Category = require(path.join(__dirname, '../models/categoryModel'));
 
 exports.addNewCategory = async (req, res) => {
   const { categoryName, categoryDescription } = req.body;

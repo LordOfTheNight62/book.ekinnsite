@@ -1,7 +1,8 @@
-const User = require('../models/userModel');
-const Book = require('../models/bookModel');
-const Comment = require('../models/commentModel');
-const Category = require('../models/categoryModel');
+const path = require('path');
+const User = require(path.join(__dirname, '../models/userModel'));
+const Book = require(path.join(__dirname, '../models/bookModel'));
+const Comment = require(path.join(__dirname, '../models/commentModel'));
+const Category = require(path.join(__dirname, '../models/categoryModel'));
 
 exports.getAdminPanelPage = async (req, res) => {
   try {

@@ -1,7 +1,8 @@
-const Book = require('../models/bookModel');
-const Category = require('../models/categoryModel');
-const Comment = require('../models/commentModel');
-const { updateSitemap } = require('../utils/sitemap');
+const path = require('path');
+const Book = require(path.join(__dirname, '../models/bookModel'));
+const Category = require(path.join(__dirname, '../models/categoryModel'));
+const Comment = require(path.join(__dirname, '../models/commentModel'));
+const { updateSitemap } = require(path.join(__dirname, '../utils/sitemap'));
 
 exports.addNewBook = async (req, res) => {
   const { name, description, author, categoryID } = req.body;

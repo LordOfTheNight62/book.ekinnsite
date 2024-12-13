@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
-const siteController = require('../controllers/siteController');
-const bookController = require('../controllers/bookController');
-const { isLoggedIn, isAdmin, checkBookOwnerShip } = require('../middlewares/auth');
+const siteController = require(path.join(__dirname, '../controllers/siteController'));
+const bookController = require(path.join(__dirname, '../controllers/bookController'));
+const { isLoggedIn, isAdmin, checkBookOwnerShip } = require(path.join(__dirname, '../middlewares/auth'));
 
 router.get('/books', siteController.getBooksPage);
 router.get('/books/search', siteController.getSearchPage);

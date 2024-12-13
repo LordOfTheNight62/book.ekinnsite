@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
-const userController = require('../controllers/userController');
-const { isLoggedIn, redirectIfLoggedIn } = require('../middlewares/auth');
+const userController = require(path.join(__dirname, '../controllers/userController'));
+const { isLoggedIn, redirectIfLoggedIn } = require(path.join(__dirname, '../middlewares/auth'));
 
 router.get('/login', redirectIfLoggedIn, userController.getLoginPage);
 router.post('/login', userController.loginUser);

@@ -1,4 +1,5 @@
-const db = require('../config/db');
+const path = require('path');
+const db = require(path.join(__dirname, '../config/db'));
 
 class Comment {
   constructor(comment, bookID, userID) {

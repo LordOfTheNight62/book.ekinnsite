@@ -1,4 +1,5 @@
-const Comment = require('../models/commentModel');
+const path = require('path');
+const Comment = require(path.join(__dirname, '../models/commentModel'));
 
 exports.addNewComment = async (req, res) => {
   const { comment, bookID } = req.body;

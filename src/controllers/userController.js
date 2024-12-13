@@ -1,6 +1,7 @@
-const User = require('../models/userModel');
-const Book = require('../models/bookModel');
-const Comment = require('../models/commentModel');
+const path = require('path');
+const User = require(path.join(__dirname, '../models/userModel'));
+const Book = require(path.join(__dirname, '../models/bookModel'));
+const Comment = require(path.join(__dirname, '../models/commentModel'));
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 
