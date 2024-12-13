@@ -83,7 +83,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.error(err.stack); // Hata stack'ini loglara yazdır
+  console.error(err.stack);
 
   // Eğer geliştirme modundaysak, daha ayrıntılı hata mesajı göster
   if (process.env.NODE_ENV === 'development') {
