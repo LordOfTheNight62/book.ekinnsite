@@ -85,11 +85,9 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
 
-  // Eğer geliştirme modundaysak, daha ayrıntılı hata mesajı göster
   if (process.env.NODE_ENV === 'development') {
     res.status(500).send(`Something went wrong! ${err.stack}`);
   } else {
-    // Üretim ortamında daha güvenli hata mesajı
     res.status(500).render('error/error.ejs', { title: '500', statusCode: '500', message: 'Sunucu Hatası' });
   }
 });

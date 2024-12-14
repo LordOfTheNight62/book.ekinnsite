@@ -53,6 +53,14 @@ textarea {
   max-height: 300px !important;
 }
 
+.navbar {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important; /* Safari desteği */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
 .nav-tabs {
   overflow-x: auto !important;
   overflow-y:hidden !important;
