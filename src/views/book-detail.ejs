@@ -88,9 +88,11 @@
                             <h5 class="card-title comment-user-name"><img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= comment.avatar %>.png" width="48" loading="lazy"> <%= comment.name %> <span class="card-subtitle text-muted comment-date">- <%= new Date(comment.created_at + ' UTC').toLocaleString('tr-TR', {day: 'numeric',month: 'long',year: 'numeric',hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Istanbul',}) %></span></h5>
                             <p class="card-text comment-text"><%= comment.comment %></p>
                             <div>
+                                <% let likes = null; %>
+                                <% let dislikes = null; %>
                                 <% if(isAuthenticated) { %>
-                                    <% const likes = isLiked.find(like => like.comment_id === comment.id); %>
-                                    <% const dislikes = isDisliked.find(dislike => dislike.comment_id === comment.id); %>
+                                    <% likes = isLiked.find(like => like.comment_id === comment.id); %>
+                                    <% dislikes = isDisliked.find(dislike => dislike.comment_id === comment.id); %>
                                 <% } %>
                                 <% if(typeof likes !== 'undefined' && likes) { %>
                                     <button class="add-like-btn btn p-0" type="button" data-like-dislike="like"><i class="bi bi-hand-thumbs-up-fill text-primary"></i> <span class="like-count"><%= comment.total_likes %></span></button>
