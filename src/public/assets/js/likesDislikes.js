@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.deletedDislike) {
               dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down text-danger';
             } else {
-              dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down-fill text-primary';
+              dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down-fill text-danger';
             }
             likeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-up text-primary';
 
