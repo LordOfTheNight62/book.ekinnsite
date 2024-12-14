@@ -50,7 +50,7 @@
                     <span><strong>Kitap Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %></span>
                 </div>
             </div>
-            <div class="row mt-5 mb-3 border border-dark-subtle rounded-3 p-3">
+            <div class="row mt-5 mb-3 rounded-3 p-3">
                 <div class="col">
                     <h3>Kitap Açıklaması</h3>
                     <%= book.description %>
