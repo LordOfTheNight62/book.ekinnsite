@@ -53,7 +53,7 @@ textarea {
   max-height: 300px !important;
 }
 
-.navbar {
+.main-navbar {
   background-color: rgba(255, 255, 255, 0.7) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important; /* Safari desteği */
