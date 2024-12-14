@@ -111,8 +111,8 @@ exports.getBookDetailPage = async (req, res) => {
     if (req.session.isAuthenticated) {
       const userID = req.session?.userId;
       isFavorite = await Book.isFavorite(userID, book.id);
-      isLiked = await Comment.isLike(userID, book.id);
-      isDisliked = await Comment.isDislike(userID, book.id);
+      isLiked = (await Comment.isLike(userID, book.id)) || null;
+      isDisliked = (await Comment.isDislike(userID, book.id)) || null;
     }
     const statistics = {
       totalComments: (await Comment.getAllCommentsCountByBookID(book.id)) || 0,
