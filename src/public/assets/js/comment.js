@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class="card-text comment-text">${data.comment.comment}</p>
           <div>
           <button class="add-like-btn btn p-0" type="button"><i class="bi bi-hand-thumbs-up text-primary"></i> <span class="like-count">0</span></button>
-          <button class="add-dislike-btn btn p-0" type="button"><i class="bi bi-hand-thumbs-down text-primary"></i> <span class="dislike-count">0</span></button>
+          <button class="add-dislike-btn btn p-0" type="button"><i class="bi bi-hand-thumbs-down text-danger"></i> <span class="dislike-count">0</span></button>
           </div>
         </div>`;
           const commentDiv = document.createElement('div');

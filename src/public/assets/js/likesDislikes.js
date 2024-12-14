@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
               likeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-up-fill text-primary';
             }
-            dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down text-primary';
+            dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down text-danger';
 
             likeCount.innerText = `${data.statistics.totalCommentLikes}`;
             dislikeCount.innerText = `${data.statistics.totalCommentDislikes}`;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
           .then((response) => response.json())
           .then((data) => {
             if (data.deletedDislike) {
-              dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down text-primary';
+              dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down text-danger';
             } else {
               dislikeBtn.querySelector('.bi').className = 'bi bi-hand-thumbs-down-fill text-primary';
             }
