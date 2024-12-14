@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         avatarImgs.forEach((avatarImg) => (avatarImg.src = `/assets/img/avatars/${userAvatarValue}.png`));
         const alert = document.querySelector('.alert-saved');
         alert.classList.toggle('d-none');
+        document.getElementById('accountTabs').firstElementChild.querySelector('button').click();
         document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (alert) {
           setTimeout(() => {
