@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const commentsField = document.querySelector('.comments-field');
 
   commentsField.addEventListener('click', (e) => {
-    console.log('glikk');
     if (e.target.closest('.add-like-btn')) {
       const likeBtn = e.target.closest('.add-like-btn');
       const dislikeBtn = likeBtn.parentElement.querySelector('.add-dislike-btn');
