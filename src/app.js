@@ -22,7 +22,7 @@ const csp = {
     defaultSrc: ["'self'"],
     connectSrc: ["'self'", 'https:', 'www.google.com', 'www.recaptcha.net'],
     styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
-    scriptSrc: ["'self'", "'unsafe-inline'", 'www.google.com', 'www.gstatic.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'", 'www.google.com', 'www.gstatic.com', 'www.googletagmanager.com'],
     imgSrc: ["'self'", 'www.gstatic.com', 'www.google.com', 'www.w3.org', 'data:'],
     frameSrc: ["'self'", 'www.google.com', 'www.recaptcha.net'],
     upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
