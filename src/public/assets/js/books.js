@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const maxLength = 50;
+  const maxLength = 40;
   const titles = document.querySelectorAll('.card-title');
   const authors = document.querySelectorAll('.card-author');
   const categories = document.querySelectorAll('.card-category');
