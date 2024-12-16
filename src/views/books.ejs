@@ -38,7 +38,7 @@
                         <a class="stretched-link" href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
                             <div class="card-body">
                                 <div class="no-print d-flex justify-content-center align-items-center mb-4">
-                                    <img src="/assets/img/book.png" class="card-img-top" alt="<%= book.name %>">
+                                    <img src="/assets/img/book.png" class="card-img-top" alt="<%= book.name %>" loading="lazy">
                                 </div>
                                 <h5 class="card-title"><%= book.name %></h5>
                                 <div class="row">
