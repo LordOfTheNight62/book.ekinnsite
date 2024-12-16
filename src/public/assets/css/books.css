@@ -1,0 +1,25 @@
+.books-field .card{
+  position: relative;
+  min-height: 12rem;
+}
+
+.books-field .card img{
+  width: 150px;
+  height: 150px;
+}
+.stretched-link {
+  z-index: 1; /* Tıklanabilirlik için */
+  text-decoration: none; /* Alt çizgi görünmesin */
+  color: inherit; /* Varsayılan renkleri koru */
+}
+
+.card-body * {
+  position: relative; /* Diğer öğeler etkilenmesin */
+  z-index: 2; /* İçerideki linkler ve metin öncelikli */
+}
+
+/* Hover sırasında görünüm bozulmasın */
+.books-field.card:hover .stretched-link {
+  color: inherit; /* Renk değişmesin */
+  text-decoration: none; /* Alt çizgi eklenmesin */
+}

@@ -3,6 +3,8 @@ body {
   min-height: 100vh !important;
 }
 
+.no-drag{user-drag: none;}
+
 .responsive-big-text{
   font-size: calc(1.2rem + 1.2vw) !important;
 }
