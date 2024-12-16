@@ -60,7 +60,7 @@ class Book {
   static async getAllBooks() {
     try {
       const [rows] = await db.execute(
-        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id ORDER BY added_at DESC'
+        'SELECT books.*, categories.name AS category_name, COUNT(favorites.book_id) AS favorites_count FROM books JOIN categories ON books.category_id = categories.id LEFT JOIN favorites ON books.id = favorites.book_id GROUP BY books.id, categories.name ORDER BY added_at DESC'
       );
       return rows;
     } catch (err) {
