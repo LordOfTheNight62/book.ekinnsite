@@ -22,9 +22,9 @@
         <% } %>
 
         <% if(books.length > 0) { %>
-            <div class="row my-2">
+            <div class="row my-2 text-end">
                 <div class="col">
-                    <btn class="btn print-btn bg-primary text-light w-100" role="button"><i class="bi bi-printer"></i> Listeyi Yazdır</btn>
+                    <btn class="btn print-btn bg-primary text-light" role="button"><i class="bi bi-printer"></i> Listeyi Yazdır</btn>
                 </div>
             </div>
             <div class="books-field row print my-2">
@@ -33,7 +33,7 @@
                     <div class="card no-drag">
                         <a class="stretched-link" href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
                             <div class="card-body">
-                                <div class="d-flex justify-content-center align-items-center">
+                                <div class="no-print d-flex justify-content-center align-items-center">
                                     <img src="/assets/img/book.png" class="card-img-top" alt="<%= book.name %>">
                                 </div>
                                 <h5 class="card-title"><%= book.name %></h5>
