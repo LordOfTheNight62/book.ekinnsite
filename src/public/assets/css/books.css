@@ -1,6 +1,6 @@
 .books-field .card{
   position: relative;
-  min-height: 23rem;
+  min-height: 22rem;
 }
 
 .books-field .card img{
@@ -8,12 +8,19 @@
   height: 150px;
 }
 .stretched-link {
+  display: block;
+  height: 22rem;
   z-index: 1; /* Tıklanabilirlik için */
   text-decoration: none; /* Alt çizgi görünmesin */
   color: inherit; /* Varsayılan renkleri koru */
 }
-
-.card-body * {
+.books-field .card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.books-field .card-body * {
   position: relative; /* Diğer öğeler etkilenmesin */
   z-index: 2; /* İçerideki linkler ve metin öncelikli */
 }

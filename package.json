@@ -20,7 +20,7 @@
     "express-mysql-session": "^3.0.3",
     "express-session": "^1.18.1",
     "helmet": "^8.0.0",
-    "mysql2": "^3.11.4",
+    "mysql2": "^3.11.5",
     "sanitize-html": "^2.13.1"
   },
   "devDependencies": {

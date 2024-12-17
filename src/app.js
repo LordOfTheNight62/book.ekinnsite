@@ -17,31 +17,45 @@ const userDataRouter = require('./routes/userDataRouter');
 const userRouter = require('./routes/userRouter');
 const bookRouter = require('./routes/bookRouter');
 
-const csp = {
-  directives: {
-    defaultSrc: ["'self'"],
-    connectSrc: ["'self'", 'https:', 'www.google.com', 'www.recaptcha.net'],
-    styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'cdn.jsdelivr.net'],
-    scriptSrc: [
-      "'self'",
-      "'unsafe-inline'",
-      'www.google.com',
-      'www.gstatic.com',
-      'www.googletagmanager.com',
-      'pagead2.googlesyndication.com',
-      'cdn.jsdelivr.net',
-      'ep2.adtrafficquality.google',
-    ],
-    imgSrc: ["'self'", 'www.gstatic.com', 'www.google.com', 'pagead2.googlesyndication.com', 'www.w3.org', 'data:'],
-    frameSrc: ["'self'", 'www.google.com', 'www.recaptcha.net', 'googleads.g.doubleclick.net'],
-    upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
-  },
-};
+// const csp = {
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     connectSrc: ["'self'", 'https:', 'www.google.com', 'www.recaptcha.net'],
+//     styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'cdn.jsdelivr.net'],
+//     scriptSrc: [
+//       "'self'",
+//       "'unsafe-inline'",
+//       'www.google.com',
+//       'www.gstatic.com',
+//       'www.googletagmanager.com',
+//       'pagead2.googlesyndication.com',
+//       'cdn.jsdelivr.net',
+//       'ep2.adtrafficquality.google',
+//     ],
+//     imgSrc: [
+//       "'self'",
+//       'www.gstatic.com',
+//       'www.google.com',
+//       'pagead2.googlesyndication.com',
+//       'ep1.adtrafficquality.google',
+//       'www.w3.org',
+//       'data:',
+//     ],
+//     frameSrc: [
+//       "'self'",
+//       'www.google.com',
+//       'www.recaptcha.net',
+//       'googleads.g.doubleclick.net',
+//       'ep2.adtrafficquality.google',
+//     ],
+//     upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
+//   },
+// };
 
 app.set('trust proxy', true);
 
-app.use(helmet());
-app.use(helmet.contentSecurityPolicy(csp)); // Özelleştirilmiş CSP'yi uyguluyoruz
+// app.use(helmet());
+// app.use(helmet.contentSecurityPolicy(csp)); // Özelleştirilmiş CSP'yi uyguluyoruz
 
 app.use(express.static(path.join(__dirname, './public')));
 app.use(expressLayouts);

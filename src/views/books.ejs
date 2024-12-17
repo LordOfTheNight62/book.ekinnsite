@@ -4,9 +4,8 @@
         <h1><%= "Tüm Kitaplar (" + (books.length > 0 ? books.length + ' adet)' : 'Hiç Kitap Yok)') %></h1>
         
         <% if(isAuthenticated) { %>
-            <div class="row row-cols-1 row-cols-md-2 my-3">
-                <div class="col"><a href="/books/add-book" class="btn btn-primary text-light mb-2 mb-md-auto w-100" role="button"><i class="bi bi-journal-plus"></i> Yeni Kitap Ekle</a></div>
-                <div class="col"><a href="/books/search" class="btn btn-outline-primary w-100" role="button"><i class="bi bi-search"></i> Kitap Ara</a></div>
+            <div class="row my-3">
+                <div class="col-12"><a href="/books/add-book" class="btn btn-primary text-light mb-2 mb-md-auto w-100" role="button"><i class="bi bi-journal-plus"></i> Yeni Kitap Ekle</a></div>
             </div>
         <% } else { %>
             <div class="row my-3">
@@ -16,14 +15,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row my-3">
-                <div class="col"><a href="/books/search" class="btn btn-outline-primary w-100" role="button"><i class="bi bi-search"></i> Kitap Ara</a></div>
-            </div>
         <% } %>
 
-        <div style="margin: 100px 0;"></div>
+        <div style="margin: 50px 0;"></div>
         <% if(books.length > 0) { %>
-            <div class="row my-2 text-end">
+            <div class="row mb-2 text-end">
                 <div class="col">
                     <btn class="btn print-btn bg-primary text-light" role="button"><i class="bi bi-printer"></i> Listeyi Yazdır</btn>
                 </div>
@@ -33,23 +29,31 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                     <div class="card no-drag">
                         <div class="position-absolute top-0 left-0 m-2">
-                            <i class="bi bi-star-fill text-warning"></i> <%= book.favorites_count > 0 ? book.favorites_count : 0 %>
+                            <span>
+                                <i class="bi bi-star-fill text-warning"></i> <%= book.favorites_count > 0 ? book.favorites_count : 0 %>
+                            </span>
+                            <br>
+                            <span>
+                                <i class="bi bi-chat-left-text"></i> <%= book.comments_count > 0 ? book.comments_count : 0 %>
+                            </span>
                         </div>
                         <a class="stretched-link" href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
                             <div class="card-body">
-                                <div class="no-print d-flex justify-content-center align-items-center mb-4">
+                                <div class="no-print d-flex justify-content-center align-items-center">
                                     <img src="/assets/img/book.png" class="card-img-top" alt="<%= book.name %>" loading="lazy">
                                 </div>
-                                <h5 class="card-title"><%= book.name %></h5>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <strong>Yazar: </strong><span class="card-author"><%= book.author %></span>
-                                    </div>
-                                    <div class="col-12">
-                                        <strong>Kategori: </strong><span class="card-category"><%= book.category_name %></span>
-                                    </div>
-                                    <div class="col-12">
-                                        <strong>Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %>
+                                <div>
+                                    <h5 class="card-title"><%= book.name %></h5>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <strong>Yazar: </strong><span class="card-author"><%= book.author %></span>
+                                        </div>
+                                        <div class="col-12">
+                                            <strong>Kategori: </strong><span class="card-category"><%= book.category_name %></span>
+                                        </div>
+                                        <div class="col-12">
+                                            <strong>Eklenme Tarihi: </strong><%= new Date(book.added_at + " UTC").toLocaleString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Istanbul' }) %>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

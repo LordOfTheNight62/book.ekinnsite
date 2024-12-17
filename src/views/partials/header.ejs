@@ -38,6 +38,7 @@
           <a class="navbar-brand" href="/">
             <img src="/assets/img/ekinnsite_logo.png" alt="book.ekinn.site Logo" width="40" height="40">
           </a>
+          <a href="/books/search" class="btn btn-primary d-inline d-lg-none ms-auto me-2" role="button"><i class="bi bi-search"></i> Kitap Ara</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -51,6 +52,9 @@
               </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item d-flex align-items-center">
+                <a href="/books/search" class="btn btn-primary d-none d-lg-inline" role="button"><i class="bi bi-search"></i> Kitap Ara</a>
+              </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <% if(userFirstname) { %>

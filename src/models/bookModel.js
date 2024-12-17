@@ -60,7 +60,7 @@ class Book {
   static async getAllBooks() {
     try {
       const [rows] = await db.execute(
-        'SELECT books.*, categories.name AS category_name, COUNT(favorites.book_id) AS favorites_count FROM books JOIN categories ON books.category_id = categories.id LEFT JOIN favorites ON books.id = favorites.book_id GROUP BY books.id, categories.name ORDER BY added_at DESC'
+        'SELECT books.*, categories.name AS category_name, IFNULL(fav_count, 0) AS favorites_count, IFNULL(comment_count, 0) AS comments_count FROM books JOIN categories ON books.category_id = categories.id LEFT JOIN (SELECT book_id, COUNT(*) AS fav_count FROM favorites GROUP BY book_id) AS favorites_count ON books.id = favorites_count.book_id LEFT JOIN (SELECT book_id, COUNT(*) AS comment_count FROM comments GROUP BY book_id) AS comments_count ON books.id = comments_count.book_id ORDER BY books.added_at DESC'
       );
       return rows;
     } catch (err) {
@@ -151,7 +151,7 @@ class Book {
   static async searchBook(term) {
     try {
       const [results] = await db.execute(
-        'SELECT books.*, categories.name AS category_name FROM books JOIN categories ON books.category_id = categories.id WHERE books.name LIKE ? OR books.author LIKE ? OR categories.name LIKE ?',
+        'SELECT books.*, categories.name AS category_name, IFNULL(fav_count, 0) AS favorites_count, IFNULL(comment_count, 0) AS comments_count FROM books JOIN categories ON books.category_id = categories.id LEFT JOIN (SELECT book_id, COUNT(*) AS fav_count FROM favorites GROUP BY book_id) AS favorites_count ON books.id = favorites_count.book_id LEFT JOIN (SELECT book_id, COUNT(*) AS comment_count FROM comments GROUP BY book_id) AS comments_count ON books.id = comments_count.book_id WHERE books.name LIKE ? OR books.author LIKE ? OR categories.name LIKE ?',
         [`%${term}%`, `%${term}%`, `%${term}%`]
       );
       return results;
