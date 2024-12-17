@@ -1,13 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
   const commentForm = document.getElementById('commentForm');
   const commentText = document.querySelector('input[name="comment"]');
-  const commentEditor = document.getElementById('comment-editor');
   const commentsField = document.querySelector('.comments-field');
   const commentCount = document.querySelector('.comment-count');
+
+  // Comment editor
+  const quill = new Quill('#comment-editor', {
+    theme: 'snow',
+    placeholder: 'Yorum Yazın',
+    modules: {
+      toolbar: [
+        ['bold', 'italic', 'underline'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+      ],
+    },
+  });
 
   if (commentForm) {
     commentForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      let commentContent = quill.root.innerHTML;
+      commentContent = commentContent.replace(/(<p><br><\/p>\s*)+/g, '');
+      commentContent = commentContent.replace(/^<p><br><\/p>/, '');
+      commentContent = commentContent.replace(/<p><br><\/p>$/, '');
+      commentText.value = commentContent;
+
       const formData = new FormData(commentForm);
       const commentFormData = {};
       formData.forEach((value, key) => {
@@ -28,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const alert = document.querySelector('.alert-sent');
           alert.classList.toggle('d-none');
           commentText.value = '';
-          commentEditor.innerHTML = '';
+          quill.setContents([]);
           const date = new Date(data.comment.created_at).toLocaleString('tr-TR', {
             day: 'numeric',
             month: 'long',

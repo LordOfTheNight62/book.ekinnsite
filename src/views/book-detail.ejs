@@ -112,43 +112,6 @@
         </div>
     </div>
 
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Book",
-          "name": "<%= book.name %>",
-          "author": {
-            "@type": "Person",
-            "name": "<%= book.author %>"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.7",
-            "reviewCount": "952"
-          }
-        }
-    </script>
-        
-    <script>
-        let quill = new Quill('#comment-editor', {
-        theme: 'snow',
-        placeholder: 'Yorum Yazın',
-        modules: {
-            toolbar: [
-            ['bold', 'italic', 'underline'],   // Kalın, italik, altı çizili
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // Sıralı ve madde işaretli liste
-            ]
-        }
-        });
-
-        document.getElementById('commentForm').addEventListener('submit', function(e) {
-            let commentContent = quill.root.innerHTML;
-            commentContent = commentContent.replace(/(<p><br><\/p>\s*)+/g, '');
-            commentContent = commentContent.replace(/^<p><br><\/p>/, '');
-            commentContent = commentContent.replace(/<p><br><\/p>$/, '');
-            document.getElementById('commentInput').value = commentContent;
-        });
-    </script>
 </main>
 <script src="/assets/js/comment.js"></script>
 <script src="/assets/js/likesDislikes.js"></script>
