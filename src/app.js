@@ -30,9 +30,10 @@ const csp = {
       'www.googletagmanager.com',
       'pagead2.googlesyndication.com',
       'cdn.jsdelivr.net',
+      'ep2.adtrafficquality.google',
     ],
-    imgSrc: ["'self'", 'www.gstatic.com', 'www.google.com', 'www.w3.org', 'data:'],
-    frameSrc: ["'self'", 'www.google.com', 'www.recaptcha.net'],
+    imgSrc: ["'self'", 'www.gstatic.com', 'www.google.com', 'pagead2.googlesyndication.com', 'www.w3.org', 'data:'],
+    frameSrc: ["'self'", 'www.google.com', 'www.recaptcha.net', 'googleads.g.doubleclick.net'],
     upgradeInsecureRequests: [], // HTTP'yi HTTPS'ye yükselt
   },
 };
