@@ -21,7 +21,7 @@ const csp = {
   directives: {
     defaultSrc: ["'self'"],
     connectSrc: ["'self'", 'https:', 'www.google.com', 'www.recaptcha.net'],
-    styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'cdn.jsdelivr.net'],
     scriptSrc: [
       "'self'",
       "'unsafe-inline'",
@@ -29,6 +29,7 @@ const csp = {
       'www.gstatic.com',
       'www.googletagmanager.com',
       'pagead2.googlesyndication.com',
+      'cdn.jsdelivr.net',
     ],
     imgSrc: ["'self'", 'www.gstatic.com', 'www.google.com', 'www.w3.org', 'data:'],
     frameSrc: ["'self'", 'www.google.com', 'www.recaptcha.net'],

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const commentForm = document.getElementById('commentForm');
-  const commentText = document.querySelector('textarea[name="comment"]');
+  const commentText = document.querySelector('input[name="comment"]');
+  const commentEditor = document.getElementById('comment-editor');
   const commentsField = document.querySelector('.comments-field');
   const commentCount = document.querySelector('.comment-count');
 
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const alert = document.querySelector('.alert-sent');
           alert.classList.toggle('d-none');
           commentText.value = '';
+          commentEditor.innerHTML = '';
           const date = new Date(data.comment.created_at).toLocaleString('tr-TR', {
             day: 'numeric',
             month: 'long',
