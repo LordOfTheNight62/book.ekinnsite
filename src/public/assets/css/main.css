@@ -19,6 +19,7 @@ body {
   flex: 1;
   overflow-y: auto;
   width: 100%;
+  font-size: 1rem;
 }
 
 .no-drag{user-drag: none;}
