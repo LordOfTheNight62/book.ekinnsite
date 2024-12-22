@@ -38,7 +38,7 @@ Developed by Ekin 2024
 
 ![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/b7fcbb47903c588ca4f25c3494103dc5de1dd523/.readmepictures/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-09%20224810.png)
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/b7fcbb47903c588ca4f25c3494103dc5de1dd523/.readmepictures/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-09%20224829.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/ce2ecfe122692ee9377b49fc88dfff8a960943ed/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124711.png)
 
 ![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/b7fcbb47903c588ca4f25c3494103dc5de1dd523/.readmepictures/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-09%20224845.png)
 
