@@ -25,6 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
       commentContent = commentContent.replace(/<p><br><\/p>$/, '');
       commentText.value = commentContent;
 
+      if (!commentContent) {
+        const alert = document.querySelector('.alert-null');
+        alert.classList.toggle('d-none');
+        alert.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (alert) {
+          setTimeout(() => {
+            alert.classList.toggle('d-none');
+          }, 5000);
+        }
+        return;
+      }
+
       const formData = new FormData(commentForm);
       const commentFormData = {};
       formData.forEach((value, key) => {
