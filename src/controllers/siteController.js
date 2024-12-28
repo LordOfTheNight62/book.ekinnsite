@@ -23,8 +23,8 @@ exports.getBooksPage = async (req, res) => {
 };
 
 exports.searchBookByTerm = async (req, res) => {
-  let q = req.query.q;
-  q = decodeURIComponent(q);
+  let q = req.query.q || '';
+  q = decodeURIComponent(q).trim();
   try {
     const results = await Book.searchBook(q);
     res.render('search', { title: `"${q}" için arama sonuçları `, results, searchTerm: q });

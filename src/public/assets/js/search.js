@@ -3,6 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   searchForm.addEventListener('submit', () => {
     const input = searchForm.querySelector('input[name="q"]');
-    input.value = encodeURIComponent(input.value);
+    input.value = encodeURIComponent(input.value.trim());
   });
 });

@@ -136,8 +136,8 @@ exports.getDeleteBookPage = async (req, res) => {
 };
 
 exports.searchBookByTerm = async (req, res) => {
-  let q = req.query.q;
-  q = decodeURIComponent(q);
+  let q = req.query.q || '';
+  q = decodeURIComponent(q).trim();
   console.log(q);
   try {
     const results = await Book.searchBook(q);
