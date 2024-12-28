@@ -5,15 +5,14 @@
             <h1 class="d-inline m-auto ms-2">Kitap Ara</h1>
         </div>
 
-        <form action="/admin-panel/books/search" method="POST" class="form-floating my-2">
+        <form id="searchForm" action="/admin-panel/books/search" method="GET" class="form-floating my-2">
             <div class="input-group mb-3">
                 <div class="form-floating">
-                    <input type="search" name="searchTerm" class="form-control" id="searchBookInput" placeholder="Search" required>
+                    <input type="search" name="q" class="form-control" id="searchBookInput" placeholder="Search" required>
                     <label for="searchBookInput">Kitap Adı, Yazar Adı veya Kategori arayın</label>
                 </div>
                 <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
             </div>
-
         </form>
         <h3><b>
             <%if(typeof results !== "undefined") {%>
@@ -47,7 +46,7 @@
                             <div class="col-4 col-sm-5 col-md-6 d-flex justify-content-end align-items-center">
                                 <div class="row d-flex flex-column flex-sm-row justify-content-end align-items-center g-1">
                                     <div class="col">
-                                        <a href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>" class="btn bg-success" title="Kitabı Görüntüle"><i class="bi bi-box-arrow-right text-light"></i></a>
+                                        <a href="/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>" class="btn bg-success" title="Kitabı Görüntüle"><i class="bi bi-box-arrow-right text-light"></i></a>
                                     </div>
                                     <div class="col">
                                         <a href="/books/edit-book/<%= book.id %>" class="btn bg-warning"><i class="bi bi-pencil-square"></i></a>
@@ -71,3 +70,4 @@
         </div>
     </div>
 </main>
+<script src="/assets/js/search.js"></script>

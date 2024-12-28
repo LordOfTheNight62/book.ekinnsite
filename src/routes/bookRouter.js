@@ -7,20 +7,18 @@ const bookController = require(path.join(__dirname, '../controllers/bookControll
 const { isLoggedIn, isAdmin, checkBookOwnerShip } = require(path.join(__dirname, '../middlewares/auth'));
 
 router.get('/books', siteController.getBooksPage);
-router.get('/books/search', siteController.getSearchPage);
-router.post('/books/search', siteController.searchBookByTerm);
+router.get('/books/search', (req, res, next) => {
+  if (req.query.q) {
+    siteController.searchBookByTerm(req, res);
+  } else {
+    siteController.getSearchPage(req, res);
+  }
+});
 router.get('/books/add-book', isLoggedIn, bookController.getAddNewBookPage);
 router.post('/books/add-book', isLoggedIn, bookController.addNewBook);
 router.get('/books/edit-book/:id', checkBookOwnerShip, bookController.getEditBookPage);
 router.post('/books/edit-book/:id', checkBookOwnerShip, bookController.updateBookByID);
 router.get('/books/delete-book/:id', checkBookOwnerShip, bookController.getDeleteBookPage);
-router.get('/books/:author/:title-b:id', bookController.getBookDetailPage);
-
-router.use('/admin-panel', isLoggedIn, isAdmin);
-
-router.get('/admin-panel/books', bookController.getAllBooksPage);
-
-router.get('/admin-panel/books/search', bookController.getSearchPage);
-router.post('/admin-panel/books/search', bookController.searchBookByTerm);
+router.get('/:author/:title-b:id', bookController.getBookDetailPage);
 
 module.exports = router;

@@ -6,15 +6,14 @@
             <h1 class="d-inline m-auto ms-2">Kitap Ara</h1>
         </div>
 
-        <form action="/books/search" method="POST" class="form-floating my-2">
+        <form id="searchForm" action="/books/search" method="GET" class="form-floating my-2">
             <div class="input-group mb-3">
                 <div class="form-floating">
-                    <input type="search" name="searchTerm" class="form-control" id="searchBookInput" placeholder="Search" required>
+                    <input type="search" name="q" class="form-control" id="searchBookInput" placeholder="Search" required>
                     <label for="searchBookInput">Kitap Adı, Yazar Adı veya Kategori arayın</label>
                 </div>
                 <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
             </div>
-
         </form>
         <h3><b>
             <%if(typeof results !== "undefined") {%>
@@ -40,7 +39,7 @@
                                     <i class="bi bi-chat-left-text"></i> <%= book.comments_count > 0 ? book.comments_count : 0 %>
                                 </span>
                             </div>
-                            <a class="stretched-link" href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
+                            <a class="stretched-link" href="/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
                                 <div class="card-body">
                                     <div class="no-print d-flex justify-content-center align-items-center">
                                         <img src="/assets/img/book.png" class="card-img-top" alt="<%= book.name %>" loading="lazy">
@@ -75,3 +74,4 @@
         </div>
     </div>
 </main>
+<script src="/assets/js/search.js"></script>

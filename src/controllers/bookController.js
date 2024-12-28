@@ -136,10 +136,12 @@ exports.getDeleteBookPage = async (req, res) => {
 };
 
 exports.searchBookByTerm = async (req, res) => {
-  const { searchTerm } = req.body;
+  let q = req.query.q;
+  q = decodeURIComponent(q);
+  console.log(q);
   try {
-    const results = await Book.searchBook(searchTerm);
-    res.render('admin/search', { title: `"${searchTerm}" için arama sonuçları `, results, searchTerm });
+    const results = await Book.searchBook(q);
+    res.render('admin/search', { title: `"${q}" için arama sonuçları `, results, searchTerm: q });
   } catch (err) {}
 };
 

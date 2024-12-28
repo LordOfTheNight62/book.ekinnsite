@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Sunucudan gelen cevap:', data);
         userNameInput.value = data.userName;
         userSurnameInput.value = data.userSurname;
         const alert = document.querySelector('.alert-saved');

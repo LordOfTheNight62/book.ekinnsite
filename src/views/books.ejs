@@ -37,7 +37,7 @@
                                 <i class="bi bi-chat-left-text"></i> <%= book.comments_count > 0 ? book.comments_count : 0 %>
                             </span>
                         </div>
-                        <a class="stretched-link" href="/books/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
+                        <a class="stretched-link" href="/<%= toUrlString(book.author) %>/<%= toUrlString(book.name) %>-b<%= book.id %>">
                             <div class="card-body">
                                 <div class="no-print d-flex justify-content-center align-items-center">
                                     <img src="/assets/img/book.png" class="card-img-top" alt="<%= book.name %>" loading="lazy">
