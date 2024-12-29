@@ -33,57 +33,66 @@
     </script>
 </head>
 <body>
-    <nav class="no-print main-navbar navbar fixed-top navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <img src="/assets/img/ekinnsite_logo.png" alt="book.ekinn.site Logo" width="40" height="40">
-          </a>
-          <a href="/books/search" class="btn btn-primary d-inline d-lg-none ms-auto me-2" role="button"><i class="bi bi-search"></i> Kitap Ara</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/" data-path="/">Ana Sayfa</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/books" data-path="/books">Kitaplar</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item d-flex align-items-center">
-                <a href="/books/search" class="btn btn-primary d-none d-lg-inline" role="button"><i class="bi bi-search"></i> Kitap Ara</a>
-              </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <% if(userFirstname) { %>
-                            <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= avatar %>.png" width="36" height="36">
-                            <b><%= userFirstname %></b>
-                            <span data-user-id="<%= userId %>"></span>
-                        <% } else { %>
-                            <i class="bi bi-person-circle"></i> Hoş Geldin
-                        <% } %>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <% if(isAuthenticated) { %>
-                            <li><a class="dropdown-item" href="/account"><i class="bi bi-person-circle"></i> Hesabım</a></li>
-                            <% if(userRole === 'admin') { %>
-                              <li><a class="dropdown-item" href="/admin-panel"><i class="bi bi-person-gear"></i> Yönetici Paneli</a></li>
-                            <% } %>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="nav-link link-danger ms-2" href="/logout">
-                                    <i class="bi bi-box-arrow-right"></i> Çıkış Yap
-                                </a>
-                            </li>
-                        <% } else { %>
-                            <li><a class="dropdown-item" href="/login"><i class="bi bi-box-arrow-in-right"></i> Giriş Yap</a></li>
-                            <li><a class="dropdown-item" href="/register"><i class="bi bi-person-plus-fill"></i> Üye Ol</a></li>
-                        <% } %>
-                    </ul>
-                </li>
-            </ul>
-          </div>
+  <nav class="no-print main-navbar navbar fixed-top navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/img/ekinnsite_logo.png" alt="book.ekinn.site Logo" width="40" height="40">
+      </a>
+      <form class="d-flex flex-grow-1 d-inline d-lg-none mx-3">
+        <div class="input-group w-100">
+          <input class="form-control header-search-input" type="search" placeholder="Kitap ara..." aria-label="Search">
+          <button class="btn btn-primary header-search-btn" type="button"><i class="bi bi-search"></i></button>
         </div>
-      </nav>
+      </form>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/" data-path="/">Ana Sayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/books" data-path="/books">Kitaplar</a>
+          </li>
+        </ul>
+        <form class="d-flex flex-grow-1 d-none d-lg-inline mx-3">
+          <div class="input-group w-100">
+            <input class="form-control header-search-input" type="search" placeholder="Kitap ara..." aria-label="Search">
+            <button class="btn btn-primary header-search-btn" type="button"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <% if(userFirstname) { %>
+                <img class="rounded-circle avatar-img" src="/assets/img/avatars/<%= avatar %>.png" width="36" height="36">
+                <b><%= userFirstname %></b>
+                <span data-user-id="<%= userId %>"></span>
+              <% } else { %>
+                <i class="bi bi-person-circle"></i> Hoş Geldin
+              <% } %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <% if(isAuthenticated) { %>
+                <li><a class="dropdown-item" href="/account"><i class="bi bi-person-circle"></i> Hesabım</a></li>
+                <% if(userRole === 'admin') { %>
+                  <li><a class="dropdown-item" href="/admin-panel"><i class="bi bi-person-gear"></i> Yönetici Paneli</a></li>
+                <% } %>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="nav-link link-danger ms-2" href="/logout">
+                    <i class="bi bi-box-arrow-right"></i> Çıkış Yap
+                  </a>
+                </li>
+              <% } else { %>
+                <li><a class="dropdown-item" href="/login"><i class="bi bi-box-arrow-in-right"></i> Giriş Yap</a></li>
+                <li><a class="dropdown-item" href="/register"><i class="bi bi-person-plus-fill"></i> Üye Ol</a></li>
+              <% } %>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
