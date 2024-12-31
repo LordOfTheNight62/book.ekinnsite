@@ -8,23 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
     else link.classList.remove('active');
   });
 
+  const headerSearchForms = document.querySelectorAll('.header-search-form');
   const headerSearchBtn = document.querySelectorAll('.header-search-btn');
 
+  headerSearchForms.forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+  });
+
   headerSearchBtn.forEach((searchBtn) => {
-    searchBtn.addEventListener('click', function () {
+    searchBtn.addEventListener('click', () => {
       let query = searchBtn.parentElement.querySelector('.header-search-input').value;
-      console.log(query);
       if (query) {
         window.location.href = '/books/search?q=' + encodeURIComponent(query);
       }
     });
-  });
 
-  document.querySelectorAll('.header-search-btn').addEventListener('click', function () {
-    let query = document.querySelector('.header-search-input').value;
-    console.log(query);
-    if (query) {
-      window.location.href = '/books/search?q=' + encodeURIComponent(query);
-    }
+    searchBtn.parentElement.querySelector('.header-search-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        searchBtn.click();
+      }
+    });
   });
 });
