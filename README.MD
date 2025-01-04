@@ -4,17 +4,17 @@ Developed by Ekin 2024
 
 ## https://book.ekinn.site
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124722.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/024871fcdde4c59b7b23ea9d8b5df830dce1640f/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-01-02%20190536.png)
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124711.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/024871fcdde4c59b7b23ea9d8b5df830dce1640f/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-01-02%20190548.png)
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124740.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/024871fcdde4c59b7b23ea9d8b5df830dce1640f/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-01-02%20190557.png)
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124750.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/024871fcdde4c59b7b23ea9d8b5df830dce1640f/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-01-02%20190617.png)
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124755.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/024871fcdde4c59b7b23ea9d8b5df830dce1640f/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-01-02%20190626.png)
 
-![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124810.png)
+![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/024871fcdde4c59b7b23ea9d8b5df830dce1640f/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-01-02%20190645.png)
 
 ![Ekran Görüntüsü](https://github.com/LordOfTheNight62/book.ekinnsite/blob/main/github/imgs/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-12-22%20124820.png)
 
