@@ -10,6 +10,7 @@ const db = require('./config/db');
 const PORT = 4000;
 
 const cleanRequestBody = require('./middlewares/cleanRequestBody');
+const { checkRedirect } = require('./middlewares/redirect');
 const { toUrlString } = require('./utils/urlFormatter');
 const adminRouter = require('./routes/adminRouter');
 const siteRouter = require('./routes/siteRouter');
@@ -73,7 +74,7 @@ app.use(
     saveUninitialized: false,
     store: sessionStore, // MySQL Store'u burada belirtiyoruz
     cookie: {
-      secure: true,
+      //secure: true,
       httpOnly: true,
       sameSite: 'Lax', // Cross-site isteklerinde cookie gönderilir
       maxAge: 1000 * 60 * 60 * 12, // 12 saat (milisaniye cinsinden)
@@ -92,8 +93,11 @@ app.use((req, res, next) => {
   res.locals.userRole = req.session?.role || null;
   res.locals.userFirstname = req.session?.userName || '';
   res.locals.avatar = req.session?.avatar || '0';
+  res.locals.path = req.originalUrl || '/';
   next();
 });
+
+app.use(checkRedirect);
 
 app.use(adminRouter);
 app.use(siteRouter);

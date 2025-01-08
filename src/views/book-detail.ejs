@@ -8,7 +8,7 @@
 
     <% if(!isAuthenticated) { %>
         <div class="alert alert-warning my-2" role="alert">
-            Yorum yazmak, kitapları favorilerine eklemek gibi birçok özelliğe erişmek için lütfen <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login">giriş yapın</a>
+            Yorum yazmak, kitapları favorilerine eklemek gibi birçok özelliğe erişmek için lütfen <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login?continue=<%= path %>">giriş yapın</a>
         </div>
     <% } %>
     <div class="container-fluid position-relative bg-white mb-5 border border-dark-subtle rounded-3 p-3 print">
@@ -81,7 +81,7 @@
                 <button class="btn bg-primary text-light w-100" type="submit">Yorum Ekle</button>
             </form>
         <% } else { %>
-            <p class="border border-dark-subtle rounded-3 p-3">Yorum ekleyebilmek için lütfen <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login">giriş yapın</a></p>
+            <p class="border border-dark-subtle rounded-3 p-3">Yorum ekleyebilmek için lütfen <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/login?continue=<%= path %>">giriş yapın</a></p>
         <% } %>
 
         <h3 class="comment-count mt-4 mb-1"><%= "Tüm Yorumlar (" + (statistics.totalComments > 0 ? statistics.totalComments + ' adet)' : 'Yorum Yok)') %></h3>
