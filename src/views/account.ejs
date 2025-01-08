@@ -3,9 +3,9 @@
         <h1>Hoş Geldin!</h1>
         <h2>
             <% if(userRole === 'admin')  { %>
-                <%="Sayın yönetici " + user.name %>
+                <span class="underline-effect"><%="Sayın yönetici " + user.name %></span> 
             <% } else { %>
-                <%= user.name %>
+                <span class="underline-effect"><%= user.name %></span>
             <% } %>
         </h2>
     </div>
@@ -223,7 +223,7 @@
             <div class="input-group mb-3">
                 <div class="form-floating">
                     <input type="password" name="userNewPassword" class="form-control user-password-input" id="userNewPasswordInput" placeholder="Enter Your Password" data-toggle-id="2" required>
-                    <label for="userNewPasswordInput">Şifreniz <span class="text-danger">*</span></label>
+                    <label for="userNewPasswordInput">Yeni Şifreniz <span class="text-danger">*</span></label>
                 </div>
                 <button class="btn password-show-hide-toggle" type="button" data-toggle-id="2" style="background-color: #f0f0f0;"><i class="bi bi-eye-fill" data-toggle-id="2"></i></button>
             </div>
