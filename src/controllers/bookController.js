@@ -6,7 +6,7 @@ const { updateSitemap } = require(path.join(__dirname, '../utils/sitemap'));
 
 exports.addNewBook = async (req, res) => {
   const { name, description, author, categoryID } = req.body;
-  if (!name || !author || !categoryID) {
+  if (!name || !author || !categoryID || !description) {
     return res.status(302).redirect(`/books/add-book?message=error`);
   }
 

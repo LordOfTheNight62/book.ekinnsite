@@ -3,7 +3,7 @@ body {
   min-height: 100vh !important;
 }
 
-#comment-editor{border-radius: 0 0 0.375rem 0.375rem;}
+#comment-editor,#description-editor{border-radius: 0 0 0.375rem 0.375rem;}
 .ql-toolbar{border-radius: 0.375rem 0.375rem 0 0;}
 
 .ql-container {
@@ -134,6 +134,8 @@ textarea {
     background-position: 0em;
   }
 }
+
+.devider{width: 100%;background-color: black;border: 2px solid black;margin-bottom: 1rem;}
 
 @media print {
   body * {

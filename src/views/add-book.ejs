@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <main class="container-md py-4">
     <% if(query.message === "success") { %>
         <div class="container-fluid">
@@ -19,7 +21,7 @@
             <h1 class="d-inline m-auto ms-2">Yeni Kitap Ekle</h1>
         </div>
 
-        <form action="/books/add-book" method="POST" class="form-floating my-3">
+        <form id="addBookForm" action="/books/add-book" method="POST" class="form-floating my-3">
             <div class="form-floating mb-3">
                 <input type="text" name="name" class="form-control" id="addBookNameInput" placeholder="Enter Book Name" required>
                 <label for="addBookNameInput">Kitap Adı <span class="text-danger">*</span></label>
@@ -40,8 +42,8 @@
             </div>
 
             <div class="form-floating mb-3">
-                <textarea name="description" class="form-control" id="addBookDescInput" placeholder="Enter Book Description"></textarea>
-                <label for="addBookDescInput">Kitap Açıklaması</label>
+                <input type="hidden" name="description" id="addBookDescInput" required>
+                <div class="bg-white mb-3" id="description-editor"></div>
             </div>
 
             <button class="btn bg-primary text-light w-100" type="submit">Kitap Ekle</button>
@@ -49,3 +51,4 @@
     </div>
 </main>
 <script src="/assets/js/alert.js"></script>
+<script src="/assets/js/addBook.js"></script>

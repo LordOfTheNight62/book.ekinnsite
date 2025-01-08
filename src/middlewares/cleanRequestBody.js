@@ -7,7 +7,7 @@ function cleanRequestBody(req, res, next) {
       // Eğer değer bir string türündeyse, HTML etiketlerini temizle
       if (typeof req.body[key] === 'string') {
         req.body[key] = sanitizeHtml(req.body[key], {
-          allowedTags: ['b', 'i', 'em', 'strong', 'u', 'p', 'ul', 'ol', 'li', 'span', 'br'], // İzin verilen etiketler
+          allowedTags: ['b', 'i', 'em', 'strong', 'u', 'p', 'ul', 'ol', 'li', 'span', 'br', 'h3'], // İzin verilen etiketler
           allowedAttributes: {
             a: ['href', 'title'], // İzin verilen a etiket öznitelikleri
           },
